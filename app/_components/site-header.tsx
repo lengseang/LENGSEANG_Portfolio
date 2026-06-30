@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
-
-import { Icon } from "@/app/_components/icon";
-import type { NavItem } from "@/app/_data/portfolio";
+import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
+import { useState } from 'react';
+import { Icon } from '@/app/_components/icon';
+import { ThemeToggle } from '@/app/_components/ThemeToggle';
+import type { NavItem } from '@/app/_data/portfolio';
 
 type SiteHeaderProps = {
   items: NavItem[];
@@ -23,12 +23,8 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
             LS
           </span>
           <div>
-            <p className="text-sm uppercase tracking-[0.32em] text-[color:var(--text-muted)]">
-              Portfolio
-            </p>
-            <p className="text-base font-semibold text-[color:var(--text-strong)]">
-              Khem Seangleng
-            </p>
+            <p className="text-sm uppercase tracking-[0.32em] text-[color:var(--text-muted)]">Portfolio</p>
+            <p className="text-base font-semibold text-[color:var(--text-strong)]">Khem Seangleng</p>
           </div>
         </Link>
 
@@ -44,7 +40,8 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          <ThemeToggle />
           <Link href={ctaHref} className="button-primary">
             Start a project
           </Link>
@@ -52,11 +49,11 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
 
         <button
           type="button"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
           onClick={() => setIsOpen((open) => !open)}
           className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/8 text-[color:var(--text-strong)] transition hover:border-white/20 md:hidden"
         >
-          <Icon icon={isOpen ? "solar:close-circle-bold" : "solar:hamburger-menu-bold"} width={22} />
+          <Icon icon={isOpen ? 'solar:close-circle-bold' : 'solar:hamburger-menu-bold'} width={22} />
         </button>
       </div>
 
@@ -64,7 +61,7 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
         {isOpen ? (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
+            animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden border-t border-white/10 md:hidden"
@@ -80,11 +77,7 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href={ctaHref}
-                onClick={() => setIsOpen(false)}
-                className="button-primary mt-2 justify-center"
-              >
+              <Link href={ctaHref} onClick={() => setIsOpen(false)} className="button-primary mt-2 justify-center">
                 Start a project
               </Link>
             </div>

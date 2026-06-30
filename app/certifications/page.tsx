@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import { Icon } from "@/app/_components/icon";
-import { MotionReveal } from "@/app/_components/motion";
-import { SiteHeader } from "@/app/_components/site-header";
-import { certifications, navItems } from "@/app/_data/portfolio";
+import { Icon } from '@/app/_components/icon';
+import { MotionReveal } from '@/app/_components/motion';
+import { SiteHeader } from '@/app/_components/site-header';
+import { certifications, navItems } from '@/app/_data/portfolio';
 
 export default function CertificationsPage() {
   return (
@@ -21,8 +21,8 @@ export default function CertificationsPage() {
               Clean layout, dark UI, smooth alternating motion.
             </h1>
             <p className="max-w-2xl text-base leading-8 text-[color:var(--text-soft)]">
-              Each card enters from the opposite side to keep the sequence moving without making
-              the page feel too heavy.
+              Each card enters from the opposite side to keep the sequence moving without making the page feel too
+              heavy.
             </p>
           </MotionReveal>
         </section>
@@ -35,7 +35,7 @@ export default function CertificationsPage() {
               return (
                 <MotionReveal
                   key={`${certification.title}-${certification.issuer}`}
-                  className={`flex ${fromLeft ? "justify-start" : "justify-end"}`}
+                  className={`flex ${fromLeft ? 'justify-start' : 'justify-end'}`}
                   initial={{ opacity: 0, x: fromLeft ? -90 : 90 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.35 }}
@@ -52,9 +52,7 @@ export default function CertificationsPage() {
                           {certification.issuer} / {certification.year}
                         </p>
                         <h2 className="text-2xl font-semibold">{certification.title}</h2>
-                        <p className="text-sm leading-7 text-[color:var(--text-soft)]">
-                          {certification.focus}
-                        </p>
+                        <p className="text-sm leading-7 text-[color:var(--text-soft)]">{certification.focus}</p>
                       </div>
 
                       <a
@@ -74,7 +72,10 @@ export default function CertificationsPage() {
           </div>
 
           <MotionReveal className="mt-12">
-            <Link href="/#contact" className="inline-flex items-center gap-2 text-sm font-medium text-[color:var(--accent)]">
+            <Link
+              href="/#contact"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[color:var(--accent)]"
+            >
               Back to portfolio
               <Icon icon="solar:arrow-right-up-outline" width={18} />
             </Link>

@@ -11,6 +11,115 @@
   --accent-2: #a4a4a4;
   --accent-soft: rgba(255, 255, 255, 0.06);
   --border-soft: rgba(255, 255, 255, 0.08);
+
+  --alpha-glow: 0.035;
+  --alpha-glow-2: 0.03;
+  --alpha-float: 0.04;
+  --alpha-overlay: 0.02;
+  --alpha-overlay-hover: 0.06;
+  --alpha-overlay-strong: 0.08;
+  --alpha-border-field: 0.1;
+  --alpha-border-focus: 0.24;
+  --alpha-shadow-focus: 0.04;
+  --alpha-btn-border: 0.14;
+  --alpha-btn-hover-border: 0.24;
+  --alpha-btn-hover-bg: 0.08;
+  --alpha-simple-top: 0.12;
+  --alpha-simple-bottom: 0.06;
+  --alpha-simple-bg: 0.02;
+  --alpha-tag-border: 0.08;
+  --alpha-tag-bg: 0.02;
+  --alpha-selection: 0.25;
+}
+
+.light {
+  --background: #f7f5f0;
+  --surface: #ffffff;
+  --surface-soft: rgba(255, 255, 255, 0.92);
+  --text-strong: #1a1a1a;
+  --text-soft: #4a4a4a;
+  --text-muted: #8a8a8a;
+  --accent: #1a1a1a;
+  --accent-2: #666666;
+  --accent-soft: rgba(0, 0, 0, 0.04);
+  --border-soft: rgba(0, 0, 0, 0.08);
+
+  --alpha-glow: 0.02;
+  --alpha-glow-2: 0.015;
+  --alpha-float: 0.02;
+  --alpha-overlay: 0.03;
+  --alpha-overlay-hover: 0.05;
+  --alpha-overlay-strong: 0.1;
+  --alpha-border-field: 0.1;
+  --alpha-border-focus: 0.2;
+  --alpha-shadow-focus: 0.04;
+  --alpha-btn-border: 0.1;
+  --alpha-btn-hover-border: 0.2;
+  --alpha-btn-hover-bg: 0.05;
+  --alpha-simple-top: 0.08;
+  --alpha-simple-bottom: 0.04;
+  --alpha-simple-bg: 0.02;
+  --alpha-tag-border: 0.08;
+  --alpha-tag-bg: 0.02;
+  --alpha-selection: 0.12;
+}
+
+.light html {
+  background:
+    radial-gradient(circle at top left, rgba(0, 0, 0, var(--alpha-float)), transparent 24%),
+    radial-gradient(circle at 85% 10%, rgba(0, 0, 0, var(--alpha-glow)), transparent 24%),
+    linear-gradient(180deg, #f7f5f0 0%, #f0ece4 100%);
+}
+
+.light ::selection {
+  background: rgba(0, 0, 0, var(--alpha-selection));
+  color: var(--text-strong);
+}
+
+.light .button-primary {
+  background: var(--text-strong);
+  color: var(--background);
+}
+
+.light .button-secondary {
+  border-color: rgba(0, 0, 0, var(--alpha-btn-border));
+  color: var(--text-strong);
+}
+
+.light .button-secondary:hover {
+  border-color: rgba(0, 0, 0, var(--alpha-btn-hover-border));
+  background: rgba(0, 0, 0, var(--alpha-btn-hover-bg));
+}
+
+.light .field {
+  border-color: rgba(0, 0, 0, var(--alpha-border-field));
+  background: rgba(0, 0, 0, var(--alpha-overlay));
+  color: var(--text-strong);
+}
+
+.light .field:focus {
+  border-color: rgba(0, 0, 0, var(--alpha-border-focus));
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, var(--alpha-shadow-focus));
+}
+
+.light .soft-glow-left {
+  background: rgba(0, 0, 0, var(--alpha-glow));
+}
+
+.light .soft-glow-right {
+  background: rgba(0, 0, 0, var(--alpha-glow-2));
+}
+
+.light .tag {
+  border-color: rgba(0, 0, 0, var(--alpha-tag-border));
+  background: rgba(0, 0, 0, var(--alpha-tag-bg));
+  color: var(--text-soft);
+}
+
+.light .simple-card {
+  border-top-color: rgba(0, 0, 0, var(--alpha-simple-top));
+  border-bottom-color: rgba(0, 0, 0, var(--alpha-simple-bottom));
+  background: rgba(0, 0, 0, var(--alpha-simple-bg));
 }
 
 @theme inline {
@@ -24,8 +133,8 @@
 
 html {
   background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.04), transparent 24%),
-    radial-gradient(circle at 85% 10%, rgba(255, 255, 255, 0.03), transparent 24%),
+    radial-gradient(circle at top left, rgba(255, 255, 255, var(--alpha-float)), transparent 24%),
+    radial-gradient(circle at 85% 10%, rgba(255, 255, 255, var(--alpha-glow)), transparent 24%),
     linear-gradient(180deg, #090909 0%, #050505 100%);
 }
 
@@ -34,6 +143,9 @@ body {
   background: transparent;
   color: var(--text-strong);
   font-family: "Bahnschrift", "Trebuchet MS", sans-serif;
+  transition:
+    color 300ms ease,
+    background-color 300ms ease;
 }
 
 a,
@@ -49,7 +161,7 @@ textarea {
 }
 
 ::selection {
-  background: rgba(138, 243, 209, 0.25);
+  background: rgba(138, 243, 209, var(--alpha-selection));
   color: var(--text-strong);
 }
 
@@ -67,8 +179,12 @@ textarea {
 
 .panel {
   border: 1px solid var(--border-soft);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, var(--alpha-overlay));
   border-radius: 1.5rem;
+}
+
+.light .panel {
+  background: rgba(0, 0, 0, var(--alpha-overlay));
 }
 
 .button-primary,
@@ -94,21 +210,21 @@ textarea {
 }
 
 .button-secondary {
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, var(--alpha-btn-border));
   background: transparent;
   color: var(--text-strong);
 }
 
 .button-secondary:hover {
-  border-color: rgba(255, 255, 255, 0.24);
-  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, var(--alpha-btn-hover-border));
+  background: rgba(255, 255, 255, var(--alpha-btn-hover-bg));
 }
 
 .field {
   width: 100%;
   border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, var(--alpha-border-field));
+  background: rgba(255, 255, 255, var(--alpha-overlay));
   color: var(--text-strong);
   padding: 0.95rem 1rem;
   font-size: 1rem;
@@ -121,8 +237,8 @@ textarea {
 
 .field:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.24);
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, var(--alpha-border-focus));
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, var(--alpha-shadow-focus));
 }
 
 .soft-glow {
@@ -137,7 +253,7 @@ textarea {
   top: 2rem;
   height: 14rem;
   width: 14rem;
-  background: rgba(255, 255, 255, 0.035);
+  background: rgba(255, 255, 255, var(--alpha-glow));
   animation: float 20s infinite ease-in-out alternate;
 }
 
@@ -146,25 +262,31 @@ textarea {
   top: 10rem;
   height: 16rem;
   width: 16rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, var(--alpha-glow-2));
   animation: float 25s infinite ease-in-out alternate-reverse;
 }
 
 @keyframes float {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(4rem, -3rem) scale(1.1); }
-  100% { transform: translate(-2rem, 4rem) scale(0.95); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(4rem, -3rem) scale(1.1);
+  }
+  100% {
+    transform: translate(-2rem, 4rem) scale(0.95);
+  }
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, var(--alpha-tag-border));
   border-radius: 999px;
   padding: 0.55rem 0.95rem;
   font-size: 0.84rem;
   color: var(--text-soft);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, var(--alpha-tag-bg));
 }
 
 .contact-link {
@@ -174,9 +296,9 @@ textarea {
 }
 
 .simple-card {
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, var(--alpha-simple-top));
+  border-bottom: 1px solid rgba(255, 255, 255, var(--alpha-simple-bottom));
+  background: rgba(255, 255, 255, var(--alpha-simple-bg));
   border-radius: 1.5rem;
   padding: 1.5rem;
 }
@@ -189,8 +311,8 @@ textarea {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
   }
 }

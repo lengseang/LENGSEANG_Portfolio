@@ -1,19 +1,14 @@
-"use client";
+'use client';
 
-import {
-  motion,
-  useReducedMotion,
-  type HTMLMotionProps,
-  type Variants,
-} from "framer-motion";
-import type { ReactNode } from "react";
+import { type HTMLMotionProps, motion, useReducedMotion, type Variants } from 'framer-motion';
+import { type HTMLAttributes, type ReactNode, useEffect, useState } from 'react';
 
 const revealVariants: Variants = {
-  hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+  hidden: { opacity: 0, y: 30, filter: 'blur(10px)' },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
+    filter: 'blur(0px)',
     transition: {
       duration: 0.8,
       ease: [0.16, 1, 0.3, 1],
@@ -31,15 +26,26 @@ const staggerVariants: Variants = {
   },
 };
 
-type RevealProps = HTMLMotionProps<"div"> & {
+type RevealProps = HTMLMotionProps<'div'> & {
   children: ReactNode;
 };
 
+function useIsClient() {
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => setIsClient(true), []);
+  return isClient;
+}
+
+function StaticDiv(props: HTMLAttributes<HTMLDivElement> & { children?: ReactNode }) {
+  return <div {...props} />;
+}
+
 export function MotionReveal({ children, ...props }: RevealProps) {
   const prefersReducedMotion = useReducedMotion();
+  const isClient = useIsClient();
 
-  if (prefersReducedMotion) {
-    return <motion.div {...props}>{children}</motion.div>;
+  if (!isClient || prefersReducedMotion) {
+    return <StaticDiv {...(props as HTMLAttributes<HTMLDivElement>)}>{children}</StaticDiv>;
   }
 
   return (
@@ -55,14 +61,12 @@ export function MotionReveal({ children, ...props }: RevealProps) {
   );
 }
 
-export function MotionStagger({
-  children,
-  ...props
-}: HTMLMotionProps<"div"> & { children: ReactNode }) {
+export function MotionStagger({ children, ...props }: HTMLMotionProps<'div'> & { children: ReactNode }) {
   const prefersReducedMotion = useReducedMotion();
+  const isClient = useIsClient();
 
-  if (prefersReducedMotion) {
-    return <motion.div {...props}>{children}</motion.div>;
+  if (!isClient || prefersReducedMotion) {
+    return <StaticDiv {...(props as HTMLAttributes<HTMLDivElement>)}>{children}</StaticDiv>;
   }
 
   return (
@@ -78,14 +82,12 @@ export function MotionStagger({
   );
 }
 
-export function MotionItem({
-  children,
-  ...props
-}: HTMLMotionProps<"div"> & { children: ReactNode }) {
+export function MotionItem({ children, ...props }: HTMLMotionProps<'div'> & { children: ReactNode }) {
   const prefersReducedMotion = useReducedMotion();
+  const isClient = useIsClient();
 
-  if (prefersReducedMotion) {
-    return <motion.div {...props}>{children}</motion.div>;
+  if (!isClient || prefersReducedMotion) {
+    return <StaticDiv {...(props as HTMLAttributes<HTMLDivElement>)}>{children}</StaticDiv>;
   }
 
   return (

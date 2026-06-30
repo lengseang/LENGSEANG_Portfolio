@@ -1,3 +1,3 @@
-"use client";
+'use client';
 
-export { Icon } from "@iconify/react";
+export { Icon } from '@iconify/react';
