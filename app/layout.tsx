@@ -3,12 +3,13 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Leng Seang | Frontend Developer Portfolio',
+  title: 'Khem Seangleng | Full-Stack Developer',
   description:
-    'A redesigned portfolio for Leng Seang, a frontend developer in Cambodia building thoughtful interfaces with Next.js, Tailwind CSS, and motion.',
+    'Portfolio of Khem Seangleng (Leng), a Full-Stack Developer building clean, responsive interfaces, secure admin systems, and robust backend system architectures.',
   icons: {
-    icon: '/portfolio/leng-logo.png',
-    shortcut: '/portfolio/leng-logo.png',
+    icon: '/portfolio/khem-profile.jpg',
+    shortcut: '/portfolio/khem-profile.jpg',
+    apple: '/portfolio/khem-profile.jpg',
   },
 };
 
@@ -36,7 +37,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }

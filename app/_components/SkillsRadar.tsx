@@ -1,10 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { skills } from '@/app/_data/portfolio';
 import { MotionItem, MotionReveal, MotionStagger } from './motion';
-import { EmojiSticker } from './stickers/Sticker';
 
 const categories = [
   { id: 'all', label: 'All' },
@@ -18,7 +16,6 @@ const categories = [
 export const SkillsRadar = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedSkill, setSelectedSkill] = useState<(typeof skills)[0] | null>(null);
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
   const filteredSkills = activeCategory === 'all' ? skills : skills.filter((s) => s.category === activeCategory);
 
@@ -55,43 +52,15 @@ export const SkillsRadar = () => {
 
         {/* Skills Grid */}
         <div className="relative">
-          <motion.div
-            className="absolute -top-2 right-0 z-10"
-            animate={
-              hoveredSkill
-                ? {
-                    scale: [1, 1.15, 0.95, 1.1, 1],
-                    rotate: [0, -8, 12, -6, 4, 0],
-                    y: [0, -4, 2, -6, 0],
-                  }
-                : { scale: 1, rotate: 0, y: 0 }
-            }
-            transition={hoveredSkill ? { duration: 0.5, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.3 }}
-          >
-            <EmojiSticker
-              src="/vid/cow-moo.mp4"
-              size={68}
-              mobileSize={48}
-              visible={hoveredSkill !== null}
-              variants={{
-                hidden: { opacity: 0, scale: 0.2 },
-                visible: {
-                  opacity: 1,
-                  scale: 1,
-                  transition: { type: 'spring', stiffness: 300, damping: 10 },
-                },
-              }}
-            />
-          </motion.div>
           <MotionStagger className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
             {filteredSkills.map((skill) => (
               <MotionItem key={skill.name}>
                 <button
                   type="button"
-                  className="w-full text-left panel p-5 space-y-3 cursor-pointer transition-all duration-300 hover:bg-white/[0.04] hover:border-white/20 group"
+                  className={`w-full text-left panel p-5 space-y-3 cursor-pointer transition-all duration-300 hover:bg-white/[0.04] hover:border-white/20 group ${
+                    selectedSkill?.name === skill.name ? 'border-[color:var(--accent)] bg-white/[0.04]' : ''
+                  }`}
                   onClick={() => setSelectedSkill(selectedSkill?.name === skill.name ? null : skill)}
-                  onMouseEnter={() => setHoveredSkill(skill.name)}
-                  onMouseLeave={() => setHoveredSkill(null)}
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium text-[color:var(--text-strong)]">{skill.name}</span>

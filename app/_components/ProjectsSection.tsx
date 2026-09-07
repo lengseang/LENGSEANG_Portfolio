@@ -73,7 +73,7 @@ export const ProjectsSection = () => {
                       className="inline-flex items-center gap-2 text-sm font-medium text-[color:var(--accent)] transition-opacity duration-300 hover:opacity-70"
                     >
                       <Icon icon="solar:arrow-right-up-outline" width={18} />
-                      Live Demo
+                      {project.visuals.demo.replace(/^https?:\/\//, '').replace(/\/$/, '')}
                     </a>
                   )}
                   {project.challenges.length > 0 && (

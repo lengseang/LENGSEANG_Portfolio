@@ -1,9 +1,15 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Icon } from '@/app/_components/icon';
 import { MotionReveal } from '@/app/_components/motion';
 import { SiteHeader } from '@/app/_components/site-header';
 import { certifications, navItems } from '@/app/_data/portfolio';
+
+export const metadata: Metadata = {
+  title: 'Certifications | Khem Seangleng',
+  description: 'Certifications and continuous learning portfolio of Khem Seangleng.',
+};
 
 export default function CertificationsPage() {
   return (

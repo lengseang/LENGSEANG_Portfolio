@@ -8,10 +8,6 @@ import { MotionItem, MotionReveal, MotionStagger } from '@/app/_components/motio
 import { ProjectsSection } from '@/app/_components/ProjectsSection';
 import { SkillsRadar } from '@/app/_components/SkillsRadar';
 import { SiteHeader } from '@/app/_components/site-header';
-import { AboutPensiveSticker } from '@/app/_components/stickers/AboutPensiveSticker';
-import { HeroFrogSticker } from '@/app/_components/stickers/HeroFrogSticker';
-import { ServiceHoverSticker } from '@/app/_components/stickers/ServiceHoverSticker';
-import { TestimonialCarousel } from '@/app/_components/TestimonialCarousel';
 
 import {
   certifications,
@@ -35,16 +31,21 @@ export default function Home() {
           <div className="soft-glow soft-glow-left" />
           <div className="soft-glow soft-glow-right" />
 
-          <div className="mx-auto grid max-w-6xl gap-12 px-5 py-18 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-24">
+          <div className="mx-auto grid max-w-6xl gap-12 px-5 py-18 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:px-8 lg:py-24">
             <MotionReveal className="space-y-8">
               <div className="space-y-4">
-                <p className="eyebrow">{personalInfo.name}</p>
                 <h1 className="font-display text-5xl leading-[0.95] text-balance sm:text-6xl lg:text-7xl">
-                  {personalInfo.role}
+                  {personalInfo.name}
                 </h1>
-                <p className="max-w-xl text-lg leading-8 text-[color:var(--text-soft)]">{personalInfo.shortBio}</p>
-                <p className="max-w-xl text-sm leading-7 text-[color:var(--text-muted)]">
-                  Based in {personalInfo.location}
+                <p className="text-xl font-medium text-[color:var(--accent)]">
+                  {personalInfo.role}
+                </p>
+                <p className="max-w-xl text-base leading-8 text-[color:var(--text-soft)]">
+                  {personalInfo.shortBio}
+                </p>
+                <p className="text-sm text-[color:var(--text-muted)] flex items-center gap-2">
+                  <Icon icon="solar:map-point-bold-duotone" width={16} className="text-[color:var(--accent)]" />
+                  Based in {personalInfo.location} &middot; RUPP Computer Science
                 </p>
               </div>
 
@@ -52,42 +53,44 @@ export default function Home() {
                 <Link href="/#projects" className="button-primary">
                   View my work
                 </Link>
-                <Link href="/#journey" className="button-secondary">
-                  My journey
-                </Link>
+                <a
+                  href="/Khem_Seangleng_CV.pdf"
+                  download="Khem_Seangleng_CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button-secondary inline-flex items-center justify-center gap-2"
+                >
+                  <Icon icon="solar:document-text-bold-duotone" width={18} />
+                  Download CV
+                </a>
               </div>
 
-              <div className="space-y-4">
-                <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--text-muted)]">
-                  Professional summary
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  {highlights.map((item) => (
-                    <MotionReveal key={item}>
-                      <span className="tag">{item}</span>
-                    </MotionReveal>
-                  ))}
+              <div className="pt-2 border-t border-white/8 grid grid-cols-3 gap-4">
+                <div>
+                  <p className="text-2xl font-bold text-[color:var(--text-strong)] font-display">4+</p>
+                  <p className="text-xs text-[color:var(--text-muted)] mt-0.5">Years Experience</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-[color:var(--text-strong)] font-display">4</p>
+                  <p className="text-xs text-[color:var(--text-muted)] mt-0.5">Major Platforms</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-[color:var(--text-strong)] font-display">6+</p>
+                  <p className="text-xs text-[color:var(--text-muted)] mt-0.5">RBAC Roles Built</p>
                 </div>
               </div>
             </MotionReveal>
 
             <MotionReveal className="flex justify-center lg:justify-end">
-              <div className="relative aspect-[4/4.8] w-full max-w-sm overflow-hidden rounded-[2rem] border border-white/10 bg-[color:var(--surface)]">
+              <div className="relative aspect-[4/4.5] w-full max-w-sm mx-auto lg:mx-0 overflow-hidden rounded-3xl border border-white/15 bg-[color:var(--surface)] shadow-2xl">
                 <Image
-                  src="/portfolio/hero-leng.png"
+                  src="/portfolio/khem-profile.jpg"
                   alt="Portrait of Khem Seangleng"
                   fill
                   priority
-                  className="object-cover object-top"
+                  className="object-cover object-center"
                   sizes="(min-width: 1024px) 24rem, 90vw"
                 />
-                <HeroFrogSticker />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                  <p className="text-xs uppercase tracking-[0.24em] text-[color:var(--text-muted)]">Current focus</p>
-                  <p className="mt-2 text-lg font-medium text-[color:var(--text-strong)]">
-                    Secure products, admin systems, and clean frontend architecture.
-                  </p>
-                </div>
               </div>
             </MotionReveal>
           </div>
@@ -96,37 +99,85 @@ export default function Home() {
         {/* ===== ABOUT ===== */}
         <section id="about" className="border-y border-white/8">
           <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-22">
-            <MotionReveal className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] items-center">
-              <div className="relative aspect-[4/5] w-full max-w-sm mx-auto lg:mx-0 overflow-hidden rounded-[2rem] border border-white/10 bg-[color:var(--surface)]">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="absolute inset-0 h-full w-full object-cover object-top"
-                >
-                  <source src="/About/meow meow.mp4" type="video/mp4" />
-                </video>
+            <MotionReveal className="space-y-12">
+              <div className="max-w-3xl space-y-4">
+                <p className="eyebrow">About Me</p>
+                <h2 className="font-display text-4xl leading-none sm:text-5xl">
+                  Building clean interfaces and robust system architectures
+                </h2>
+                <p className="text-lg leading-8 text-[color:var(--text-soft)]">
+                  {personalInfo.longBio}
+                </p>
               </div>
-              <div className="space-y-6">
-                <div className="space-y-3">
-                  <p className="eyebrow">About</p>
-                  <h2 className="font-display text-4xl leading-none sm:text-5xl">
-                    Frontend-focused, product-minded, and building secure systems
-                  </h2>
+
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="panel p-6 space-y-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.05] text-[color:var(--accent)]">
+                    <Icon icon="solar:shield-check-bold-duotone" width={22} />
+                  </div>
+                  <h3 className="text-base font-semibold text-[color:var(--text-strong)]">Secure RBAC Systems</h3>
+                  <p className="text-xs leading-6 text-[color:var(--text-soft)]">
+                    Granular permission hierarchies, role inheritance, and secure API endpoints for enterprise administrative tools.
+                  </p>
                 </div>
-                <div className="flex items-start gap-3">
-                  <p className="text-base leading-8 text-[color:var(--text-soft)]">{personalInfo.longBio}</p>
-                  <AboutPensiveSticker />
+
+                <div className="panel p-6 space-y-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.05] text-[color:var(--accent)]">
+                    <Icon icon="solar:code-2-bold-duotone" width={22} />
+                  </div>
+                  <h3 className="text-base font-semibold text-[color:var(--text-strong)]">Frontend Engineering</h3>
+                  <p className="text-xs leading-6 text-[color:var(--text-soft)]">
+                    Responsive, component-driven UI with React, Vue, Next.js, and TypeScript focused on speed and usability.
+                  </p>
                 </div>
-                <div className="flex flex-wrap gap-3 pt-2">
-                  {personalInfo.professionalSummary.slice(0, 3).map((item) => (
-                    <div key={item} className="flex items-center gap-2 text-sm text-[color:var(--text-soft)]">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)] flex-shrink-0" />
-                      {item}
+
+                <div className="panel p-6 space-y-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.05] text-[color:var(--accent)]">
+                    <Icon icon="solar:server-bold-duotone" width={22} />
+                  </div>
+                  <h3 className="text-base font-semibold text-[color:var(--text-strong)]">Backend & Databases</h3>
+                  <p className="text-xs leading-6 text-[color:var(--text-soft)]">
+                    Scalable RESTful services with NestJS & Express, paired with PostgreSQL & MySQL schema optimizations.
+                  </p>
+                </div>
+
+                <div className="panel p-6 space-y-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.05] text-[color:var(--accent)]">
+                    <Icon icon="solar:routing-2-bold-duotone" width={22} />
+                  </div>
+                  <h3 className="text-base font-semibold text-[color:var(--text-strong)]">Operational Workflows</h3>
+                  <p className="text-xs leading-6 text-[color:var(--text-soft)]">
+                    Multi-role delivery handoffs, real-time push notification pipelines, and QR verification systems.
+                  </p>
+                </div>
+              </div>
+
+              <div className="panel p-6 lg:p-8 space-y-4">
+                <h3 className="text-sm uppercase tracking-[0.22em] text-[color:var(--text-muted)]">Key Highlights & Background</h3>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {personalInfo.professionalSummary.map((item) => (
+                    <div key={item} className="flex items-start gap-3 text-sm text-[color:var(--text-soft)]">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[color:var(--accent)] flex-shrink-0" />
+                      <span className="leading-relaxed">{item}</span>
                     </div>
                   ))}
                 </div>
+
+                {personalInfo.hobbies && personalInfo.hobbies.length > 0 && (
+                  <div className="pt-4 border-t border-white/8 space-y-2">
+                    <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--text-muted)]">Interests & Hobbies</p>
+                    <div className="flex flex-wrap gap-2">
+                      {personalInfo.hobbies.map((hobby) => (
+                        <span
+                          key={hobby}
+                          className="px-3 py-1 bg-white/[0.04] border border-white/8 rounded-full text-xs text-[color:var(--text-soft)]"
+                        >
+                          {hobby}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </MotionReveal>
           </div>
@@ -196,15 +247,17 @@ export default function Home() {
               <p className="eyebrow">Services</p>
               <h2 className="font-display text-4xl leading-none sm:text-5xl">What I offer</h2>
               <p className="max-w-2xl text-lg text-[color:var(--text-soft)]">
-                From secure admin systems to full-stack SaaS development
+                From secure admin systems to full-stack web architectures
               </p>
             </MotionReveal>
 
             <MotionStagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((service) => (
                 <MotionItem key={service.id}>
-                  <div className="panel p-6 space-y-4 transition-all duration-300 hover:bg-white/[0.04] hover:border-white/20 h-full">
-                    <ServiceHoverSticker icon={service.icon} />
+                  <div className="panel p-6 space-y-4 transition-all duration-300 hover:bg-white/[0.04] hover:border-white/20 h-full group">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-[color:var(--accent)] transition-all duration-300 group-hover:border-[color:var(--accent)]/40 group-hover:bg-[color:var(--accent)]/10">
+                      <Icon icon={service.icon} width={24} />
+                    </div>
                     <h3 className="text-xl font-semibold text-[color:var(--text-strong)]">{service.title}</h3>
                     <p className="text-sm leading-7 text-[color:var(--text-soft)]">{service.description}</p>
                     <span className="inline-block px-3 py-1 bg-white/[0.04] rounded-full text-xs text-[color:var(--text-muted)] capitalize">
@@ -217,14 +270,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ===== TESTIMONIALS ===== */}
-        <TestimonialCarousel />
-
         {/* ===== EDUCATION & CERTIFICATIONS ===== */}
         <section id="education" className="border-y border-white/8">
           <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-22">
             <div className="grid gap-12 lg:grid-cols-2">
-              {/* Education */}
+              {/* Education & Reference */}
               <MotionReveal className="space-y-8">
                 <div className="space-y-3">
                   <p className="eyebrow">Education</p>
@@ -233,7 +283,7 @@ export default function Home() {
                 <MotionStagger className="space-y-6">
                   {education.map((item) => (
                     <MotionItem key={item.title}>
-                      <div className="space-y-2">
+                      <div className="space-y-2 panel p-5">
                         <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--text-muted)]">
                           {item.period}
                         </p>
@@ -316,6 +366,19 @@ export default function Home() {
                     </a>
                   );
                 })}
+
+                <div className="pt-2">
+                  <a
+                    href="/Khem_Seangleng_CV.pdf"
+                    download="Khem_Seangleng_CV.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="button-secondary inline-flex items-center gap-2 text-xs"
+                  >
+                    <Icon icon="solar:document-text-bold-duotone" width={16} />
+                    Download Full Resume / CV (PDF)
+                  </a>
+                </div>
               </div>
             </MotionReveal>
 

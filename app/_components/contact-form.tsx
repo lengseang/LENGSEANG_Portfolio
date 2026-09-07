@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useRef, useState } from 'react';
-import { EmojiSticker } from './stickers/Sticker';
+import { useId, useState } from 'react';
+import { useRef } from 'react';
 
 type ContactFormState = 'idle' | 'ready';
 
@@ -90,22 +90,6 @@ export function ContactForm({ email }: ContactFormProps) {
           ? 'Your email app should open with the message prefilled.'
           : 'Submitting opens your default email app with the message already prepared.'}
       </p>
-
-      <motion.div
-        aria-hidden="true"
-        className="absolute right-1 pointer-events-none"
-        animate={{
-          top: targetY,
-          x: focusedField !== null ? [0, -4, 3, -2, 4, -3, 0] : [0, 6, -4, 8, -5, 3, -6, 0],
-          opacity: 1,
-        }}
-        transition={{
-          top: { type: 'spring', stiffness: 180, damping: 14 },
-          x: { duration: focusedField !== null ? 0.5 : 0.8, repeat: Infinity, ease: 'easeInOut' },
-        }}
-      >
-        <EmojiSticker src="/vid/mouse-squeak.mp4" size={48} mobileSize={36} />
-      </motion.div>
     </form>
   );
 }

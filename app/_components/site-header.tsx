@@ -1,6 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Icon } from '@/app/_components/icon';
@@ -18,10 +19,17 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[color:var(--surface-soft)]/75 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6 lg:px-8">
-        <Link href="/#home" className="flex items-center gap-3">
-          <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/8 text-lg font-semibold text-[color:var(--text-strong)]">
-            LS
-          </span>
+        <Link href="/#home" className="flex items-center gap-3 group">
+          <div className="relative h-11 w-11 overflow-hidden rounded-2xl border border-white/15 bg-white/8 transition-transform duration-300 group-hover:scale-105">
+            <Image
+              src="/portfolio/khem-profile.jpg"
+              alt="Khem Seangleng"
+              fill
+              priority
+              className="object-cover object-top"
+              sizes="44px"
+            />
+          </div>
           <div>
             <p className="text-sm uppercase tracking-[0.32em] text-[color:var(--text-muted)]">Portfolio</p>
             <p className="text-base font-semibold text-[color:var(--text-strong)]">Khem Seangleng</p>

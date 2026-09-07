@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { journeyMilestones, projects } from '@/app/_data/portfolio';
 import { Icon } from '../icon';
 import { MotionReveal } from '../motion';
-import { EmojiSticker } from '../stickers/Sticker';
 
 interface MilestoneCardProps {
   milestone: (typeof journeyMilestones)[0];
@@ -255,35 +254,6 @@ export const JourneyTimeline = () => {
               </button>
             </div>
           )}
-
-          <div className="relative flex justify-end mt-4">
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, scale: 0.2, rotate: -30, x: 40 }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                rotate: [0, -8, 6, -4, 2, 0],
-                x: 0,
-              }}
-              transition={{
-                type: 'spring',
-                stiffness: 180,
-                damping: 8,
-                rotate: { duration: 0.6, delay: 0.3 },
-              }}
-            >
-              <EmojiSticker
-                src="/vid/smirk-tease.mp4"
-                size={56}
-                mobileSize={40}
-                variants={{
-                  hidden: { opacity: 0, scale: 0.5 },
-                  visible: { opacity: 1, scale: 1, transition: { duration: 0.2 } },
-                }}
-              />
-            </motion.div>
-          </div>
         </div>
       </div>
     </section>
