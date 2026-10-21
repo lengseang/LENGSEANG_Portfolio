@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 
+import { TechBackground } from '@/app/_components/TechBackground';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.lengseang.dev'),
   title: 'Khem Seangleng | Full-Stack Developer',
   description:
     'Portfolio of Khem Seangleng (Leng), a Full-Stack Developer building clean, responsive interfaces, secure admin systems, and robust backend system architectures.',
@@ -37,7 +39,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning className="relative min-h-screen">
+        <TechBackground />
+        {children}
+      </body>
     </html>
   );
 }

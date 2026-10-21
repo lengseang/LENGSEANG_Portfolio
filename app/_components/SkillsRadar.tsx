@@ -1,46 +1,51 @@
 'use client';
 
+import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import { skills } from '@/app/_data/portfolio';
+import { Icon } from './icon';
 import { MotionItem, MotionReveal, MotionStagger } from './motion';
 
 const categories = [
-  { id: 'all', label: 'All' },
-  { id: 'frontend', label: 'Frontend' },
-  { id: 'backend', label: 'Backend' },
-  { id: 'database', label: 'Database' },
-  { id: 'mobile', label: 'Mobile' },
-  { id: 'architecture', label: 'Architecture' },
+  { id: 'all', label: 'All Disciplines' },
+  { id: 'frontend', label: 'Frontend Craft' },
+  { id: 'backend', label: 'Backend & APIs' },
+  { id: 'database', label: 'Data & Schemas' },
+  { id: 'mobile', label: 'Mobile Workflows' },
+  { id: 'architecture', label: 'System Design' },
 ] as const;
 
 export const SkillsRadar = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedSkill, setSelectedSkill] = useState<(typeof skills)[0] | null>(null);
 
   const filteredSkills = activeCategory === 'all' ? skills : skills.filter((s) => s.category === activeCategory);
 
   return (
     <section id="skills" className="border-y border-white/8">
-      <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-22">
+      <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
         <MotionReveal className="mb-10 space-y-3">
-          <p className="eyebrow">Technical Skills</p>
-          <h2 className="font-display text-4xl leading-none sm:text-5xl">What I work with</h2>
+          <p className="eyebrow">Technical Competencies</p>
+          <h2 className="font-display text-4xl leading-none sm:text-5xl">Production Tech Stack</h2>
           <p className="max-w-2xl text-lg text-[color:var(--text-soft)]">
-            Proficiencies built through production experience across the full stack
+            Tools, languages, and architecture patterns proven in real shipping applications
           </p>
         </MotionReveal>
 
-        {/* Category Filter */}
+        {/* Category Filter Chips */}
         <MotionReveal className="mb-8">
           <div className="flex flex-wrap gap-2">
             {categories.map((cat) => (
               <button
                 type="button"
                 key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${
+                onClick={() => {
+                  setActiveCategory(cat.id);
+                  setSelectedSkill(null);
+                }}
+                className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 ${
                   activeCategory === cat.id
-                    ? 'bg-[color:var(--text-strong)] text-[color:var(--background)]'
+                    ? 'bg-[color:var(--text-strong)] text-[color:var(--background)] shadow-md font-semibold'
                     : 'bg-white/[0.04] text-[color:var(--text-soft)] hover:bg-white/[0.08] border border-white/10'
                 }`}
               >
@@ -52,92 +57,143 @@ export const SkillsRadar = () => {
 
         {/* Skills Grid */}
         <div className="relative">
-          <MotionStagger className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-            {filteredSkills.map((skill) => (
-              <MotionItem key={skill.name}>
-                <button
-                  type="button"
-                  className={`w-full text-left panel p-5 space-y-3 cursor-pointer transition-all duration-300 hover:bg-white/[0.04] hover:border-white/20 group ${
-                    selectedSkill?.name === skill.name ? 'border-[color:var(--accent)] bg-white/[0.04]' : ''
-                  }`}
-                  onClick={() => setSelectedSkill(selectedSkill?.name === skill.name ? null : skill)}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-[color:var(--text-strong)]">{skill.name}</span>
-                    <span className="text-xs text-[color:var(--text-muted)]">{skill.proficiency}%</span>
-                  </div>
-                  <div className="h-1.5 rounded-full bg-white/[0.08] overflow-hidden">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-[color:var(--accent)] to-white transition-all duration-700"
-                      style={{ width: `${skill.proficiency}%` }}
-                    />
-                  </div>
-                  {skill.projectsUsedIn.length > 0 && (
-                    <p className="text-xs text-[color:var(--text-muted)]">
-                      {skill.projectsUsedIn.length} project{skill.projectsUsedIn.length !== 1 ? 's' : ''}
-                    </p>
-                  )}
-                </button>
-              </MotionItem>
-            ))}
+          <MotionStagger className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {filteredSkills.map((skill) => {
+              const isSelected = selectedSkill?.name === skill.name;
+              const tenure =
+                skill.timeline.length > 1
+                  ? `${skill.timeline[0]} – ${skill.timeline[skill.timeline.length - 1]}`
+                  : skill.timeline[0] || 'Active';
+
+              return (
+                <MotionItem key={skill.name}>
+                  <motion.div
+                    whileHover={{ y: -3 }}
+                    transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                    onClick={() => setSelectedSkill(isSelected ? null : skill)}
+                    className={`h-full flex flex-col justify-between text-left panel p-5 space-y-3.5 cursor-pointer transition-all duration-200 hover:border-white/20 hover:bg-white/[0.04] group ${
+                      isSelected
+                        ? 'border-[color:var(--accent)] bg-white/[0.06] shadow-lg ring-1 ring-[color:var(--accent)]/30'
+                        : ''
+                    }`}
+                  >
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-base font-semibold text-[color:var(--text-strong)] group-hover:text-[color:var(--accent)] transition-colors">
+                          {skill.name}
+                        </span>
+                        <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-white/5 border border-white/8 text-[color:var(--text-muted)]">
+                          {skill.category}
+                        </span>
+                      </div>
+
+                      {skill.description && (
+                        <p className="text-xs leading-relaxed text-[color:var(--text-soft)] line-clamp-2">
+                          {skill.description}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="space-y-2 pt-2 border-t border-white/6">
+                      <div className="flex items-center justify-between text-[11px] text-[color:var(--text-muted)]">
+                        <span>Production tenure</span>
+                        <span className="font-mono text-[color:var(--text-soft)]">{tenure}</span>
+                      </div>
+
+                      {skill.projectsUsedIn.length > 0 && (
+                        <div className="flex flex-wrap gap-1.5 pt-0.5">
+                          {skill.projectsUsedIn.slice(0, 2).map((proj) => (
+                            <span
+                              key={proj}
+                              className="px-2 py-0.5 rounded bg-white/[0.04] text-[10px] text-[color:var(--text-muted)] font-mono truncate max-w-[140px]"
+                            >
+                              {proj.replace(/-/g, ' ')}
+                            </span>
+                          ))}
+                          {skill.projectsUsedIn.length > 2 && (
+                            <span className="px-1.5 py-0.5 rounded bg-white/[0.04] text-[10px] text-[color:var(--text-muted)] font-mono">
+                              +{skill.projectsUsedIn.length - 2}
+                            </span>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                </MotionItem>
+              );
+            })}
           </MotionStagger>
         </div>
 
-        {/* Skill Detail Modal */}
-        {selectedSkill && (
-          <MotionReveal className="mt-8">
-            <div className="panel p-6 space-y-4">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="text-lg font-semibold text-[color:var(--text-strong)]">{selectedSkill.name}</h3>
-                  <p className="text-sm text-[color:var(--text-soft)] mt-1">{selectedSkill.description}</p>
+        {/* Selected Skill Detail Panel */}
+        <AnimatePresence>
+          {selectedSkill && (
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-8 panel p-6 sm:p-7 space-y-4 border-white/20 bg-white/[0.03]"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-xl font-bold text-[color:var(--text-strong)] font-display">
+                      {selectedSkill.name}
+                    </h3>
+                    <span className="text-xs font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white/10 text-[color:var(--accent)]">
+                      {selectedSkill.category}
+                    </span>
+                  </div>
+                  <p className="text-sm text-[color:var(--text-soft)]">{selectedSkill.description}</p>
                 </div>
+
                 <button
                   type="button"
                   onClick={() => setSelectedSkill(null)}
-                  className="p-1 text-[color:var(--text-muted)] hover:text-[color:var(--text-strong)]"
+                  className="p-1.5 rounded-full border border-white/10 text-[color:var(--text-muted)] hover:text-[color:var(--text-strong)] hover:border-white/25 transition-colors"
+                  aria-label="Close details"
                 >
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    aria-hidden="true"
-                  >
-                    <path d="M18 6L6 18M6 6l12 12" />
-                  </svg>
+                  <Icon icon="solar:close-circle-bold" width={20} />
                 </button>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {selectedSkill.projectsUsedIn.map((projectName) => (
-                  <span
-                    key={projectName}
-                    className="px-3 py-1 bg-white/[0.06] rounded-full text-xs text-[color:var(--text-muted)]"
-                  >
-                    {projectName.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())}
-                  </span>
-                ))}
-              </div>
-              {selectedSkill.timeline.length > 0 && (
-                <div className="space-y-2">
-                  <p className="text-xs text-[color:var(--text-muted)]">Experience timeline</p>
-                  <div className="flex items-center gap-2">
+
+              <div className="grid gap-4 sm:grid-cols-2 pt-2 border-t border-white/8">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--text-muted)] mb-2">
+                    Shipped In Production Projects
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedSkill.projectsUsedIn.map((projectName) => (
+                      <span
+                        key={projectName}
+                        className="px-3 py-1 bg-white/[0.06] border border-white/10 rounded-full text-xs font-mono text-[color:var(--text-strong)]"
+                      >
+                        {projectName.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--text-muted)] mb-2">
+                    Active Timeline
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
                     {selectedSkill.timeline.map((year) => (
                       <span
                         key={year}
-                        className="px-2 py-1 bg-white/[0.06] rounded text-xs text-[color:var(--text-soft)]"
+                        className="px-2.5 py-1 bg-white/[0.05] border border-white/8 rounded-md text-xs font-mono text-[color:var(--accent)]"
                       >
                         {year}
                       </span>
                     ))}
                   </div>
                 </div>
-              )}
-            </div>
-          </MotionReveal>
-        )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

@@ -52,6 +52,7 @@ export type ProjectImpact = {
     gallery?: string[];
     video?: string;
     demo?: string; // Codepen/StackBlitz link
+    github?: string;
   };
   testimonial?: {
     quote: string;
@@ -113,6 +114,7 @@ export const personalInfo = {
   phone: '+855-99-602-647',
   website: 'https://www.lengseang.dev',
   linkedIn: 'https://www.linkedin.com/in/khem-seangleng-18810a306/',
+  github: 'https://github.com/lengseang',
   telegram: 'https://t.me/LegendOfLeng',
   resumeUrl: '/Khem_Seangleng_CV.pdf',
   shortBio:
@@ -419,6 +421,40 @@ export const projects: ProjectImpact[] = [
     },
   },
   {
+    title: 'Alauna - AI Companion & Roleplay App',
+    slug: 'alauna',
+    category: 'AI & Mobile Engineering',
+    timeline: '2026',
+    summary:
+      'Mobile-first conversational AI interface powered by local & fine-tuned LLMs (Qwen3.5 2B), featuring an iridescent holographic UI, dynamic persona prompts, and real-time streaming dialogue.',
+    detailedDescription:
+      'Alauna is an AI companion application engineered with a fluid holographic interface and dynamic roleplay prompting. Powered by local and uncensored models including Qwen3.5 2B (HauhauCS Aggressive), it provides private, unrestricted, low-latency conversational streaming. Features include context-aware prompt discovery, persona switches, audio/voice input integration, and markdown formatting.',
+    role: 'Creator & Full-Stack AI Developer',
+    technologies: ['Next.js', 'TypeScript', 'Qwen3.5 2B LLM', 'Tailwind CSS', 'Streaming AI', 'Mobile UI'],
+    challenges: [
+      'Engineering low-latency token streaming for local and fine-tuned LLMs',
+      'Designing an iridescent holographic bubble aesthetic with 60fps micro-interactions',
+      'Architecting session context handling and prompt switching across dynamic roleplay personas',
+    ],
+    outcomes: [
+      'Delivered responsive mobile-first interface with streaming token rendering',
+      'Engineered interactive prompt discovery cards and uncensored persona support',
+      'Published open-source codebase on GitHub with clean architecture',
+    ],
+    metrics: [
+      { label: 'Model Engine', value: 'Qwen3.5 2B', description: 'Uncensored / local inference' },
+      { label: 'Latency', value: '<180ms', description: 'Stream response time' },
+      { label: 'Interface', value: 'Holographic', description: 'Fluid iridescent mobile UI' },
+      { label: 'Repository', value: 'Open Source', description: 'Public GitHub codebase' },
+    ],
+    visuals: {
+      thumbnail: '/portfolio/alauna-thumb.jpg',
+      gallery: ['/portfolio/alauna-thumb.jpg'],
+      demo: 'https://github.com/lengseang/alauna',
+      github: 'https://github.com/lengseang/alauna',
+    },
+  },
+  {
     title: 'Neuralsh.com - AI Model Analysis Platform',
     slug: 'neuralshield-ivs',
     category: 'Frontend & Security',
@@ -559,6 +595,16 @@ export const projects: ProjectImpact[] = [
 
 export const socialLinks: SocialLink[] = [
   {
+    label: 'LinkedIn',
+    href: personalInfo.linkedIn,
+    icon: 'simple-icons:linkedin',
+  },
+  {
+    label: 'GitHub',
+    href: personalInfo.github,
+    icon: 'simple-icons:github',
+  },
+  {
     label: 'Email',
     href: `mailto:${personalInfo.email}`,
     icon: 'solar:letter-bold-duotone',
@@ -567,11 +613,6 @@ export const socialLinks: SocialLink[] = [
     label: 'Telegram',
     href: personalInfo.telegram,
     icon: 'simple-icons:telegram',
-  },
-  {
-    label: 'LinkedIn',
-    href: personalInfo.linkedIn,
-    icon: 'simple-icons:linkedin',
   },
   {
     label: 'Call',
@@ -599,8 +640,7 @@ export const experience: TimelineItem[] = [
     period: 'May 2026 – Jul 2026',
     title: 'IT Developer Staff',
     organization: 'BS Express Cambodia',
-    description:
-      'Engineered operational workflows and interfaces for logistics management and driver applications.',
+    description: 'Engineered operational workflows and interfaces for logistics management and driver applications.',
     points: [
       'BS Express Driver App: Understood and implemented multi-role operational workflows: Branch-to-Branch, Branch-to-Customer, and Customer-to-Branch.',
       'Design UI & Structured push notification triggers and real-time status handoffs across Dashboard, Driver App, and Customer interfaces.',

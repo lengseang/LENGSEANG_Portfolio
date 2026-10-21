@@ -1,8 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useId, useState } from 'react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 type ContactFormState = 'idle' | 'ready';
 
@@ -10,14 +8,10 @@ type ContactFormProps = {
   email: string;
 };
 
-const TOP_OFS = [75, 160, 270, 270];
-
 export function ContactForm({ email }: ContactFormProps) {
   const [state, setState] = useState<ContactFormState>('idle');
   const [focusedField, setFocusedField] = useState<number | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
-
-  const targetY = focusedField !== null ? TOP_OFS[focusedField] : 320;
 
   function handleSubmit(formData: FormData) {
     const name = String(formData.get('name') ?? '').trim();
