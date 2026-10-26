@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 import { ConnectModal } from '@/app/_components/connect-modal';
 import { ContactForm } from '@/app/_components/contact-form';
+import { ExperienceSection } from '@/app/_components/ExperienceSection';
 import { Icon } from '@/app/_components/icon';
 import { JourneyTimeline } from '@/app/_components/journey/JourneyTimeline';
 import { MotionItem, MotionReveal, MotionStagger } from '@/app/_components/motion';
@@ -14,15 +15,7 @@ import { ProjectsSection } from '@/app/_components/ProjectsSection';
 import { SkillsRadar } from '@/app/_components/SkillsRadar';
 import { SiteHeader } from '@/app/_components/site-header';
 
-import {
-  certifications,
-  education,
-  experience,
-  navItems,
-  personalInfo,
-  services,
-  socialLinks,
-} from '@/app/_data/portfolio';
+import { certifications, education, navItems, personalInfo, services, socialLinks } from '@/app/_data/portfolio';
 
 export default function Home() {
   const [isConnectOpen, setIsConnectOpen] = useState(false);
@@ -32,20 +25,25 @@ export default function Home() {
       <SiteHeader items={navItems} ctaHref="/#contact" />
 
       <main>
-        {/* ===== HERO SECTION ===== */}
+        {/* ===== HERO SECTION (FULL-VIEWPORT ADAPTIVE WITH MOTION) ===== */}
         <section
           id="home"
-          className="relative overflow-hidden border-b border-black/[0.06] dark:border-white/8 pt-4 pb-16 sm:pb-20 lg:pt-8 lg:pb-20"
+          className="relative min-h-[calc(100vh-4rem)] lg:min-h-screen flex items-center justify-center overflow-hidden border-b border-black/[0.06] dark:border-white/8 pt-20 pb-16 lg:py-0"
         >
           {/* Subtle Ambient Backlight Floats */}
           <div className="soft-glow soft-glow-left" />
           <div className="soft-glow soft-glow-right" />
 
-          <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-            <div className="grid gap-10 lg:grid-cols-[1.25fr_1fr] lg:items-end">
-              {/* LEFT: Cinematic Cutout Portrait with Soft White Studio Lighting */}
-              <MotionReveal className="relative flex justify-center lg:justify-start">
-                <div className="relative w-full max-w-[460px] sm:max-w-[520px] lg:max-w-[590px] flex items-end justify-center">
+          <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 w-full py-8 lg:py-12">
+            <div className="grid gap-10 lg:grid-cols-[1.15fr_1fr] xl:grid-cols-[1.2fr_1fr] lg:items-center">
+              {/* LEFT: Cinematic Cutout Portrait with Studio Lighting & Micro-Parallax */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.94 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="relative flex justify-center lg:justify-start"
+              >
+                <div className="relative w-full max-w-[440px] sm:max-w-[500px] lg:max-w-[560px] flex items-end justify-center">
                   {/* Layer 1: Atmospheric Studio Backlight Halo */}
                   <motion.div
                     animate={{
@@ -57,7 +55,7 @@ export default function Home() {
                       repeat: Infinity,
                       ease: 'easeInOut',
                     }}
-                    className="absolute inset-0 m-auto h-[320px] w-[320px] sm:h-[440px] sm:w-[440px] rounded-full bg-gradient-to-tr from-white via-amber-100/40 to-transparent dark:from-white/20 dark:via-white/10 dark:to-transparent blur-[75px] pointer-events-none"
+                    className="absolute inset-0 m-auto h-[320px] w-[320px] sm:h-[440px] sm:w-[440px] rounded-full bg-gradient-to-tr from-white via-amber-100/40 to-transparent dark:from-white/20 dark:via-white/10 dark:to-transparent blur-[80px] pointer-events-none"
                   />
 
                   {/* Layer 2: Secondary subtle rim backlight */}
@@ -67,8 +65,8 @@ export default function Home() {
                   <div
                     className="relative z-10 w-full flex items-end justify-center"
                     style={{
-                      maskImage: 'linear-gradient(to bottom, black 84%, transparent 100%)',
-                      WebkitMaskImage: 'linear-gradient(to bottom, black 84%, transparent 100%)',
+                      maskImage: 'linear-gradient(to bottom, black 86%, transparent 100%)',
+                      WebkitMaskImage: 'linear-gradient(to bottom, black 86%, transparent 100%)',
                     }}
                   >
                     <Image
@@ -80,12 +78,33 @@ export default function Home() {
                       className="object-contain object-bottom drop-shadow-[0_8px_20px_rgba(15,23,42,0.06)] dark:drop-shadow-[0_20px_45px_rgba(0,0,0,0.75)] filter brightness-[1.01] contrast-[1.01] max-h-[580px] w-auto select-none"
                     />
                   </div>
-                </div>
-              </MotionReveal>
 
-              {/* RIGHT: Editorial Typography, Bio, Actions & Proof Metrics (Level with Portrait) */}
-              <MotionReveal className="space-y-6 lg:pb-3 lg:pl-2">
+                  {/* Layer 4: Micro Floating Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.35, duration: 0.5 }}
+                    className="absolute top-4 left-3 sm:left-4 z-20 flex items-center gap-2 rounded-xl border border-black/[0.08] dark:border-white/15 bg-white/80 dark:bg-black/60 px-3 py-1.5 backdrop-blur-xl shadow-lg"
+                  >
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-[11px] font-bold text-[color:var(--text-strong)]">Full-Stack Engineer</span>
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* RIGHT: Editorial Typography, Bio, Actions & Proof Metrics */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="space-y-6 lg:pl-2"
+              >
                 <div className="space-y-3.5">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/[0.08] dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.04] text-xs font-mono text-[color:var(--text-soft)] backdrop-blur-md">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                    Clean Architecture &middot; RBAC &middot; System Design
+                  </div>
+
                   <h1 className="font-display text-5xl leading-[0.98] tracking-tight sm:text-6xl xl:text-7xl">
                     {personalInfo.name}
                   </h1>
@@ -106,7 +125,7 @@ export default function Home() {
 
                   <p className="text-sm text-[color:var(--text-muted)] flex items-center gap-2 pt-0.5">
                     <Icon icon="solar:map-point-bold-duotone" width={16} className="text-[color:var(--accent)]" />
-                    Based in {personalInfo.location} &middot; RUPP Computer Science
+                    Based in {personalInfo.location} &middot; RUPP Computer Science (4th Year)
                   </p>
                 </div>
 
@@ -139,21 +158,25 @@ export default function Home() {
                 </div>
 
                 {/* Real Proof-of-Work Metrics */}
-                <div className="pt-4 border-t border-black/[0.06] dark:border-white/8 grid grid-cols-3 gap-4">
+                <div className="pt-4 border-t border-black/[0.06] dark:border-white/8 grid grid-cols-2 sm:grid-cols-4 gap-4">
                   <div>
-                    <p className="text-3xl font-bold text-[color:var(--text-strong)] font-display">05</p>
+                    <p className="text-3xl font-bold text-[color:var(--text-strong)] font-display">05+</p>
                     <p className="text-xs text-[color:var(--text-muted)] mt-1">Production Systems</p>
                   </div>
                   <div>
-                    <p className="text-3xl font-bold text-[color:var(--text-strong)] font-display">06+</p>
+                    <p className="text-3xl font-bold text-[color:var(--text-strong)] font-display">06</p>
                     <p className="text-xs text-[color:var(--text-muted)] mt-1">RBAC Roles Architected</p>
                   </div>
                   <div>
                     <p className="text-3xl font-bold text-[color:var(--text-strong)] font-display">100%</p>
                     <p className="text-xs text-[color:var(--text-muted)] mt-1">Status Tracking Sync</p>
                   </div>
+                  <div>
+                    <p className="text-3xl font-bold text-[color:var(--text-strong)] font-display">&lt;100ms</p>
+                    <p className="text-xs text-[color:var(--text-muted)] mt-1">Editor Draft Latency</p>
+                  </div>
                 </div>
-              </MotionReveal>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -283,52 +306,7 @@ export default function Home() {
         <SkillsRadar />
 
         {/* ===== EXPERIENCE ===== */}
-        <section className="border-y border-white/8">
-          <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
-            <MotionReveal className="mb-10 space-y-3">
-              <p className="eyebrow">Experience</p>
-              <h2 className="font-display text-4xl leading-none sm:text-5xl">Professional history</h2>
-            </MotionReveal>
-
-            <MotionStagger className="space-y-10">
-              {experience.slice(0, 3).map((item) => (
-                <MotionItem
-                  key={`${item.period}-${item.title}`}
-                  className="grid gap-4 border-t border-white/8 pt-6 lg:grid-cols-[0.28fr_0.72fr]"
-                >
-                  <div className="space-y-2">
-                    <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--text-muted)]">{item.period}</p>
-                    <p className="text-sm text-[color:var(--accent)]">{item.organization}</p>
-                  </div>
-                  <div className="space-y-3">
-                    <h3 className="text-2xl font-semibold">{item.title}</h3>
-                    <p className="text-sm leading-7 text-[color:var(--text-soft)]">{item.description}</p>
-                    <div className="space-y-2">
-                      {item.points.slice(0, 3).map((point) => (
-                        <div key={point} className="flex gap-3 text-sm leading-7 text-[color:var(--text-soft)]">
-                          <span className="mt-3 h-1.5 w-1.5 rounded-full bg-[color:var(--accent)] flex-shrink-0" />
-                          <p>{point}</p>
-                        </div>
-                      ))}
-                    </div>
-                    {item.skillsAcquired && (
-                      <div className="flex flex-wrap gap-2 pt-2">
-                        {item.skillsAcquired.map((skill) => (
-                          <span
-                            key={skill}
-                            className="px-2 py-1 bg-white/[0.04] rounded text-xs text-[color:var(--text-muted)]"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </MotionItem>
-              ))}
-            </MotionStagger>
-          </div>
-        </section>
+        <ExperienceSection />
 
         {/* ===== PROJECTS ===== */}
         <ProjectsSection />

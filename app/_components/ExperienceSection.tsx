@@ -1,0 +1,273 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { MotionReveal } from './motion';
+
+interface ExperienceDossier {
+  period: string;
+  role: string;
+  organization: string;
+  location: string;
+  type: string;
+  summary: string;
+  systems: {
+    name: string;
+    badge: string;
+    description: string;
+    highlights: string[];
+    tags: string[];
+  }[];
+  metrics: { label: string; value: string }[];
+}
+
+const experienceData: ExperienceDossier[] = [
+  {
+    period: 'Nov 2025 – May 2026',
+    role: 'Full-Stack Developer',
+    organization: 'Prestige Alliance Co., Ltd.',
+    location: 'Phnom Penh, Cambodia',
+    type: 'Production Role',
+    summary:
+      'Spearheaded frontend architecture for AI model analysis platforms and engineered enterprise-grade administrative portals with strict security constraints and granular authorization.',
+    systems: [
+      {
+        name: 'Neuralsh.com AI Model Analysis Platform',
+        badge: 'Frontend Owner',
+        description:
+          'Developed production frontend for AI model analysis, managing low-latency backend streaming integrations and implementing strict security considerations.',
+        highlights: [
+          'Engineered responsive AI inference streaming interfaces with sub-200ms latency',
+          'Enforced secure token handling, payload sanitization, and API route guards',
+          'Collaborated with AI researchers to translate complex evaluation metrics into intuitive client dashboards',
+        ],
+        tags: ['Next.js 16', 'React', 'TypeScript', 'Streaming APIs', 'Tailwind CSS', 'API Security'],
+      },
+      {
+        name: 'Enterprise RBAC Admin Dashboard',
+        badge: 'Security & Systems',
+        description:
+          'Built a large-scale data storage and evaluation dashboard featuring granular Role-Based Access Control (RBAC), dynamic user pages, and custom SVG map API optimizations.',
+        highlights: [
+          'Architected 6-tier role permission hierarchy with dynamic route shielding and session revocation',
+          'Developed custom high-performance SVG map API visualization for geographic data distribution',
+          'Optimized DOM rendering performance and client bundle size for high-density evaluation tables',
+        ],
+        tags: ['RBAC (6 Tiers)', 'SVG Map API', 'Dynamic Routing', 'PostgreSQL', 'UI Optimization'],
+      },
+    ],
+    metrics: [
+      { label: 'Authorization', value: '6 RBAC Tiers' },
+      { label: 'Map API', value: 'Custom SVG' },
+      { label: 'Security', value: 'Production-Gated' },
+    ],
+  },
+  {
+    period: 'May 2026 – Jul 2026',
+    role: 'IT Developer Staff',
+    organization: 'BS Express Cambodia',
+    location: 'Phnom Penh, Cambodia',
+    type: 'Operational Systems',
+    summary:
+      'Architected multi-role delivery state machines and structured real-time mobile push notification pipelines for express logistics operations.',
+    systems: [
+      {
+        name: 'BS Express Driver Application',
+        badge: 'Mobile Architecture',
+        description:
+          'Handled React Native framework redesigning driver UI, parcel dispatch flows, and camera-based QR code verification.',
+        highlights: [
+          'Engineered intuitive driver mobile UI for rapid parcel pickups and drop-offs in the field',
+          'Built instant camera QR scanning pipeline with offline cache for low-connectivity zones',
+          'Reduced driver parcel processing time by 30% with streamlined verification workflows',
+        ],
+        tags: ['React Native', 'Android SDK', 'QR Scanning', 'Offline Cache', 'Mobile UI/UX'],
+      },
+      {
+        name: 'Multi-Role 3-Way Logistics State Machine',
+        badge: 'Workflow Architecture',
+        description:
+          'Architected operational workflows and synchronized push notification triggers across Branch-to-Branch, Branch-to-Customer, and Customer-to-Branch operations.',
+        highlights: [
+          'Structured deterministic status handoffs eliminating race conditions across hubs',
+          'Orchestrated automated push notification triggers across Driver App, Dashboard, and Customer portals',
+          'Achieved 100% parcel status tracking sync across distribution routes',
+        ],
+        tags: ['Push Triggers', 'State Machines', 'Status Handoffs', 'Webhooks', 'Real-Time Sync'],
+      },
+    ],
+    metrics: [
+      { label: 'Workflows', value: '3 Multi-Role Flows' },
+      { label: 'Tracking Sync', value: '100% Real-Time' },
+      { label: 'Mobile App', value: 'React Native' },
+    ],
+  },
+];
+
+export function ExperienceSection() {
+  const [activeTab, setActiveTab] = useState<number>(0);
+
+  const activeExp = experienceData[activeTab];
+
+  return (
+    <section id="experience" className="border-y border-black/[0.06] dark:border-white/8 relative overflow-hidden">
+      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <MotionReveal className="mb-12 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/[0.08] dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.04] text-xs font-mono text-[color:var(--accent)]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" />
+            Verified Production History
+          </div>
+          <h2 className="font-display text-4xl leading-tight sm:text-5xl font-bold tracking-tight text-[color:var(--text-strong)]">
+            Work Experience
+          </h2>
+          <p className="max-w-2xl text-base sm:text-lg text-[color:var(--text-soft)] leading-relaxed">
+            Production engineering roles delivering role-gated admin dashboards, AI analysis platforms, and express
+            logistics state machines.
+          </p>
+        </MotionReveal>
+
+        {/* Interactive Company Switcher Tabs */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+          {experienceData.map((exp, idx) => {
+            const isSelected = activeTab === idx;
+            return (
+              <button
+                type="button"
+                key={exp.organization}
+                onClick={() => setActiveTab(idx)}
+                className={`p-5 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden group cursor-pointer ${
+                  isSelected
+                    ? 'border-black/[0.2] dark:border-white/25 bg-white/90 dark:bg-white/[0.06] shadow-lg ring-1 ring-black/[0.08] dark:ring-white/15'
+                    : 'border-black/[0.06] dark:border-white/8 bg-black/[0.015] dark:bg-white/[0.02] hover:border-black/[0.12] dark:hover:border-white/15 hover:bg-black/[0.03] dark:hover:bg-white/[0.04]'
+                }`}
+              >
+                {/* Active Indicator Bar */}
+                {isSelected && (
+                  <motion.div
+                    layoutId="activeCompanyTab"
+                    className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-emerald-500 via-sky-500 to-indigo-500"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-[color:var(--text-muted)]">
+                      {exp.period}
+                    </span>
+                    <h3 className="text-lg font-bold font-display text-[color:var(--text-strong)] pt-0.5 group-hover:text-[color:var(--accent)] transition-colors">
+                      {exp.organization}
+                    </h3>
+                    <p className="text-xs font-medium text-[color:var(--accent)]">{exp.role}</p>
+                  </div>
+
+                  <span
+                    className={`flex h-8 w-8 items-center justify-center rounded-xl text-xs font-mono font-bold transition-all ${
+                      isSelected
+                        ? 'bg-[color:var(--text-strong)] text-[color:var(--background)] shadow-sm'
+                        : 'bg-black/[0.04] dark:bg-white/[0.06] text-[color:var(--text-muted)]'
+                    }`}
+                  >
+                    0{idx + 1}
+                  </span>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Selected Experience Deep-Dive Dossier */}
+        <motion.div
+          key={activeExp.organization}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="panel p-6 sm:p-8 space-y-8"
+        >
+          {/* Company Dossier Header */}
+          <div className="border-b border-black/[0.06] dark:border-white/8 pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="space-y-1.5">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <h3 className="text-2xl sm:text-3xl font-bold font-display text-[color:var(--text-strong)]">
+                  {activeExp.role}
+                </h3>
+                <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono text-emerald-700 dark:text-emerald-400">
+                  {activeExp.type}
+                </span>
+              </div>
+              <p className="text-sm font-medium text-[color:var(--accent)]">
+                {activeExp.organization} &middot; {activeExp.location} &middot;{' '}
+                <span className="font-mono text-[color:var(--text-muted)]">{activeExp.period}</span>
+              </p>
+              <p className="text-sm text-[color:var(--text-soft)] max-w-3xl leading-relaxed pt-1">
+                {activeExp.summary}
+              </p>
+            </div>
+
+            {/* Quick Metrics Badges */}
+            <div className="flex flex-wrap md:flex-col gap-2.5 flex-shrink-0">
+              {activeExp.metrics.map((metric) => (
+                <div
+                  key={metric.label}
+                  className="px-3.5 py-2 rounded-xl bg-black/[0.03] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/8"
+                >
+                  <p className="text-xs font-bold font-display text-[color:var(--text-strong)]">{metric.value}</p>
+                  <p className="text-[10px] uppercase font-mono tracking-wider text-[color:var(--text-muted)]">
+                    {metric.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Systems Engineered Grid */}
+          <div className="space-y-4">
+            <h4 className="text-xs font-mono uppercase tracking-widest text-[color:var(--text-muted)]">
+              Core Systems & Products Engineered
+            </h4>
+
+            <div className="grid gap-5 md:grid-cols-2">
+              {activeExp.systems.map((system) => (
+                <div
+                  key={system.name}
+                  className="rounded-2xl border border-black/[0.06] dark:border-white/8 bg-black/[0.015] dark:bg-white/[0.02] p-5 sm:p-6 space-y-4 hover:border-black/[0.15] dark:hover:border-white/15 transition-all duration-200"
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <h5 className="text-lg font-bold font-display text-[color:var(--text-strong)] leading-snug">
+                      {system.name}
+                    </h5>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/[0.05] dark:bg-white/10 text-[color:var(--accent)] flex-shrink-0">
+                      {system.badge}
+                    </span>
+                  </div>
+
+                  <p className="text-xs leading-relaxed text-[color:var(--text-soft)]">{system.description}</p>
+
+                  <div className="space-y-2 border-t border-black/[0.04] dark:border-white/6 pt-3">
+                    {system.highlights.map((highlight) => (
+                      <div key={highlight} className="flex items-start gap-2 text-xs text-[color:var(--text-soft)]">
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-emerald-500/80 flex-shrink-0" />
+                        <span className="leading-relaxed">{highlight}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {system.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-0.5 rounded-md bg-black/[0.03] dark:bg-white/[0.04] border border-black/[0.05] dark:border-white/6 text-[11px] font-mono text-[color:var(--text-muted)]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

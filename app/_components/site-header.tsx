@@ -39,12 +39,12 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
         }}
         animate={hidden ? 'hidden' : 'visible'}
         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 inset-x-0 z-50 border-b border-black/[0.06] bg-white/75 backdrop-blur-xl supports-[backdrop-filter]:bg-white/65 dark:border-white/[0.08] dark:bg-black/40 dark:supports-[backdrop-filter]:bg-black/30 transition-colors duration-300 shadow-sm dark:shadow-none"
+        className="fixed top-0 inset-x-0 z-50 transition-all duration-300 px-3 sm:px-6 lg:px-8 pt-2 sm:pt-3"
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white/80 dark:bg-[#09090b]/75 px-4 py-2 sm:px-5 sm:py-2.5 backdrop-blur-2xl shadow-lg shadow-black/[0.03] dark:shadow-2xl dark:shadow-black/60 transition-colors">
           {/* Logo & Identity */}
           <Link href="/#home" className="flex items-center gap-2.5 group">
-            <div className="relative h-9 w-9 overflow-hidden rounded-xl border border-black/[0.08] bg-black/[0.03] dark:border-white/15 dark:bg-white/5 transition-transform duration-200 group-hover:scale-105">
+            <div className="relative h-9 w-9 overflow-hidden rounded-xl border border-black/[0.08] bg-black/[0.02] dark:border-white/15 dark:bg-white/5 transition-transform duration-200 group-hover:scale-105 shadow-xs">
               <Image
                 src="/portfolio/khem-cutout.png"
                 alt="Khem Seangleng"
@@ -55,22 +55,25 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
               />
             </div>
             <div>
-              <p className="text-[10px] uppercase font-mono tracking-widest text-[color:var(--text-muted)] leading-none">
-                Portfolio
-              </p>
-              <p className="text-sm font-semibold text-[color:var(--text-strong)] leading-tight pt-0.5">
-                Khem Seangleng
+              <div className="flex items-center gap-1.5">
+                <p className="text-sm font-bold font-display text-[color:var(--text-strong)] leading-tight">
+                  Khem Seangleng
+                </p>
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              </div>
+              <p className="text-[10px] font-mono uppercase tracking-wider text-[color:var(--text-muted)] leading-none pt-0.5">
+                Full-Stack Developer
               </p>
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden items-center gap-6 md:flex">
+          <nav className="hidden items-center gap-1 md:flex">
             {items.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-xs font-medium text-[color:var(--text-soft)] transition-colors hover:text-[color:var(--text-strong)]"
+                className="px-3 py-1.5 rounded-lg text-xs font-medium text-[color:var(--text-soft)] transition-all hover:text-[color:var(--text-strong)] hover:bg-black/[0.04] dark:hover:bg-white/[0.06]"
               >
                 {item.label}
               </Link>
@@ -78,11 +81,11 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
           </nav>
 
           {/* Desktop Right Controls (Sleek Glass Buttons) */}
-          <div className="hidden items-center gap-2.5 md:flex">
+          <div className="hidden items-center gap-2 md:flex">
             <button
               type="button"
               onClick={() => setIsConnectOpen(true)}
-              className="flex items-center gap-1.5 rounded-lg border border-black/[0.08] bg-white/70 px-3 py-1.5 text-xs font-medium text-[color:var(--text-soft)] transition hover:border-black/20 hover:bg-white hover:text-[color:var(--text-strong)] dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-white/25 dark:hover:bg-white/[0.08] shadow-sm dark:shadow-none"
+              className="flex items-center gap-1.5 rounded-lg border border-black/[0.08] bg-black/[0.02] px-3 py-1.5 text-xs font-semibold text-[color:var(--text-soft)] transition hover:border-black/20 hover:bg-white hover:text-[color:var(--text-strong)] dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-white/25 dark:hover:bg-white/[0.08] shadow-xs"
               title="Social Media & CV QR Code"
             >
               <Icon icon="solar:link-circle-bold-duotone" width={15} className="text-[color:var(--accent)]" />
@@ -93,7 +96,7 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
 
             <Link
               href={ctaHref}
-              className="rounded-lg bg-[color:var(--text-strong)] px-3.5 py-1.5 text-xs font-semibold text-[color:var(--background)] transition hover:opacity-90 shadow-sm"
+              className="rounded-lg bg-[color:var(--text-strong)] px-3.5 py-1.5 text-xs font-semibold text-[color:var(--background)] transition hover:opacity-90 shadow-sm hover:scale-[1.02] active:scale-[0.98]"
             >
               Contact
             </Link>
@@ -106,7 +109,7 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
               type="button"
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
               onClick={() => setIsOpen((open) => !open)}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-black/[0.08] bg-white/70 text-[color:var(--text-strong)] dark:border-white/10 dark:bg-white/[0.04] transition hover:border-black/20 dark:hover:border-white/20"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-black/[0.08] bg-black/[0.02] text-[color:var(--text-strong)] dark:border-white/10 dark:bg-white/[0.04] transition hover:border-black/20 dark:hover:border-white/20"
             >
               <Icon icon={isOpen ? 'solar:close-circle-bold' : 'solar:hamburger-menu-bold'} width={18} />
             </button>
@@ -117,11 +120,11 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="overflow-hidden border-t border-black/[0.08] bg-white/95 dark:border-white/[0.08] dark:bg-black/90 backdrop-blur-2xl md:hidden"
+              initial={{ opacity: 0, scale: 0.96, y: -8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: -8 }}
+              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-2 mx-auto max-w-6xl overflow-hidden rounded-2xl border border-black/[0.08] bg-white/95 dark:border-white/[0.1] dark:bg-[#09090b]/95 backdrop-blur-2xl shadow-xl md:hidden"
             >
               <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 sm:px-6">
                 {items.map((item) => (

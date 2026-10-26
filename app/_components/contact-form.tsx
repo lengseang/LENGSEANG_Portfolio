@@ -10,7 +10,6 @@ type ContactFormProps = {
 
 export function ContactForm({ email }: ContactFormProps) {
   const [state, setState] = useState<ContactFormState>('idle');
-  const [focusedField, setFocusedField] = useState<number | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   function handleSubmit(formData: FormData) {
@@ -31,32 +30,14 @@ export function ContactForm({ email }: ContactFormProps) {
         <label htmlFor="name" className="text-sm font-medium text-[color:var(--text-soft)]">
           Your name
         </label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          required
-          placeholder="How should I address you?"
-          className="field"
-          onFocus={() => setFocusedField(0)}
-          onBlur={() => setFocusedField(null)}
-        />
+        <input id="name" name="name" type="text" required placeholder="How should I address you?" className="field" />
       </div>
 
       <div className="space-y-2">
         <label htmlFor="email" className="text-sm font-medium text-[color:var(--text-soft)]">
           Email address
         </label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          required
-          placeholder="you@example.com"
-          className="field"
-          onFocus={() => setFocusedField(1)}
-          onBlur={() => setFocusedField(null)}
-        />
+        <input id="email" name="email" type="email" required placeholder="you@example.com" className="field" />
       </div>
 
       <div className="space-y-2">
@@ -70,8 +51,6 @@ export function ContactForm({ email }: ContactFormProps) {
           rows={6}
           placeholder="Tell me about the website, redesign, or product you want to build."
           className="field min-h-40 resize-none"
-          onFocus={() => setFocusedField(2)}
-          onBlur={() => setFocusedField(null)}
         />
       </div>
 
