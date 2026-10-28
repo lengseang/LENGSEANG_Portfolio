@@ -30,8 +30,13 @@ export default function RootLayout({
               (function() {
                 try {
                   var t = localStorage.getItem('theme');
-                  if (t === 'light' || (!t && matchMedia('(prefers-color-scheme: light)').matches)) {
+                  var isLight = t === 'light' || (!t && matchMedia('(prefers-color-scheme: light)').matches);
+                  if (isLight) {
                     document.documentElement.classList.add('light');
+                    document.documentElement.classList.remove('dark');
+                  } else {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.classList.remove('light');
                   }
                 } catch(e) {}
               })();

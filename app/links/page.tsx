@@ -148,11 +148,11 @@ export default function LinksPage() {
         <section className="panel p-5 text-center space-y-3">
           <div className="relative mx-auto h-20 w-20 overflow-hidden rounded-2xl border border-black/[0.08] bg-black/[0.02] dark:border-white/15 dark:bg-white/5 shadow-md">
             <Image
-              src="/portfolio/khem-cutout.png"
+              src="/portfolio/khem-profile.jpg"
               alt={personalInfo.name}
               fill
               priority
-              className="object-contain object-top pt-1"
+              className="object-cover object-top"
               sizes="80px"
             />
           </div>
@@ -257,38 +257,46 @@ export default function LinksPage() {
             const Component = isExternal ? 'a' : Link;
 
             return (
-              <Component
+              <motion.div
                 key={link.label}
-                href={link.href}
-                target={
-                  isExternal && !link.href.startsWith('mailto:') && !link.href.startsWith('tel:') ? '_blank' : undefined
-                }
-                rel={isExternal ? 'noopener noreferrer' : undefined}
-                className={`group flex items-center justify-between rounded-xl border border-white/[0.08] bg-white/[0.025] px-4 py-3 transition-all duration-200 hover:border-white/20 hover:bg-white/[0.06] hover:-translate-y-0.5 ${link.accent}`}
+                whileHover={{ scale: 1.02, x: 2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               >
-                <div className="flex items-center gap-3 min-w-0">
-                  <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-[color:var(--text-strong)] group-hover:scale-105 transition-transform">
-                    <Icon icon={link.icon} width={18} />
-                  </span>
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <p className="text-sm font-semibold text-[color:var(--text-strong)] truncate">{link.label}</p>
-                      {link.badge && (
-                        <span className="rounded-full bg-amber-500/15 border border-amber-500/25 px-2 py-0.2 text-[10px] text-amber-300 font-mono">
-                          {link.badge}
-                        </span>
-                      )}
+                <Component
+                  href={link.href}
+                  target={
+                    isExternal && !link.href.startsWith('mailto:') && !link.href.startsWith('tel:')
+                      ? '_blank'
+                      : undefined
+                  }
+                  rel={isExternal ? 'noopener noreferrer' : undefined}
+                  className={`group flex items-center justify-between rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-black/[0.02] dark:bg-white/[0.025] px-4 py-3 transition-colors duration-200 hover:border-black/20 dark:hover:border-white/20 hover:bg-black/[0.04] dark:hover:bg-white/[0.06] ${link.accent}`}
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-[color:var(--text-strong)] group-hover:scale-105 transition-transform">
+                      <Icon icon={link.icon} width={18} />
+                    </span>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <p className="text-sm font-semibold text-[color:var(--text-strong)] truncate">{link.label}</p>
+                        {link.badge && (
+                          <span className="rounded-full bg-amber-500/15 border border-amber-500/25 px-2 py-0.2 text-[10px] text-amber-300 font-mono">
+                            {link.badge}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-[11px] font-mono text-[color:var(--text-muted)] truncate">{link.value}</p>
                     </div>
-                    <p className="text-[11px] font-mono text-[color:var(--text-muted)] truncate">{link.value}</p>
                   </div>
-                </div>
 
-                <Icon
-                  icon="solar:arrow-right-up-linear"
-                  width={16}
-                  className="text-[color:var(--text-muted)] flex-shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[color:var(--text-strong)]"
-                />
-              </Component>
+                  <Icon
+                    icon="solar:arrow-right-up-linear"
+                    width={16}
+                    className="text-[color:var(--text-muted)] flex-shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[color:var(--text-strong)]"
+                  />
+                </Component>
+              </motion.div>
             );
           })}
         </section>

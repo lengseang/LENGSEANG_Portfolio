@@ -25,6 +25,7 @@ export function ThemeToggle() {
   useEffect(() => {
     if (!mounted) return;
     document.documentElement.classList.toggle('light', theme === 'light');
+    document.documentElement.classList.toggle('dark', theme === 'dark');
     localStorage.setItem('theme', theme);
   }, [theme, mounted]);
 

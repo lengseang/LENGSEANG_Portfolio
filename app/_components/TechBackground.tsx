@@ -197,9 +197,8 @@ export function TechBackground() {
 
   return (
     <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden select-none transition-opacity duration-700">
-      {/* Cyber Grid & Scanline */}
+      {/* Subtle Ambient Grid */}
       <div className="cyber-grid" />
-      <div className="cyber-scanline" />
 
       {/* Floating Ambient Aurora Orbs */}
       <div

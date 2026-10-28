@@ -41,25 +41,33 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
         className="fixed top-0 inset-x-0 z-50 transition-all duration-300 px-3 sm:px-6 lg:px-8 pt-2 sm:pt-3"
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white/80 dark:bg-[#09090b]/75 px-4 py-2 sm:px-5 sm:py-2.5 backdrop-blur-2xl shadow-lg shadow-black/[0.03] dark:shadow-2xl dark:shadow-black/60 transition-colors">
+        <div className="mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white/85 dark:bg-[#09090b]/80 px-4 py-2 sm:px-5 sm:py-2.5 backdrop-blur-2xl shadow-lg shadow-black/[0.04] dark:shadow-2xl dark:shadow-black/60 transition-colors">
           {/* Logo & Identity */}
           <Link href="/#home" className="flex items-center gap-2.5 group">
-            <div className="relative h-9 w-9 overflow-hidden rounded-xl border border-black/[0.08] bg-black/[0.02] dark:border-white/15 dark:bg-white/5 transition-transform duration-200 group-hover:scale-105 shadow-xs">
+            <motion.div
+              whileHover={{ scale: 1.08, rotate: 2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+              className="relative h-9 w-9 overflow-hidden rounded-xl border border-black/[0.08] bg-black/[0.02] dark:border-white/15 dark:bg-white/5 shadow-xs"
+            >
               <Image
-                src="/portfolio/khem-cutout.png"
+                src="/portfolio/khem-profile.jpg"
                 alt="Khem Seangleng"
                 fill
                 priority
-                className="object-contain object-top pt-0.5"
+                className="object-cover object-top"
                 sizes="36px"
               />
-            </div>
+            </motion.div>
             <div>
               <div className="flex items-center gap-1.5">
                 <p className="text-sm font-bold font-display text-[color:var(--text-strong)] leading-tight">
                   Khem Seangleng
                 </p>
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                </span>
               </div>
               <p className="text-[10px] font-mono uppercase tracking-wider text-[color:var(--text-muted)] leading-none pt-0.5">
                 Full-Stack Developer
@@ -70,36 +78,51 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
           {/* Desktop Nav Links */}
           <nav className="hidden items-center gap-1 md:flex">
             {items.map((item) => (
-              <Link
+              <motion.div
                 key={item.href}
-                href={item.href}
-                className="px-3 py-1.5 rounded-lg text-xs font-medium text-[color:var(--text-soft)] transition-all hover:text-[color:var(--text-strong)] hover:bg-black/[0.04] dark:hover:bg-white/[0.06]"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               >
-                {item.label}
-              </Link>
+                <Link
+                  href={item.href}
+                  className="px-3 py-1.5 rounded-lg text-xs font-medium text-[color:var(--text-soft)] transition-colors hover:text-[color:var(--text-strong)] hover:bg-black/[0.04] dark:hover:bg-white/[0.06]"
+                >
+                  {item.label}
+                </Link>
+              </motion.div>
             ))}
           </nav>
 
-          {/* Desktop Right Controls (Sleek Glass Buttons) */}
+          {/* Desktop Right Controls (Sleek Glass Buttons with Micro-Interactions) */}
           <div className="hidden items-center gap-2 md:flex">
-            <button
+            <motion.button
               type="button"
               onClick={() => setIsConnectOpen(true)}
-              className="flex items-center gap-1.5 rounded-lg border border-black/[0.08] bg-black/[0.02] px-3 py-1.5 text-xs font-semibold text-[color:var(--text-soft)] transition hover:border-black/20 hover:bg-white hover:text-[color:var(--text-strong)] dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-white/25 dark:hover:bg-white/[0.08] shadow-xs"
+              whileHover={{ scale: 1.03, y: -1 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              className="flex items-center gap-1.5 rounded-lg border border-black/[0.08] bg-black/[0.02] px-3 py-1.5 text-xs font-semibold text-[color:var(--text-soft)] transition hover:border-black/20 hover:bg-white hover:text-[color:var(--text-strong)] dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-white/25 dark:hover:bg-white/[0.08] shadow-xs cursor-pointer"
               title="Social Media & CV QR Code"
             >
               <Icon icon="solar:link-circle-bold-duotone" width={15} className="text-[color:var(--accent)]" />
               <span>Connect / QR</span>
-            </button>
+            </motion.button>
 
             <ThemeToggle />
 
-            <Link
-              href={ctaHref}
-              className="rounded-lg bg-[color:var(--text-strong)] px-3.5 py-1.5 text-xs font-semibold text-[color:var(--background)] transition hover:opacity-90 shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+            <motion.div
+              whileHover={{ scale: 1.03, y: -1 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
             >
-              Contact
-            </Link>
+              <Link
+                href={ctaHref}
+                className="inline-block rounded-lg bg-[color:var(--text-strong)] px-3.5 py-1.5 text-xs font-semibold text-[color:var(--background)] transition hover:opacity-90 shadow-sm"
+              >
+                Contact
+              </Link>
+            </motion.div>
           </div>
 
           {/* Mobile Right Controls */}

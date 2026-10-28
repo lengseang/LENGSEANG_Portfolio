@@ -131,13 +131,16 @@ export function ExperienceSection() {
           {experienceData.map((exp, idx) => {
             const isSelected = activeTab === idx;
             return (
-              <button
+              <motion.button
                 type="button"
                 key={exp.organization}
                 onClick={() => setActiveTab(idx)}
-                className={`p-5 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden group cursor-pointer ${
+                whileHover={{ y: -3, scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                className={`p-5 rounded-2xl border text-left transition-colors duration-200 relative overflow-hidden group cursor-pointer ${
                   isSelected
-                    ? 'border-black/[0.2] dark:border-white/25 bg-white/90 dark:bg-white/[0.06] shadow-lg ring-1 ring-black/[0.08] dark:ring-white/15'
+                    ? 'border-black/[0.2] dark:border-white/25 bg-white/95 dark:bg-white/[0.08] shadow-lg ring-1 ring-black/[0.08] dark:ring-white/15'
                     : 'border-black/[0.06] dark:border-white/8 bg-black/[0.015] dark:bg-white/[0.02] hover:border-black/[0.12] dark:hover:border-white/15 hover:bg-black/[0.03] dark:hover:bg-white/[0.04]'
                 }`}
               >
@@ -171,7 +174,7 @@ export function ExperienceSection() {
                     0{idx + 1}
                   </span>
                 </div>
-              </button>
+              </motion.button>
             );
           })}
         </div>
@@ -228,9 +231,11 @@ export function ExperienceSection() {
 
             <div className="grid gap-5 md:grid-cols-2">
               {activeExp.systems.map((system) => (
-                <div
+                <motion.div
                   key={system.name}
-                  className="rounded-2xl border border-black/[0.06] dark:border-white/8 bg-black/[0.015] dark:bg-white/[0.02] p-5 sm:p-6 space-y-4 hover:border-black/[0.15] dark:hover:border-white/15 transition-all duration-200"
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 22 }}
+                  className="rounded-2xl border border-black/[0.06] dark:border-white/8 bg-black/[0.015] dark:bg-white/[0.02] p-5 sm:p-6 space-y-4 hover:border-black/[0.15] dark:hover:border-white/15 transition-colors duration-200"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <h5 className="text-lg font-bold font-display text-[color:var(--text-strong)] leading-snug">
@@ -262,7 +267,7 @@ export function ExperienceSection() {
                       </span>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

@@ -36,58 +36,75 @@ export default function Home() {
 
           <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 w-full py-8 lg:py-12">
             <div className="grid gap-10 lg:grid-cols-[1.15fr_1fr] xl:grid-cols-[1.2fr_1fr] lg:items-center">
-              {/* LEFT: Cinematic Cutout Portrait with Studio Lighting & Micro-Parallax */}
+              {/* LEFT: Cinematic High-Resolution Editorial Portrait Showcase */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.94 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0, scale: 0.94, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 className="relative flex justify-center lg:justify-start"
               >
-                <div className="relative w-full max-w-[440px] sm:max-w-[500px] lg:max-w-[560px] flex items-end justify-center">
-                  {/* Layer 1: Atmospheric Studio Backlight Halo */}
+                <div className="relative w-full max-w-[420px] sm:max-w-[460px] lg:max-w-[490px]">
+                  {/* Atmospheric Backlight Glow - Reactive to Theme */}
                   <motion.div
                     animate={{
-                      scale: [1, 1.05, 1],
-                      opacity: [0.45, 0.65, 0.45],
+                      scale: [1, 1.06, 1],
+                      opacity: [0.35, 0.6, 0.35],
                     }}
                     transition={{
-                      duration: 8,
+                      duration: 7,
                       repeat: Infinity,
                       ease: 'easeInOut',
                     }}
-                    className="absolute inset-0 m-auto h-[320px] w-[320px] sm:h-[440px] sm:w-[440px] rounded-full bg-gradient-to-tr from-white via-amber-100/40 to-transparent dark:from-white/20 dark:via-white/10 dark:to-transparent blur-[80px] pointer-events-none"
+                    className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-tr from-emerald-500/20 via-sky-500/20 to-amber-500/10 dark:from-emerald-500/15 dark:via-sky-500/10 dark:to-transparent blur-[60px] pointer-events-none"
                   />
 
-                  {/* Layer 2: Secondary subtle rim backlight */}
-                  <div className="absolute -inset-x-6 top-8 h-60 rounded-full bg-white/70 dark:bg-white/10 blur-[90px] pointer-events-none" />
-
-                  {/* Layer 3: High-Res Cutout Image with seamless bottom gradient fade */}
-                  <div
-                    className="relative z-10 w-full flex items-end justify-center"
-                    style={{
-                      maskImage: 'linear-gradient(to bottom, black 86%, transparent 100%)',
-                      WebkitMaskImage: 'linear-gradient(to bottom, black 86%, transparent 100%)',
-                    }}
-                  >
-                    <Image
-                      src="/portfolio/khem-cutout.png"
-                      alt="Khem Seangleng - Full-Stack Developer"
-                      width={640}
-                      height={650}
-                      priority
-                      className="object-contain object-bottom drop-shadow-[0_8px_20px_rgba(15,23,42,0.06)] dark:drop-shadow-[0_20px_45px_rgba(0,0,0,0.75)] filter brightness-[1.01] contrast-[1.01] max-h-[580px] w-auto select-none"
-                    />
-                  </div>
-
-                  {/* Layer 4: Micro Floating Badge */}
+                  {/* The Portrait Frame: High-End Glass Editorial Card with Smooth Hover Depth */}
                   <motion.div
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.35, duration: 0.5 }}
-                    className="absolute top-4 left-3 sm:left-4 z-20 flex items-center gap-2 rounded-xl border border-black/[0.08] dark:border-white/15 bg-white/80 dark:bg-black/60 px-3 py-1.5 backdrop-blur-xl shadow-lg"
+                    whileHover={{ y: -6, scale: 1.015 }}
+                    transition={{ type: 'spring', stiffness: 350, damping: 22 }}
+                    className="relative z-10 overflow-hidden rounded-[2rem] border border-black/[0.08] dark:border-white/[0.12] bg-white/60 dark:bg-zinc-950/70 backdrop-blur-2xl shadow-2xl shadow-black/10 dark:shadow-black/70 group"
                   >
-                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[11px] font-bold text-[color:var(--text-strong)]">Full-Stack Engineer</span>
+                    <div className="relative aspect-[4/4.6] sm:aspect-[4/4.5] w-full overflow-hidden">
+                      <Image
+                        src="/portfolio/khem-profile.jpg"
+                        alt="Khem Seangleng - Full-Stack Developer"
+                        fill
+                        priority
+                        sizes="(max-width: 640px) 90vw, (max-width: 1024px) 460px, 490px"
+                        className="object-cover object-top filter brightness-[1.02] contrast-[1.02] transition-transform duration-700 ease-out group-hover:scale-[1.03] select-none"
+                      />
+
+                      {/* Elegant Inner Shadow & Bottom Gradient for Depth */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 dark:opacity-80 pointer-events-none" />
+                      <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none" />
+                    </div>
+
+                    {/* Floating Status Pill on Top-Left */}
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3, duration: 0.5 }}
+                      className="absolute top-4 left-4 z-20 flex items-center gap-2 rounded-full border border-white/20 dark:border-white/15 bg-black/40 dark:bg-black/60 px-3.5 py-1.5 backdrop-blur-xl shadow-lg text-white"
+                    >
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                      </span>
+                      <span className="text-[11px] font-mono tracking-tight font-semibold">Available for Work</span>
+                    </motion.div>
+
+                    {/* Floating Badges on Bottom */}
+                    <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between gap-2">
+                      <div className="rounded-xl border border-white/20 dark:border-white/15 bg-black/40 dark:bg-black/60 px-3 py-1.5 backdrop-blur-xl text-white">
+                        <p className="text-[10px] font-mono uppercase tracking-wider text-white/70">Focus</p>
+                        <p className="text-xs font-bold">Full-Stack &amp; Clean Architecture</p>
+                      </div>
+
+                      <div className="rounded-xl border border-white/20 dark:border-white/15 bg-black/40 dark:bg-black/60 px-3 py-1.5 backdrop-blur-xl text-white text-right">
+                        <p className="text-[10px] font-mono uppercase tracking-wider text-emerald-400">Verified</p>
+                        <p className="text-xs font-bold">05+ Systems Built</p>
+                      </div>
+                    </div>
                   </motion.div>
                 </div>
               </motion.div>
@@ -129,52 +146,72 @@ export default function Home() {
                   </p>
                 </div>
 
-                {/* Primary Action Buttons */}
+                {/* Primary Action Buttons with Motion.dev Spring Micro-Interactions */}
                 <div className="flex flex-wrap gap-3">
-                  <Link href="/#projects" className="button-primary">
-                    View my work
-                  </Link>
-
-                  <a
-                    href="/Khem_Seangleng_CV.pdf"
-                    download="Khem_Seangleng_CV.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="button-secondary inline-flex items-center justify-center gap-2"
+                  <motion.div
+                    whileHover={{ scale: 1.04, y: -2 }}
+                    whileTap={{ scale: 0.96 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                   >
-                    <Icon icon="solar:document-text-bold-duotone" width={18} />
-                    Download CV
-                  </a>
+                    <Link href="/#projects" className="button-primary">
+                      View my work
+                    </Link>
+                  </motion.div>
 
-                  <button
-                    type="button"
-                    onClick={() => setIsConnectOpen(true)}
-                    className="button-secondary inline-flex items-center justify-center gap-2"
-                    title="Open Social Links & QR"
+                  <motion.div
+                    whileHover={{ scale: 1.04, y: -2 }}
+                    whileTap={{ scale: 0.96 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                   >
-                    <Icon icon="solar:link-circle-bold-duotone" width={18} />
-                    Connect & QR
-                  </button>
+                    <a
+                      href="/Khem_Seangleng_CV.pdf"
+                      download="Khem_Seangleng_CV.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="button-secondary inline-flex items-center justify-center gap-2"
+                    >
+                      <Icon icon="solar:document-text-bold-duotone" width={18} />
+                      Download CV
+                    </a>
+                  </motion.div>
+
+                  <motion.div
+                    whileHover={{ scale: 1.04, y: -2 }}
+                    whileTap={{ scale: 0.96 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setIsConnectOpen(true)}
+                      className="button-secondary inline-flex items-center justify-center gap-2 cursor-pointer"
+                      title="Open Social Links & QR"
+                    >
+                      <Icon icon="solar:link-circle-bold-duotone" width={18} />
+                      Connect & QR
+                    </button>
+                  </motion.div>
                 </div>
 
-                {/* Real Proof-of-Work Metrics */}
+                {/* Real Proof-of-Work Metrics with Motion Springs */}
                 <div className="pt-4 border-t border-black/[0.06] dark:border-white/8 grid grid-cols-2 sm:grid-cols-4 gap-4">
-                  <div>
-                    <p className="text-3xl font-bold text-[color:var(--text-strong)] font-display">05+</p>
-                    <p className="text-xs text-[color:var(--text-muted)] mt-1">Production Systems</p>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-bold text-[color:var(--text-strong)] font-display">06</p>
-                    <p className="text-xs text-[color:var(--text-muted)] mt-1">RBAC Roles Architected</p>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-bold text-[color:var(--text-strong)] font-display">100%</p>
-                    <p className="text-xs text-[color:var(--text-muted)] mt-1">Status Tracking Sync</p>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-bold text-[color:var(--text-strong)] font-display">&lt;100ms</p>
-                    <p className="text-xs text-[color:var(--text-muted)] mt-1">Editor Draft Latency</p>
-                  </div>
+                  {[
+                    { value: '05+', label: 'Production Systems' },
+                    { value: '06', label: 'RBAC Roles Architected' },
+                    { value: '100%', label: 'Status Tracking Sync' },
+                    { value: '<100ms', label: 'Editor Draft Latency' },
+                  ].map((metric, i) => (
+                    <motion.div
+                      key={metric.label}
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.35 + i * 0.08, type: 'spring', stiffness: 350, damping: 24 }}
+                      whileHover={{ y: -3, scale: 1.02 }}
+                      className="p-2 rounded-xl transition-colors hover:bg-black/[0.02] dark:hover:bg-white/[0.03]"
+                    >
+                      <p className="text-3xl font-bold text-[color:var(--text-strong)] font-display">{metric.value}</p>
+                      <p className="text-xs text-[color:var(--text-muted)] mt-1">{metric.label}</p>
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
             </div>
@@ -194,9 +231,14 @@ export default function Home() {
               </div>
 
               {/* Asymmetrical Bento Grid */}
+              {/* Asymmetrical Bento Grid with Motion Springs */}
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {/* Bento 1: Large Feature (Spans 2 cols on lg) */}
-                <div className="panel p-6 sm:p-8 space-y-4 lg:col-span-2 group">
+                <motion.div
+                  whileHover={{ y: -5, scale: 1.01 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 24 }}
+                  className="panel p-6 sm:p-8 space-y-4 lg:col-span-2 group"
+                >
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/10 text-[color:var(--accent)] group-hover:scale-105 transition-transform shadow-xs">
                     <Icon icon="solar:shield-check-bold-duotone" width={26} />
                   </div>
@@ -225,10 +267,14 @@ export default function Home() {
                       </span>
                     ))}
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Bento 2: Rich-Text & Frontend */}
-                <div className="panel p-6 sm:p-8 space-y-4 group">
+                <motion.div
+                  whileHover={{ y: -5, scale: 1.01 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 24 }}
+                  className="panel p-6 sm:p-8 space-y-4 group"
+                >
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/10 text-[color:var(--accent)] group-hover:scale-105 transition-transform shadow-xs">
                     <Icon icon="solar:code-2-bold-duotone" width={26} />
                   </div>
@@ -249,10 +295,14 @@ export default function Home() {
                       </span>
                     ))}
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Bento 3: Operational Logistics */}
-                <div className="panel p-6 sm:p-8 space-y-4 group">
+                <motion.div
+                  whileHover={{ y: -5, scale: 1.01 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 24 }}
+                  className="panel p-6 sm:p-8 space-y-4 group"
+                >
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/10 text-[color:var(--accent)] group-hover:scale-105 transition-transform shadow-xs">
                     <Icon icon="solar:routing-2-bold-duotone" width={26} />
                   </div>
@@ -273,10 +323,14 @@ export default function Home() {
                       </span>
                     ))}
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Bento 4: Philosophy & Background (Spans 2 cols on lg) */}
-                <div className="panel p-6 sm:p-8 space-y-4 lg:col-span-2 group">
+                <motion.div
+                  whileHover={{ y: -5, scale: 1.01 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 24 }}
+                  className="panel p-6 sm:p-8 space-y-4 lg:col-span-2 group"
+                >
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/10 text-[color:var(--accent)] group-hover:scale-105 transition-transform shadow-xs">
                     <Icon icon="solar:server-bold-duotone" width={26} />
                   </div>
@@ -293,7 +347,7 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </MotionReveal>
           </div>
@@ -325,7 +379,11 @@ export default function Home() {
             <MotionStagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((service) => (
                 <MotionItem key={service.id}>
-                  <div className="panel p-6 space-y-4 transition-all duration-300 hover:bg-white/[0.04] hover:border-white/20 h-full group">
+                  <motion.div
+                    whileHover={{ y: -6, scale: 1.015 }}
+                    transition={{ type: 'spring', stiffness: 350, damping: 22 }}
+                    className="panel p-6 space-y-4 transition-colors duration-200 hover:bg-white/[0.04] hover:border-white/20 h-full group"
+                  >
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-[color:var(--accent)] transition-all duration-300 group-hover:border-[color:var(--accent)]/40 group-hover:bg-[color:var(--accent)]/10">
                       <Icon icon={service.icon} width={24} />
                     </div>
@@ -334,7 +392,7 @@ export default function Home() {
                     <span className="inline-block px-3 py-1 bg-white/[0.04] rounded-full text-xs text-[color:var(--text-muted)] capitalize">
                       {service.category}
                     </span>
-                  </div>
+                  </motion.div>
                 </MotionItem>
               ))}
             </MotionStagger>
@@ -354,14 +412,18 @@ export default function Home() {
                 <MotionStagger className="space-y-6">
                   {education.map((item) => (
                     <MotionItem key={item.title}>
-                      <div className="space-y-2 panel p-5">
+                      <motion.div
+                        whileHover={{ y: -3, scale: 1.01 }}
+                        transition={{ type: 'spring', stiffness: 350, damping: 24 }}
+                        className="space-y-2 panel p-5"
+                      >
                         <p className="text-xs uppercase tracking-[0.22em] text-[color:var(--text-muted)]">
                           {item.period}
                         </p>
                         <h3 className="text-lg font-semibold">{item.title}</h3>
                         <p className="text-sm text-[color:var(--accent)]">{item.organization}</p>
                         <p className="text-sm leading-7 text-[color:var(--text-soft)]">{item.description}</p>
-                      </div>
+                      </motion.div>
                     </MotionItem>
                   ))}
                 </MotionStagger>
@@ -376,11 +438,13 @@ export default function Home() {
                 <MotionStagger className="space-y-4">
                   {certifications.slice(0, 6).map((cert) => (
                     <MotionItem key={cert.title}>
-                      <a
+                      <motion.a
                         href={cert.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block p-4 bg-white/[0.02] border border-white/5 rounded-xl hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300 group"
+                        whileHover={{ y: -2, x: 2 }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                        className="block p-4 bg-white/[0.02] border border-white/5 rounded-xl hover:bg-white/[0.04] hover:border-white/10 transition-colors duration-200 group"
                       >
                         <div className="flex items-start justify-between gap-4">
                           <div>
@@ -398,7 +462,7 @@ export default function Home() {
                             className="text-[color:var(--text-muted)] group-hover:text-[color:var(--accent)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0 mt-1"
                           />
                         </div>
-                      </a>
+                      </motion.a>
                     </MotionItem>
                   ))}
                 </MotionStagger>

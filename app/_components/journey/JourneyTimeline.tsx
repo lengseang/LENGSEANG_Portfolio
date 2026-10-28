@@ -30,11 +30,14 @@ export const JourneyTimeline = () => {
             const month = milestone.date.split('-')[1];
 
             return (
-              <button
+              <motion.button
                 type="button"
                 key={milestone.title}
                 onClick={() => setActiveIndex(index)}
-                className={`w-full text-left p-4 rounded-2xl border transition-all duration-200 cursor-pointer flex items-center justify-between gap-3 ${
+                whileHover={{ x: 4 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                className={`w-full text-left p-4 rounded-2xl border transition-colors duration-200 cursor-pointer flex items-center justify-between gap-3 ${
                   isActive
                     ? 'border-[color:var(--accent)] bg-white/[0.06] shadow-md ring-1 ring-[color:var(--accent)]/30'
                     : 'border-white/8 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]'
@@ -69,7 +72,7 @@ export const JourneyTimeline = () => {
                     isActive ? 'translate-x-1 text-[color:var(--accent)]' : 'text-white/20'
                   }`}
                 />
-              </button>
+              </motion.button>
             );
           })}
         </div>

@@ -32,26 +32,36 @@ export const SkillsRadar = () => {
           </p>
         </MotionReveal>
 
-        {/* Category Filter Chips */}
+        {/* Category Filter Chips with Motion Layout Spring */}
         <MotionReveal className="mb-8">
-          <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
-              <button
-                type="button"
-                key={cat.id}
-                onClick={() => {
-                  setActiveCategory(cat.id);
-                  setSelectedSkill(null);
-                }}
-                className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 ${
-                  activeCategory === cat.id
-                    ? 'bg-[color:var(--text-strong)] text-[color:var(--background)] shadow-md font-semibold'
-                    : 'bg-white/[0.04] text-[color:var(--text-soft)] hover:bg-white/[0.08] border border-white/10'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+          <div className="flex flex-wrap gap-2 p-1.5 rounded-full border border-black/[0.06] dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.03] w-fit">
+            {categories.map((cat) => {
+              const isActive = activeCategory === cat.id;
+              return (
+                <button
+                  type="button"
+                  key={cat.id}
+                  onClick={() => {
+                    setActiveCategory(cat.id);
+                    setSelectedSkill(null);
+                  }}
+                  className={`relative px-4 py-2 rounded-full text-xs font-medium transition-colors cursor-pointer ${
+                    isActive
+                      ? 'text-[color:var(--background)] font-semibold'
+                      : 'text-[color:var(--text-soft)] hover:text-[color:var(--text-strong)]'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeSkillCategory"
+                      className="absolute inset-0 rounded-full bg-[color:var(--text-strong)] shadow-sm"
+                      transition={{ type: 'spring', stiffness: 450, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{cat.label}</span>
+                </button>
+              );
+            })}
           </div>
         </MotionReveal>
 

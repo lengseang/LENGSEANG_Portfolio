@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "framer-motion-animator": {
+      "source": "patricio0312rev/skills",
+      "sourceType": "github",
+      "skillPath": "frontend/framer-motion-animator/SKILL.md",
+      "computedHash": "22a8401fab0cdf32d5c153b98aba5e95435a479810896879535dc7ac3710efbe"
+    },
+    "motion-dev-animations": {
+      "source": "199-biotechnologies/motion-dev-animations-skill",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "20451c953c1d0ef916e4d8c1805f2c0ba29ba79dd57d8a366aa1687f23832da0"
+    }
+  }
+}

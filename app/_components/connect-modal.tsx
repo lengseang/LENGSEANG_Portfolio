@@ -151,10 +151,10 @@ export function ConnectModal({ isOpen, onClose }: ConnectModalProps) {
               <div className="flex items-center gap-3 pr-8">
                 <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl border border-black/[0.08] bg-black/[0.03] dark:border-white/15 dark:bg-white/5 shadow-md">
                   <Image
-                    src="/portfolio/khem-cutout.png"
+                    src="/portfolio/khem-profile.jpg"
                     alt={personalInfo.name}
                     fill
-                    className="object-contain object-top pt-1"
+                    className="object-cover object-top"
                     sizes="48px"
                   />
                 </div>

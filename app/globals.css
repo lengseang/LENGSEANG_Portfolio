@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #090909;
   --surface: #111111;
@@ -433,48 +435,24 @@ textarea {
     inset 0 1px 0 #ffffff;
 }
 
-/* Cybernetic Animated Background */
+/* Cybernetic Ambient Background */
 .cyber-grid {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(circle at 50% 35%, black 40%, transparent 92%);
-  -webkit-mask-image: radial-gradient(circle at 50% 35%, black 40%, transparent 92%);
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(circle at 50% 30%, black 35%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at 50% 30%, black 35%, transparent 85%);
 }
 
 .light .cyber-grid {
   background-image:
-    linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
-}
-
-.cyber-scanline {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.35), transparent);
-  animation: cyberScan 8s linear infinite;
-  opacity: 0.6;
-}
-
-.light .cyber-scanline {
-  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.12), transparent);
-}
-
-@keyframes cyberScan {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100vh);
-  }
+    linear-gradient(to right, rgba(15, 23, 42, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.025) 1px, transparent 1px);
 }
 
 @media (prefers-reduced-motion: reduce) {
