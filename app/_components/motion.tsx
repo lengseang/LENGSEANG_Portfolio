@@ -96,3 +96,7 @@ export function MotionItem({ children, ...props }: HTMLMotionProps<'div'> & { ch
     </motion.div>
   );
 }
+
+export { BlurTextReveal } from './motion/BlurTextReveal';
+export { Magnetic } from './motion/Magnetic';
+export { RollingText } from './motion/RollingText';

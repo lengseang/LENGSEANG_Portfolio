@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { MotionReveal } from './motion';
+import { BlurTextReveal } from './motion/BlurTextReveal';
 
 interface ExperienceDossier {
   period: string;
@@ -117,9 +118,11 @@ export function ExperienceSection() {
             <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" />
             Verified Production History
           </div>
-          <h2 className="font-display text-4xl leading-tight sm:text-5xl font-bold tracking-tight text-[color:var(--text-strong)]">
-            Work Experience
-          </h2>
+          <BlurTextReveal
+            as="h2"
+            text="Work Experience"
+            className="font-display text-4xl leading-tight sm:text-5xl font-bold tracking-tight text-[color:var(--text-strong)]"
+          />
           <p className="max-w-2xl text-base sm:text-lg text-[color:var(--text-soft)] leading-relaxed">
             Production engineering roles delivering role-gated admin dashboards, AI analysis platforms, and express
             logistics state machines.

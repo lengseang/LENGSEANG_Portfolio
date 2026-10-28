@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { ConnectModal } from '@/app/_components/connect-modal';
 import { Icon } from '@/app/_components/icon';
+import { Magnetic, RollingText } from '@/app/_components/motion';
 import { ThemeToggle } from '@/app/_components/ThemeToggle';
 import type { NavItem } from '@/app/_data/portfolio';
 
@@ -75,54 +76,45 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
+          {/* Desktop Nav Links with Superconscious Dual Rolling Text */}
           <nav className="hidden items-center gap-1 md:flex">
             {items.map((item) => (
-              <motion.div
+              <Link
                 key={item.href}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                href={item.href}
+                className="px-3 py-1.5 rounded-lg text-xs font-medium text-[color:var(--text-soft)] transition-colors hover:text-[color:var(--text-strong)] hover:bg-black/[0.04] dark:hover:bg-white/[0.06]"
               >
-                <Link
-                  href={item.href}
-                  className="px-3 py-1.5 rounded-lg text-xs font-medium text-[color:var(--text-soft)] transition-colors hover:text-[color:var(--text-strong)] hover:bg-black/[0.04] dark:hover:bg-white/[0.06]"
-                >
-                  {item.label}
-                </Link>
-              </motion.div>
+                <RollingText text={item.label} />
+              </Link>
             ))}
           </nav>
 
-          {/* Desktop Right Controls (Sleek Glass Buttons with Micro-Interactions) */}
+          {/* Desktop Right Controls with Superconscious Magnetic Buttons */}
           <div className="hidden items-center gap-2 md:flex">
-            <motion.button
-              type="button"
-              onClick={() => setIsConnectOpen(true)}
-              whileHover={{ scale: 1.03, y: -1 }}
-              whileTap={{ scale: 0.96 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-              className="flex items-center gap-1.5 rounded-lg border border-black/[0.08] bg-black/[0.02] px-3 py-1.5 text-xs font-semibold text-[color:var(--text-soft)] transition hover:border-black/20 hover:bg-white hover:text-[color:var(--text-strong)] dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-white/25 dark:hover:bg-white/[0.08] shadow-xs cursor-pointer"
-              title="Social Media & CV QR Code"
-            >
-              <Icon icon="solar:link-circle-bold-duotone" width={15} className="text-[color:var(--accent)]" />
-              <span>Connect / QR</span>
-            </motion.button>
+            <Magnetic strength={0.3}>
+              <button
+                type="button"
+                onClick={() => setIsConnectOpen(true)}
+                className="flex items-center gap-1.5 rounded-lg border border-black/[0.08] bg-black/[0.02] px-3 py-1.5 text-xs font-semibold text-[color:var(--text-soft)] transition hover:border-black/20 hover:bg-white hover:text-[color:var(--text-strong)] dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-white/25 dark:hover:bg-white/[0.08] shadow-xs cursor-pointer active:scale-95"
+                title="Social Media & CV QR Code"
+              >
+                <Icon icon="solar:link-circle-bold-duotone" width={15} className="text-[color:var(--accent)]" />
+                <span>Connect / QR</span>
+              </button>
+            </Magnetic>
 
-            <ThemeToggle />
+            <Magnetic strength={0.35}>
+              <ThemeToggle />
+            </Magnetic>
 
-            <motion.div
-              whileHover={{ scale: 1.03, y: -1 }}
-              whileTap={{ scale: 0.96 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            >
+            <Magnetic strength={0.3}>
               <Link
                 href={ctaHref}
-                className="inline-block rounded-lg bg-[color:var(--text-strong)] px-3.5 py-1.5 text-xs font-semibold text-[color:var(--background)] transition hover:opacity-90 shadow-sm"
+                className="inline-block rounded-lg bg-[color:var(--text-strong)] px-3.5 py-1.5 text-xs font-semibold text-[color:var(--background)] transition hover:opacity-90 shadow-sm active:scale-95"
               >
                 Contact
               </Link>
-            </motion.div>
+            </Magnetic>
           </div>
 
           {/* Mobile Right Controls */}

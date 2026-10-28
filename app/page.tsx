@@ -10,7 +10,7 @@ import { ContactForm } from '@/app/_components/contact-form';
 import { ExperienceSection } from '@/app/_components/ExperienceSection';
 import { Icon } from '@/app/_components/icon';
 import { JourneyTimeline } from '@/app/_components/journey/JourneyTimeline';
-import { MotionItem, MotionReveal, MotionStagger } from '@/app/_components/motion';
+import { BlurTextReveal, Magnetic, MotionItem, MotionReveal, MotionStagger } from '@/app/_components/motion';
 import { ProjectsSection } from '@/app/_components/ProjectsSection';
 import { SkillsRadar } from '@/app/_components/SkillsRadar';
 import { SiteHeader } from '@/app/_components/site-header';
@@ -23,7 +23,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[color:var(--background)] text-[color:var(--text-strong)]">
       <SiteHeader items={navItems} ctaHref="/#contact" />
-
       <main>
         {/* ===== HERO SECTION (FULL-VIEWPORT ADAPTIVE WITH MOTION) ===== */}
         <section
@@ -123,7 +122,7 @@ export default function Home() {
                   </div>
 
                   <h1 className="font-display text-5xl leading-[0.98] tracking-tight sm:text-6xl xl:text-7xl">
-                    {personalInfo.name}
+                    <BlurTextReveal text={personalInfo.name} />
                   </h1>
 
                   <div className="flex flex-wrap items-center gap-3 pt-0.5">
@@ -136,9 +135,12 @@ export default function Home() {
                     </span>
                   </div>
 
-                  <p className="max-w-xl text-base leading-relaxed text-[color:var(--text-soft)]">
-                    {personalInfo.shortBio}
-                  </p>
+                  <BlurTextReveal
+                    as="p"
+                    text={personalInfo.shortBio}
+                    delay={0.15}
+                    className="max-w-xl text-base leading-relaxed text-[color:var(--text-soft)]"
+                  />
 
                   <p className="text-sm text-[color:var(--text-muted)] flex items-center gap-2 pt-0.5">
                     <Icon icon="solar:map-point-bold-duotone" width={16} className="text-[color:var(--accent)]" />
@@ -146,50 +148,56 @@ export default function Home() {
                   </p>
                 </div>
 
-                {/* Primary Action Buttons with Motion.dev Spring Micro-Interactions */}
+                {/* Primary Action Buttons with Superconscious Magnetic Pull & Spring Micro-Interactions */}
                 <div className="flex flex-wrap gap-3">
-                  <motion.div
-                    whileHover={{ scale: 1.04, y: -2 }}
-                    whileTap={{ scale: 0.96 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                  >
-                    <Link href="/#projects" className="button-primary">
-                      View my work
-                    </Link>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ scale: 1.04, y: -2 }}
-                    whileTap={{ scale: 0.96 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                  >
-                    <a
-                      href="/Khem_Seangleng_CV.pdf"
-                      download="Khem_Seangleng_CV.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="button-secondary inline-flex items-center justify-center gap-2"
+                  <Magnetic strength={0.35}>
+                    <motion.div
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.96 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                     >
-                      <Icon icon="solar:document-text-bold-duotone" width={18} />
-                      Download CV
-                    </a>
-                  </motion.div>
+                      <Link href="/#projects" className="button-primary">
+                        View my work
+                      </Link>
+                    </motion.div>
+                  </Magnetic>
 
-                  <motion.div
-                    whileHover={{ scale: 1.04, y: -2 }}
-                    whileTap={{ scale: 0.96 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setIsConnectOpen(true)}
-                      className="button-secondary inline-flex items-center justify-center gap-2 cursor-pointer"
-                      title="Open Social Links & QR"
+                  <Magnetic strength={0.35}>
+                    <motion.div
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.96 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                     >
-                      <Icon icon="solar:link-circle-bold-duotone" width={18} />
-                      Connect & QR
-                    </button>
-                  </motion.div>
+                      <a
+                        href="/Khem_Seangleng_CV.pdf"
+                        download="Khem_Seangleng_CV.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="button-secondary inline-flex items-center justify-center gap-2"
+                      >
+                        <Icon icon="solar:document-text-bold-duotone" width={18} />
+                        Download CV
+                      </a>
+                    </motion.div>
+                  </Magnetic>
+
+                  <Magnetic strength={0.35}>
+                    <motion.div
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.96 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setIsConnectOpen(true)}
+                        className="button-secondary inline-flex items-center justify-center gap-2 cursor-pointer"
+                        title="Open Social Links & QR"
+                      >
+                        <Icon icon="solar:link-circle-bold-duotone" width={18} />
+                        Connect & QR
+                      </button>
+                    </motion.div>
+                  </Magnetic>
                 </div>
 
                 {/* Real Proof-of-Work Metrics with Motion Springs */}
@@ -217,16 +225,17 @@ export default function Home() {
             </div>
           </div>
         </section>
-
         {/* ===== ABOUT / ENGINEERING ARCHITECTURE BENTO ===== */}
         <section id="about" className="border-b border-white/8">
           <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
             <MotionReveal className="space-y-12">
               <div className="max-w-3xl space-y-4">
                 <p className="eyebrow">Architecture & Philosophy</p>
-                <h2 className="font-display text-4xl leading-tight sm:text-5xl">
-                  Building dependable software from front-end craft to backend domain logic.
-                </h2>
+                <BlurTextReveal
+                  as="h2"
+                  text="Building dependable software from front-end craft to backend domain logic."
+                  className="font-display text-4xl leading-tight sm:text-5xl"
+                />
                 <p className="text-lg leading-8 text-[color:var(--text-soft)]">{personalInfo.longBio}</p>
               </div>
 
@@ -352,20 +361,11 @@ export default function Home() {
             </MotionReveal>
           </div>
         </section>
-
-        {/* ===== JOURNEY TIMELINE ===== */}
-        <JourneyTimeline />
-
-        {/* ===== TECHNICAL SKILLS ===== */}
-        <SkillsRadar />
-
-        {/* ===== EXPERIENCE ===== */}
-        <ExperienceSection />
-
-        {/* ===== PROJECTS ===== */}
-        <ProjectsSection />
-
-        {/* ===== SERVICES ===== */}
+        ;{/* ===== JOURNEY TIMELINE ===== */}
+        <JourneyTimeline />;{/* ===== TECHNICAL SKILLS ===== */}
+        <SkillsRadar />;{/* ===== EXPERIENCE ===== */}
+        <ExperienceSection />;{/* ===== PROJECTS ===== */}
+        <ProjectsSection />;{/* ===== SERVICES ===== */}
         <section id="services" className="border-t border-white/8">
           <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
             <MotionReveal className="mb-10 space-y-3">
@@ -398,8 +398,7 @@ export default function Home() {
             </MotionStagger>
           </div>
         </section>
-
-        {/* ===== EDUCATION & CERTIFICATIONS ===== */}
+        ;{/* ===== EDUCATION & CERTIFICATIONS ===== */}
         <section id="education" className="border-y border-white/8">
           <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
             <div className="grid gap-12 lg:grid-cols-2">
@@ -470,8 +469,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* ===== CONTACT ===== */}
+        ;{/* ===== CONTACT ===== */}
         <section id="contact" className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
             <MotionReveal className="space-y-6">
@@ -532,8 +530,8 @@ export default function Home() {
             </MotionReveal>
           </div>
         </section>
+        ;
       </main>
-
       {/* ===== FOOTER ===== */}
       <footer className="border-t border-white/8">
         <div className="mx-auto max-w-6xl px-5 py-8 sm:px-6 lg:px-8">

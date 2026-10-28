@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { SmoothScroll } from '@/app/_components/SmoothScroll';
 import { TechBackground } from '@/app/_components/TechBackground';
 import './globals.css';
 
@@ -45,8 +46,10 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning className="relative min-h-screen">
-        <TechBackground />
-        {children}
+        <SmoothScroll>
+          <TechBackground />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
