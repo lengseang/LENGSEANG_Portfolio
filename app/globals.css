@@ -115,16 +115,6 @@
   box-shadow: 0 0 0 4px rgba(15, 23, 42, var(--alpha-shadow-focus));
 }
 
-.light .soft-glow-left {
-  background: rgba(255, 255, 255, 0.9);
-  filter: blur(100px);
-}
-
-.light .soft-glow-right {
-  background: rgba(254, 240, 138, 0.25);
-  filter: blur(120px);
-}
-
 .light .tag {
   border-color: rgba(15, 23, 42, var(--alpha-tag-border));
   background: rgba(255, 255, 255, 0.7);
@@ -159,10 +149,15 @@ body {
   min-height: 100vh;
   background: transparent;
   color: var(--text-strong);
-  font-family: "Bahnschrift", "Trebuchet MS", sans-serif;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   transition:
     color 300ms ease,
     background-color 300ms ease;
+}
+
+:focus-visible {
+  outline: 2px solid var(--text-strong);
+  outline-offset: 2px;
 }
 
 a,
@@ -184,6 +179,7 @@ textarea {
 
 .font-display {
   font-family: "Georgia", "Times New Roman", serif;
+  letter-spacing: -0.02em;
 }
 
 .eyebrow {
@@ -214,18 +210,16 @@ textarea {
 }
 
 .panel:hover {
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.18);
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.085) 0%,
-    rgba(56, 189, 248, 0.04) 40%,
-    rgba(168, 85, 247, 0.03) 70%,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.035) 50%,
     rgba(14, 16, 22, 0.65) 100%
   );
   box-shadow:
     0 16px 40px -8px rgba(0, 0, 0, 0.65),
-    0 0 24px -2px rgba(56, 189, 248, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .light .panel {
@@ -247,10 +241,9 @@ textarea {
 
 .light .panel:hover {
   border-color: rgba(15, 23, 42, 0.15);
-  background: linear-gradient(135deg, #ffffff 0%, rgba(248, 250, 252, 0.95) 45%, rgba(238, 242, 255, 0.85) 100%);
+  background: linear-gradient(135deg, #ffffff 0%, rgba(248, 250, 252, 0.95) 50%, rgba(241, 245, 249, 0.8) 100%);
   box-shadow:
-    0 16px 36px -6px rgba(15, 23, 42, 0.08),
-    0 0 20px -2px rgba(59, 130, 246, 0.06),
+    0 16px 36px -6px rgba(15, 23, 42, 0.07),
     inset 0 1px 0 #ffffff;
 }
 
@@ -333,43 +326,6 @@ textarea {
   box-shadow: 0 0 0 4px rgba(255, 255, 255, var(--alpha-shadow-focus));
 }
 
-.soft-glow {
-  position: absolute;
-  border-radius: 999px;
-  filter: blur(90px);
-  pointer-events: none;
-}
-
-.soft-glow-left {
-  left: -8rem;
-  top: 2rem;
-  height: 14rem;
-  width: 14rem;
-  background: rgba(255, 255, 255, var(--alpha-glow));
-  animation: float 20s infinite ease-in-out alternate;
-}
-
-.soft-glow-right {
-  right: -6rem;
-  top: 10rem;
-  height: 16rem;
-  width: 16rem;
-  background: rgba(255, 255, 255, var(--alpha-glow-2));
-  animation: float 25s infinite ease-in-out alternate-reverse;
-}
-
-@keyframes float {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(4rem, -3rem) scale(1.1);
-  }
-  100% {
-    transform: translate(-2rem, 4rem) scale(0.95);
-  }
-}
-
 .tag {
   display: inline-flex;
   align-items: center;
@@ -435,8 +391,8 @@ textarea {
     inset 0 1px 0 #ffffff;
 }
 
-/* Cybernetic Ambient Background */
-.cyber-grid {
+/* Swiss Architectural Grid & Grain Texture */
+.architectural-grid {
   position: fixed;
   inset: 0;
   z-index: -1;
@@ -444,15 +400,15 @@ textarea {
   background-image:
     linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(circle at 50% 30%, black 35%, transparent 85%);
-  -webkit-mask-image: radial-gradient(circle at 50% 30%, black 35%, transparent 85%);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(circle at 50% 20%, black 40%, transparent 85%);
+  -webkit-mask-image: radial-gradient(circle at 50% 20%, black 40%, transparent 85%);
 }
 
-.light .cyber-grid {
+.light .architectural-grid {
   background-image:
-    linear-gradient(to right, rgba(15, 23, 42, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.025) 1px, transparent 1px);
+    linear-gradient(to right, rgba(15, 23, 42, 0.028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.028) 1px, transparent 1px);
 }
 
 /* Lenis Smooth Inertia Scroll */

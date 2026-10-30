@@ -29,9 +29,8 @@ export default function Home() {
           id="home"
           className="relative min-h-[calc(100vh-4rem)] lg:min-h-screen flex items-center justify-center overflow-hidden border-b border-black/[0.06] dark:border-white/8 pt-20 pb-16 lg:py-0"
         >
-          {/* Subtle Ambient Backlight Floats */}
-          <div className="soft-glow soft-glow-left" />
-          <div className="soft-glow soft-glow-right" />
+          {/* Subtle Architectural Grid Texture */}
+          <div className="architectural-grid" />
 
           <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 w-full py-8 lg:py-12">
             <div className="grid gap-10 lg:grid-cols-[1.15fr_1fr] xl:grid-cols-[1.2fr_1fr] lg:items-center">
@@ -43,18 +42,18 @@ export default function Home() {
                 className="relative flex justify-center lg:justify-start"
               >
                 <div className="relative w-full max-w-[420px] sm:max-w-[460px] lg:max-w-[490px]">
-                  {/* Atmospheric Backlight Glow - Reactive to Theme */}
+                  {/* Atmospheric Backlight Studio Halo */}
                   <motion.div
                     animate={{
-                      scale: [1, 1.06, 1],
-                      opacity: [0.35, 0.6, 0.35],
+                      scale: [1, 1.04, 1],
+                      opacity: [0.3, 0.5, 0.3],
                     }}
                     transition={{
-                      duration: 7,
+                      duration: 6,
                       repeat: Infinity,
                       ease: 'easeInOut',
                     }}
-                    className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-tr from-emerald-500/20 via-sky-500/20 to-amber-500/10 dark:from-emerald-500/15 dark:via-sky-500/10 dark:to-transparent blur-[60px] pointer-events-none"
+                    className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-tr from-emerald-500/15 to-transparent blur-[50px] pointer-events-none"
                   />
 
                   {/* The Portrait Frame: High-End Glass Editorial Card with Smooth Hover Depth */}
@@ -361,44 +360,130 @@ export default function Home() {
             </MotionReveal>
           </div>
         </section>
-        ;{/* ===== JOURNEY TIMELINE ===== */}
-        <JourneyTimeline />;{/* ===== TECHNICAL SKILLS ===== */}
-        <SkillsRadar />;{/* ===== EXPERIENCE ===== */}
-        <ExperienceSection />;{/* ===== PROJECTS ===== */}
-        <ProjectsSection />;{/* ===== SERVICES ===== */}
-        <section id="services" className="border-t border-white/8">
+        {/* ===== JOURNEY TIMELINE ===== */}
+        <JourneyTimeline />
+        {/* ===== TECHNICAL SKILLS ===== */}
+        <SkillsRadar />
+        {/* ===== EXPERIENCE ===== */}
+        <ExperienceSection />
+        {/* ===== PROJECTS ===== */}
+        <ProjectsSection />
+        {/* ===== ENGINEERING SERVICES ===== */}
+        <section id="services" className="border-t border-black/[0.06] dark:border-white/8">
           <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
-            <MotionReveal className="mb-10 space-y-3">
-              <p className="eyebrow">Engineering Services</p>
+            <MotionReveal className="mb-12 space-y-3">
+              <p className="eyebrow">Engineering Capabilities</p>
               <h2 className="font-display text-4xl leading-none sm:text-5xl">What I deliver</h2>
               <p className="max-w-2xl text-lg text-[color:var(--text-soft)]">
-                From concept and database modeling to high-speed, accessible web applications
+                From domain logic and schema modeling to high-speed, accessible client architectures.
               </p>
             </MotionReveal>
 
-            <MotionStagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map((service) => (
+            {/* Asymmetric Capability Matrix (Anti-Slop Layout Variance) */}
+            <MotionStagger className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {/* Flagship Tier 1: 2-column wide focal card */}
+              <MotionItem className="lg:col-span-2">
+                <motion.div
+                  whileHover={{ y: -4, scale: 1.008 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 24 }}
+                  className="panel p-7 sm:p-8 space-y-5 h-full group"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-black/[0.06] dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.04] text-[color:var(--accent)] group-hover:scale-105 transition-transform shadow-xs">
+                      <Icon icon="solar:shield-check-bold-duotone" width={26} />
+                    </div>
+                    <span className="text-[11px] font-mono px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-medium">
+                      Flagship Competency
+                    </span>
+                  </div>
+
+                  <div className="space-y-2">
+                    <h3 className="text-2xl font-bold font-display text-[color:var(--text-strong)]">
+                      {services[0]?.title ?? 'Secure Admin Systems & RBAC'}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-[color:var(--text-soft)] max-w-2xl">
+                      {services[0]?.description} Engineered authorization architectures with granular permission
+                      hierarchies, JWT middleware, session invalidation, and audit logging proven at Prestige Alliance.
+                    </p>
+                  </div>
+
+                  <div className="pt-2 border-t border-black/[0.06] dark:border-white/8 flex flex-wrap gap-2 text-xs font-mono text-[color:var(--text-muted)]">
+                    <span className="px-2.5 py-1 rounded-md bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/8">
+                      6-Tier RBAC
+                    </span>
+                    <span className="px-2.5 py-1 rounded-md bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/8">
+                      Guard Middleware
+                    </span>
+                    <span className="px-2.5 py-1 rounded-md bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/8">
+                      Token Revocation
+                    </span>
+                    <span className="px-2.5 py-1 rounded-md bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/8">
+                      Audit Logging
+                    </span>
+                  </div>
+                </motion.div>
+              </MotionItem>
+
+              {/* Service 2: Full-Stack Web Platforms */}
+              <MotionItem>
+                <motion.div
+                  whileHover={{ y: -4, scale: 1.008 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 24 }}
+                  className="panel p-7 sm:p-8 space-y-5 h-full group flex flex-col justify-between"
+                >
+                  <div className="space-y-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-black/[0.06] dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.04] text-[color:var(--accent)] group-hover:scale-105 transition-transform shadow-xs">
+                      <Icon icon={services[1]?.icon ?? 'solar:code-2-bold-duotone'} width={26} />
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-bold font-display text-[color:var(--text-strong)]">
+                        {services[1]?.title ?? 'Full-Stack Web Platforms'}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-[color:var(--text-soft)]">
+                        {services[1]?.description}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="pt-2 border-t border-black/[0.06] dark:border-white/8 flex flex-wrap gap-1.5 text-xs font-mono text-[color:var(--text-muted)]">
+                    <span className="px-2.5 py-1 rounded-md bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/8">
+                      Next.js 16 & NestJS
+                    </span>
+                    <span className="px-2.5 py-1 rounded-md bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/8">
+                      PostgreSQL
+                    </span>
+                  </div>
+                </motion.div>
+              </MotionItem>
+
+              {/* Satellite Services: 03, 04, 05 */}
+              {services.slice(2).map((service) => (
                 <MotionItem key={service.id}>
                   <motion.div
-                    whileHover={{ y: -6, scale: 1.015 }}
-                    transition={{ type: 'spring', stiffness: 350, damping: 22 }}
-                    className="panel p-6 space-y-4 transition-colors duration-200 hover:bg-white/[0.04] hover:border-white/20 h-full group"
+                    whileHover={{ y: -4, scale: 1.008 }}
+                    transition={{ type: 'spring', stiffness: 350, damping: 24 }}
+                    className="panel p-6 space-y-4 h-full group flex flex-col justify-between"
                   >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-[color:var(--accent)] transition-all duration-300 group-hover:border-[color:var(--accent)]/40 group-hover:bg-[color:var(--accent)]/10">
-                      <Icon icon={service.icon} width={24} />
+                    <div className="space-y-3">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-black/[0.06] dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.04] text-[color:var(--accent)] group-hover:scale-105 transition-transform shadow-xs">
+                        <Icon icon={service.icon} width={22} />
+                      </div>
+                      <h3 className="text-lg font-bold font-display text-[color:var(--text-strong)]">
+                        {service.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-[color:var(--text-soft)]">{service.description}</p>
                     </div>
-                    <h3 className="text-xl font-semibold text-[color:var(--text-strong)]">{service.title}</h3>
-                    <p className="text-sm leading-7 text-[color:var(--text-soft)]">{service.description}</p>
-                    <span className="inline-block px-3 py-1 bg-white/[0.04] rounded-full text-xs text-[color:var(--text-muted)] capitalize">
-                      {service.category}
-                    </span>
+                    <div className="pt-2 border-t border-black/[0.06] dark:border-white/8">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-[color:var(--text-muted)]">
+                        {service.category}
+                      </span>
+                    </div>
                   </motion.div>
                 </MotionItem>
               ))}
             </MotionStagger>
           </div>
         </section>
-        ;{/* ===== EDUCATION & CERTIFICATIONS ===== */}
+        {/* ===== EDUCATION & CERTIFICATIONS ===== */}
         <section id="education" className="border-y border-white/8">
           <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
             <div className="grid gap-12 lg:grid-cols-2">
@@ -469,7 +554,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        ;{/* ===== CONTACT ===== */}
+        {/* ===== CONTACT ===== */}
         <section id="contact" className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
             <MotionReveal className="space-y-6">

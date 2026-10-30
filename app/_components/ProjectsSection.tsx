@@ -80,16 +80,15 @@ export const ProjectsSection = () => {
                     </div>
 
                     {project.metrics && (
-                      <div className="grid grid-cols-2 gap-3 pt-1">
-                        {project.metrics.slice(0, 2).map((metric) => (
-                          <div
-                            key={metric.label}
-                            className="p-3 bg-gradient-to-br from-black/[0.02] to-transparent dark:from-white/[0.04] dark:to-transparent border border-black/[0.06] dark:border-white/8 rounded-xl shadow-xs"
-                          >
-                            <p className="text-base font-bold font-display text-[color:var(--text-strong)]">
+                      <div className="flex flex-wrap items-center gap-6 pt-2 border-t border-black/[0.06] dark:border-white/8">
+                        {project.metrics.slice(0, 3).map((metric) => (
+                          <div key={metric.label} className="space-y-0.5">
+                            <p className="text-base sm:text-lg font-bold font-display text-[color:var(--text-strong)] tracking-tight">
                               {metric.value}
                             </p>
-                            <p className="text-[11px] text-[color:var(--text-muted)]">{metric.label}</p>
+                            <p className="text-[10px] font-mono uppercase tracking-wider text-[color:var(--text-muted)]">
+                              {metric.label}
+                            </p>
                           </div>
                         ))}
                       </div>
