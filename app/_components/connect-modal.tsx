@@ -79,11 +79,11 @@ export function ConnectModal({ isOpen, onClose }: ConnectModalProps) {
     },
     {
       title: 'Alauna',
-      badge: 'AI App',
-      handle: 'github.com/lengseang/alauna',
+      badge: 'Mobile App',
+      handle: 'On-Device Local Inference',
       href: 'https://github.com/lengseang/alauna',
-      icon: 'solar:magic-stick-3-bold-duotone',
-      color: 'hover:border-purple-500/40 hover:bg-purple-500/10 text-purple-400',
+      icon: 'solar:smartphone-bold-duotone',
+      color: 'hover:border-zinc-500/40 hover:bg-zinc-500/10 text-[color:var(--text-strong)]',
     },
     {
       title: 'Portfolio Website',

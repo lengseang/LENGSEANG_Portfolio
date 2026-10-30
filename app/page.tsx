@@ -56,52 +56,35 @@ export default function Home() {
                     className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-tr from-emerald-500/15 to-transparent blur-[50px] pointer-events-none"
                   />
 
-                  {/* The Portrait Frame: High-End Glass Editorial Card with Smooth Hover Depth */}
+                  {/* The Portrait Frame: Pure High-End Editorial Card */}
                   <motion.div
-                    whileHover={{ y: -6, scale: 1.015 }}
-                    transition={{ type: 'spring', stiffness: 350, damping: 22 }}
+                    whileHover={{ y: -4, scale: 1.01 }}
+                    transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                     className="relative z-10 overflow-hidden rounded-[2rem] border border-black/[0.08] dark:border-white/[0.12] bg-white/60 dark:bg-zinc-950/70 backdrop-blur-2xl shadow-2xl shadow-black/10 dark:shadow-black/70 group"
                   >
-                    <div className="relative aspect-[4/4.6] sm:aspect-[4/4.5] w-full overflow-hidden">
+                    <div className="relative aspect-[4/4.8] sm:aspect-[4/4.6] w-full overflow-hidden">
                       <Image
                         src="/portfolio/khem-profile.jpg"
-                        alt="Khem Seangleng - Full-Stack Developer"
+                        alt="Khem Seangleng - Full-Stack Systems Engineer"
                         fill
                         priority
                         sizes="(max-width: 640px) 90vw, (max-width: 1024px) 460px, 490px"
-                        className="object-cover object-top filter brightness-[1.02] contrast-[1.02] transition-transform duration-700 ease-out group-hover:scale-[1.03] select-none"
+                        className="object-cover object-top filter brightness-[1.02] contrast-[1.02] transition-transform duration-700 ease-out group-hover:scale-[1.02] select-none"
                       />
 
-                      {/* Elegant Inner Shadow & Bottom Gradient for Depth */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 dark:opacity-80 pointer-events-none" />
+                      {/* Pure Photographic Vignette with Zero Clutter */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-50 dark:opacity-75 pointer-events-none" />
                       <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none" />
                     </div>
 
-                    {/* Floating Status Pill on Top-Left */}
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3, duration: 0.5 }}
-                      className="absolute top-4 left-4 z-20 flex items-center gap-2 rounded-full border border-white/20 dark:border-white/15 bg-black/40 dark:bg-black/60 px-3.5 py-1.5 backdrop-blur-xl shadow-lg text-white"
-                    >
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                    {/* Minimalist Studio Caption Bar */}
+                    <div className="px-5 py-3 border-t border-black/[0.06] dark:border-white/10 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl flex items-center justify-between">
+                      <span className="text-xs font-mono font-medium text-[color:var(--text-strong)]">
+                        Khem Seangleng
                       </span>
-                      <span className="text-[11px] font-mono tracking-tight font-semibold">Available for Work</span>
-                    </motion.div>
-
-                    {/* Floating Badges on Bottom */}
-                    <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between gap-2">
-                      <div className="rounded-xl border border-white/20 dark:border-white/15 bg-black/40 dark:bg-black/60 px-3 py-1.5 backdrop-blur-xl text-white">
-                        <p className="text-[10px] font-mono uppercase tracking-wider text-white/70">Focus</p>
-                        <p className="text-xs font-bold">Full-Stack &amp; Clean Architecture</p>
-                      </div>
-
-                      <div className="rounded-xl border border-white/20 dark:border-white/15 bg-black/40 dark:bg-black/60 px-3 py-1.5 backdrop-blur-xl text-white text-right">
-                        <p className="text-[10px] font-mono uppercase tracking-wider text-emerald-400">Verified</p>
-                        <p className="text-xs font-bold">05+ Systems Built</p>
-                      </div>
+                      <span className="text-[11px] font-mono text-[color:var(--text-muted)]">
+                        Phnom Penh &middot; KH
+                      </span>
                     </div>
                   </motion.div>
                 </div>
@@ -114,25 +97,18 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="space-y-6 lg:pl-2"
               >
-                <div className="space-y-3.5">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/[0.08] dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.04] text-xs font-mono text-[color:var(--text-soft)] backdrop-blur-md">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                    Clean Architecture &middot; RBAC &middot; System Design
-                  </div>
+                <div className="space-y-4">
+                  <p className="text-xs font-mono uppercase tracking-widest text-[color:var(--text-muted)]">
+                    Full-Stack Systems Engineer &middot; Production Systems
+                  </p>
 
                   <h1 className="font-display text-5xl leading-[0.98] tracking-tight sm:text-6xl xl:text-7xl">
                     <BlurTextReveal text={personalInfo.name} />
                   </h1>
 
-                  <div className="flex flex-wrap items-center gap-3 pt-0.5">
-                    <p className="text-xl sm:text-2xl font-semibold text-[color:var(--accent)] tracking-tight">
-                      {personalInfo.role}
-                    </p>
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md border border-emerald-600/20 bg-emerald-500/10 text-xs font-mono text-emerald-700 dark:border-emerald-500/25 dark:bg-emerald-500/10 dark:text-emerald-400">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
-                      Available for Opportunities
-                    </span>
-                  </div>
+                  <p className="text-xl sm:text-2xl font-medium text-[color:var(--accent)] tracking-tight">
+                    {personalInfo.role} &mdash; Clean Architecture &amp; Granular RBAC
+                  </p>
 
                   <BlurTextReveal
                     as="p"
@@ -141,9 +117,9 @@ export default function Home() {
                     className="max-w-xl text-base leading-relaxed text-[color:var(--text-soft)]"
                   />
 
-                  <p className="text-sm text-[color:var(--text-muted)] flex items-center gap-2 pt-0.5">
-                    <Icon icon="solar:map-point-bold-duotone" width={16} className="text-[color:var(--accent)]" />
-                    Based in {personalInfo.location} &middot; RUPP Computer Science (4th Year)
+                  <p className="text-sm text-[color:var(--text-muted)] flex items-center gap-2 pt-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 inline-block" />
+                    Available for select roles &middot; RUPP Computer Science (4th Year)
                   </p>
                 </div>
 
@@ -224,138 +200,109 @@ export default function Home() {
             </div>
           </div>
         </section>
-        {/* ===== ABOUT / ENGINEERING ARCHITECTURE BENTO ===== */}
-        <section id="about" className="border-b border-white/8">
+        {/* ===== SYSTEMS & ARCHITECTURE TENETS ===== */}
+        <section id="about" className="border-b border-black/[0.06] dark:border-white/8">
           <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
             <MotionReveal className="space-y-12">
-              <div className="max-w-3xl space-y-4">
-                <p className="eyebrow">Architecture & Philosophy</p>
+              <div className="max-w-3xl space-y-3">
+                <p className="eyebrow">Architecture &amp; Core Systems</p>
                 <BlurTextReveal
                   as="h2"
-                  text="Building dependable software from front-end craft to backend domain logic."
+                  text="Engineered from domain schema to high-speed client interface."
                   className="font-display text-4xl leading-tight sm:text-5xl"
                 />
-                <p className="text-lg leading-8 text-[color:var(--text-soft)]">{personalInfo.longBio}</p>
+                <p className="text-base sm:text-lg leading-relaxed text-[color:var(--text-soft)]">
+                  {personalInfo.longBio}
+                </p>
               </div>
 
-              {/* Asymmetrical Bento Grid */}
-              {/* Asymmetrical Bento Grid with Motion Springs */}
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {/* Bento 1: Large Feature (Spans 2 cols on lg) */}
+              {/* Architectural Pillars (Clean Editorial - Zero AI Bento Clutter) */}
+              <div className="grid gap-6 md:grid-cols-3">
+                {/* Pillar 01 */}
                 <motion.div
-                  whileHover={{ y: -5, scale: 1.01 }}
-                  transition={{ type: 'spring', stiffness: 350, damping: 24 }}
-                  className="panel p-6 sm:p-8 space-y-4 lg:col-span-2 group"
+                  whileHover={{ y: -3 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                  className="panel p-6 sm:p-7 space-y-4 flex flex-col justify-between"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/10 text-[color:var(--accent)] group-hover:scale-105 transition-transform shadow-xs">
-                    <Icon icon="solar:shield-check-bold-duotone" width={26} />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-xl font-semibold text-[color:var(--text-strong)]">
-                        Secure Multi-Role RBAC Systems
-                      </h3>
-                      <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400">
-                        Enterprise Grade
-                      </span>
-                    </div>
-                    <p className="text-sm leading-7 text-[color:var(--text-soft)]">
-                      Engineered authorization architectures with granular permission hierarchies and role inheritance
-                      across 6 distinct user tiers at Prestige Alliance. Built token guards, session revocation, and
-                      dynamic user routing to secure sensitive operational data.
+                  <div className="space-y-3">
+                    <span className="text-xs font-mono font-bold text-[color:var(--accent)] tracking-wider">
+                      01 / SECURITY
+                    </span>
+                    <h3 className="text-xl font-bold font-display text-[color:var(--text-strong)]">
+                      Granular Multi-Tier RBAC
+                    </h3>
+                    <p className="text-sm leading-relaxed text-[color:var(--text-soft)]">
+                      Structured authorization architectures with permission hierarchies and role inheritance across 6
+                      distinct user tiers at Prestige Alliance. Built JWT token guards, session revocation, and dynamic
+                      user routing.
                     </p>
                   </div>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {['NestJS', 'JWT & Guard Middleware', 'PostgreSQL', '6 Role Tiers', 'Audit Logs'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 rounded-md bg-black/[0.03] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/8 text-xs font-mono text-[color:var(--text-muted)]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <p className="pt-3 border-t border-black/[0.05] dark:border-white/8 text-xs font-mono text-[color:var(--text-muted)]">
+                    NestJS &middot; PostgreSQL &middot; JWT &middot; Guard Middleware
+                  </p>
                 </motion.div>
 
-                {/* Bento 2: Rich-Text & Frontend */}
+                {/* Pillar 02 */}
                 <motion.div
-                  whileHover={{ y: -5, scale: 1.01 }}
-                  transition={{ type: 'spring', stiffness: 350, damping: 24 }}
-                  className="panel p-6 sm:p-8 space-y-4 group"
+                  whileHover={{ y: -3 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                  className="panel p-6 sm:p-7 space-y-4 flex flex-col justify-between"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/10 text-[color:var(--accent)] group-hover:scale-105 transition-transform shadow-xs">
-                    <Icon icon="solar:code-2-bold-duotone" width={26} />
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-semibold text-[color:var(--text-strong)]">thecoauthor.com Engine</h3>
-                    <p className="text-sm leading-7 text-[color:var(--text-soft)]">
-                      Architected a full-stack digital article writing platform with a custom Tiptap rich-text editor,
+                  <div className="space-y-3">
+                    <span className="text-xs font-mono font-bold text-[color:var(--accent)] tracking-wider">
+                      02 / INTERACTION
+                    </span>
+                    <h3 className="text-xl font-bold font-display text-[color:var(--text-strong)]">
+                      Low-Latency Publishing
+                    </h3>
+                    <p className="text-sm leading-relaxed text-[color:var(--text-soft)]">
+                      Architected thecoauthor.com digital writing platform with a custom Tiptap rich-text editor,
                       debounced auto-save drafts, markdown transforms, and sub-100ms editing latency.
                     </p>
                   </div>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {['Next.js 16', 'Tiptap Editor', 'Auto-Save', 'Turbopack'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 rounded-md bg-black/[0.03] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/8 text-xs font-mono text-[color:var(--text-muted)]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <p className="pt-3 border-t border-black/[0.05] dark:border-white/8 text-xs font-mono text-[color:var(--text-muted)]">
+                    Next.js 16 &middot; Tiptap &middot; Auto-Save &middot; Turbopack
+                  </p>
                 </motion.div>
 
-                {/* Bento 3: Operational Logistics */}
+                {/* Pillar 03 */}
                 <motion.div
-                  whileHover={{ y: -5, scale: 1.01 }}
-                  transition={{ type: 'spring', stiffness: 350, damping: 24 }}
-                  className="panel p-6 sm:p-8 space-y-4 group"
+                  whileHover={{ y: -3 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                  className="panel p-6 sm:p-7 space-y-4 flex flex-col justify-between"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/10 text-[color:var(--accent)] group-hover:scale-105 transition-transform shadow-xs">
-                    <Icon icon="solar:routing-2-bold-duotone" width={26} />
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-semibold text-[color:var(--text-strong)]">Logistics State Machines</h3>
-                    <p className="text-sm leading-7 text-[color:var(--text-soft)]">
+                  <div className="space-y-3">
+                    <span className="text-xs font-mono font-bold text-[color:var(--accent)] tracking-wider">
+                      03 / WORKFLOWS
+                    </span>
+                    <h3 className="text-xl font-bold font-display text-[color:var(--text-strong)]">
+                      Logistics State Machines
+                    </h3>
+                    <p className="text-sm leading-relaxed text-[color:var(--text-soft)]">
                       Structured 3-way operational delivery handoffs for BS Express Cambodia (Branch-to-Branch,
-                      Branch-to-Customer, Customer-to-Branch) with real-time push notification triggers and QR scanning.
+                      Branch-to-Customer, Customer-to-Branch) with real-time push notification triggers and instant QR
+                      verification.
                     </p>
                   </div>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {['Push Triggers', 'QR Verification', 'Mobile UI', 'Dispatching'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 rounded-md bg-black/[0.03] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/8 text-xs font-mono text-[color:var(--text-muted)]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <p className="pt-3 border-t border-black/[0.05] dark:border-white/8 text-xs font-mono text-[color:var(--text-muted)]">
+                    State Machines &middot; QR Verification &middot; Push Triggers
+                  </p>
                 </motion.div>
+              </div>
 
-                {/* Bento 4: Philosophy & Background (Spans 2 cols on lg) */}
-                <motion.div
-                  whileHover={{ y: -5, scale: 1.01 }}
-                  transition={{ type: 'spring', stiffness: 350, damping: 24 }}
-                  className="panel p-6 sm:p-8 space-y-4 lg:col-span-2 group"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/10 text-[color:var(--accent)] group-hover:scale-105 transition-transform shadow-xs">
-                    <Icon icon="solar:server-bold-duotone" width={26} />
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-semibold text-[color:var(--text-strong)]">
-                      Core Engineering Principles
-                    </h3>
-                    <div className="grid gap-3 sm:grid-cols-2 pt-1">
-                      {personalInfo.professionalSummary.map((item) => (
-                        <div key={item} className="flex items-start gap-2.5 text-sm text-[color:var(--text-soft)]">
-                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[color:var(--accent)] flex-shrink-0" />
-                          <span className="leading-relaxed">{item}</span>
-                        </div>
-                      ))}
+              {/* Engineering Tenets Panel */}
+              <div className="panel p-6 sm:p-8 space-y-4">
+                <h3 className="text-sm font-mono uppercase tracking-widest text-[color:var(--accent)]">
+                  Core Engineering Tenets
+                </h3>
+                <div className="grid gap-3 sm:grid-cols-2 pt-1">
+                  {personalInfo.professionalSummary.map((item) => (
+                    <div key={item} className="flex items-start gap-2.5 text-sm text-[color:var(--text-soft)]">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[color:var(--accent)] flex-shrink-0" />
+                      <span className="leading-relaxed">{item}</span>
                     </div>
-                  </div>
-                </motion.div>
+                  ))}
+                </div>
               </div>
             </MotionReveal>
           </div>
@@ -384,17 +331,15 @@ export default function Home() {
               {/* Flagship Tier 1: 2-column wide focal card */}
               <MotionItem className="lg:col-span-2">
                 <motion.div
-                  whileHover={{ y: -4, scale: 1.008 }}
-                  transition={{ type: 'spring', stiffness: 350, damping: 24 }}
+                  whileHover={{ y: -3 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                   className="panel p-7 sm:p-8 space-y-5 h-full group"
                 >
                   <div className="flex items-start justify-between gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-black/[0.06] dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.04] text-[color:var(--accent)] group-hover:scale-105 transition-transform shadow-xs">
-                      <Icon icon="solar:shield-check-bold-duotone" width={26} />
-                    </div>
-                    <span className="text-[11px] font-mono px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 font-medium">
-                      Flagship Competency
+                    <span className="text-xs font-mono font-bold text-[color:var(--accent)] tracking-widest uppercase">
+                      Core Discipline / 01
                     </span>
+                    <span className="text-xs font-mono text-emerald-500 font-medium">Enterprise Tier</span>
                   </div>
 
                   <div className="space-y-2">
@@ -407,66 +352,46 @@ export default function Home() {
                     </p>
                   </div>
 
-                  <div className="pt-2 border-t border-black/[0.06] dark:border-white/8 flex flex-wrap gap-2 text-xs font-mono text-[color:var(--text-muted)]">
-                    <span className="px-2.5 py-1 rounded-md bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/8">
-                      6-Tier RBAC
-                    </span>
-                    <span className="px-2.5 py-1 rounded-md bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/8">
-                      Guard Middleware
-                    </span>
-                    <span className="px-2.5 py-1 rounded-md bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/8">
-                      Token Revocation
-                    </span>
-                    <span className="px-2.5 py-1 rounded-md bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/8">
-                      Audit Logging
-                    </span>
-                  </div>
+                  <p className="pt-2.5 border-t border-black/[0.06] dark:border-white/8 text-xs font-mono text-[color:var(--text-muted)]">
+                    6-Tier RBAC &middot; Guard Middleware &middot; Token Revocation &middot; Audit Logging
+                  </p>
                 </motion.div>
               </MotionItem>
 
               {/* Service 2: Full-Stack Web Platforms */}
               <MotionItem>
                 <motion.div
-                  whileHover={{ y: -4, scale: 1.008 }}
-                  transition={{ type: 'spring', stiffness: 350, damping: 24 }}
+                  whileHover={{ y: -3 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                   className="panel p-7 sm:p-8 space-y-5 h-full group flex flex-col justify-between"
                 >
-                  <div className="space-y-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-black/[0.06] dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.04] text-[color:var(--accent)] group-hover:scale-105 transition-transform shadow-xs">
-                      <Icon icon={services[1]?.icon ?? 'solar:code-2-bold-duotone'} width={26} />
-                    </div>
-                    <div className="space-y-2">
-                      <h3 className="text-xl font-bold font-display text-[color:var(--text-strong)]">
-                        {services[1]?.title ?? 'Full-Stack Web Platforms'}
-                      </h3>
-                      <p className="text-sm leading-relaxed text-[color:var(--text-soft)]">
-                        {services[1]?.description}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="pt-2 border-t border-black/[0.06] dark:border-white/8 flex flex-wrap gap-1.5 text-xs font-mono text-[color:var(--text-muted)]">
-                    <span className="px-2.5 py-1 rounded-md bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/8">
-                      Next.js 16 & NestJS
+                  <div className="space-y-3">
+                    <span className="text-xs font-mono font-bold text-[color:var(--accent)] tracking-widest uppercase">
+                      Core Discipline / 02
                     </span>
-                    <span className="px-2.5 py-1 rounded-md bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.05] dark:border-white/8">
-                      PostgreSQL
-                    </span>
+                    <h3 className="text-xl font-bold font-display text-[color:var(--text-strong)]">
+                      {services[1]?.title ?? 'Full-Stack Web Platforms'}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-[color:var(--text-soft)]">{services[1]?.description}</p>
                   </div>
+                  <p className="pt-2.5 border-t border-black/[0.06] dark:border-white/8 text-xs font-mono text-[color:var(--text-muted)]">
+                    Next.js 16 &middot; NestJS &middot; PostgreSQL &middot; Turbopack
+                  </p>
                 </motion.div>
               </MotionItem>
 
               {/* Satellite Services: 03, 04, 05 */}
-              {services.slice(2).map((service) => (
+              {services.slice(2).map((service, idx) => (
                 <MotionItem key={service.id}>
                   <motion.div
-                    whileHover={{ y: -4, scale: 1.008 }}
-                    transition={{ type: 'spring', stiffness: 350, damping: 24 }}
+                    whileHover={{ y: -3 }}
+                    transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                     className="panel p-6 space-y-4 h-full group flex flex-col justify-between"
                   >
                     <div className="space-y-3">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-black/[0.06] dark:border-white/10 bg-black/[0.03] dark:bg-white/[0.04] text-[color:var(--accent)] group-hover:scale-105 transition-transform shadow-xs">
-                        <Icon icon={service.icon} width={22} />
-                      </div>
+                      <span className="text-xs font-mono font-medium text-[color:var(--text-muted)] tracking-wider">
+                        0{idx + 3}
+                      </span>
                       <h3 className="text-lg font-bold font-display text-[color:var(--text-strong)]">
                         {service.title}
                       </h3>

@@ -92,7 +92,7 @@ export const SkillsRadar = () => {
                         <span className="text-base font-semibold text-[color:var(--text-strong)] group-hover:text-[color:var(--accent)] transition-colors">
                           {skill.name}
                         </span>
-                        <span className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-white/5 border border-white/8 text-[color:var(--text-muted)]">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-[color:var(--text-muted)]">
                           {skill.category}
                         </span>
                       </div>
@@ -104,28 +104,19 @@ export const SkillsRadar = () => {
                       )}
                     </div>
 
-                    <div className="space-y-2 pt-2 border-t border-white/6">
+                    <div className="space-y-1.5 pt-2 border-t border-black/[0.05] dark:border-white/6">
                       <div className="flex items-center justify-between text-[11px] text-[color:var(--text-muted)]">
                         <span>Production tenure</span>
                         <span className="font-mono text-[color:var(--text-soft)]">{tenure}</span>
                       </div>
 
                       {skill.projectsUsedIn.length > 0 && (
-                        <div className="flex flex-wrap gap-1.5 pt-0.5">
-                          {skill.projectsUsedIn.slice(0, 2).map((proj) => (
-                            <span
-                              key={proj}
-                              className="px-2 py-0.5 rounded bg-white/[0.04] text-[10px] text-[color:var(--text-muted)] font-mono truncate max-w-[140px]"
-                            >
-                              {proj.replace(/-/g, ' ')}
-                            </span>
-                          ))}
-                          {skill.projectsUsedIn.length > 2 && (
-                            <span className="px-1.5 py-0.5 rounded bg-white/[0.04] text-[10px] text-[color:var(--text-muted)] font-mono">
-                              +{skill.projectsUsedIn.length - 2}
-                            </span>
-                          )}
-                        </div>
+                        <p className="text-[11px] font-mono text-[color:var(--text-muted)] truncate pt-0.5">
+                          {skill.projectsUsedIn
+                            .slice(0, 3)
+                            .map((p) => p.replace(/-/g, ' '))
+                            .join(', ')}
+                        </p>
                       )}
                     </div>
                   </motion.div>

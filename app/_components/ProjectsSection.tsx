@@ -51,13 +51,11 @@ export const ProjectsSection = () => {
                           {project.category}
                         </span>
                         {project.slug === 'thecoauthor' && (
-                          <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono text-emerald-400">
-                            Live SaaS
-                          </span>
+                          <span className="text-[11px] font-mono text-emerald-500 font-medium">Live SaaS</span>
                         )}
                         {project.slug === 'alauna' && (
-                          <span className="px-2 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-[10px] font-mono text-purple-400">
-                            AI Companion
+                          <span className="text-[11px] font-mono text-[color:var(--text-muted)] font-medium">
+                            On-Device Inference
                           </span>
                         )}
                       </div>
@@ -68,16 +66,9 @@ export const ProjectsSection = () => {
 
                     <p className="max-w-2xl text-sm leading-relaxed text-[color:var(--text-soft)]">{project.summary}</p>
 
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.slice(0, 5).map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2.5 py-1 bg-white/[0.04] border border-white/8 rounded-md text-xs font-mono text-[color:var(--text-muted)]"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                    <p className="text-xs font-mono text-[color:var(--text-muted)] tracking-wide">
+                      {project.technologies.slice(0, 5).join(' \u00B7 ')}
+                    </p>
 
                     {project.metrics && (
                       <div className="flex flex-wrap items-center gap-6 pt-2 border-t border-black/[0.06] dark:border-white/8">

@@ -65,10 +65,7 @@ export function SiteHeader({ items, ctaHref }: SiteHeaderProps) {
                 <p className="text-sm font-bold font-display text-[color:var(--text-strong)] leading-tight">
                   Khem Seangleng
                 </p>
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                </span>
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
               </div>
               <p className="text-[10px] font-mono uppercase tracking-wider text-[color:var(--text-muted)] leading-none pt-0.5">
                 Full-Stack Developer

@@ -75,11 +75,11 @@ export default function LinksPage() {
     },
     {
       label: 'Alauna',
-      badge: 'AI Companion',
-      value: 'AI Roleplay App & Local LLM',
+      badge: 'Mobile App',
+      value: 'On-Device Local Inference Engine',
       href: 'https://github.com/lengseang/alauna',
-      icon: 'solar:magic-stick-3-bold-duotone',
-      accent: 'hover:border-purple-500/40 hover:bg-purple-500/10 text-purple-400',
+      icon: 'solar:smartphone-bold-duotone',
+      accent: 'hover:border-zinc-500/40 hover:bg-zinc-500/10 text-[color:var(--text-strong)]',
     },
     {
       label: 'Portfolio Website',

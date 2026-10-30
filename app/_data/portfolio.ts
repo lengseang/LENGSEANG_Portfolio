@@ -124,9 +124,9 @@ export const personalInfo = {
   professionalSummary: [
     'Production experience with Next.js, Nuxt, React, NestJS, and Clean Architecture',
     'Architected multi-role operational workflows (B2B, B2C, C2B) & real-time push notification triggers at BS Express Cambodia',
-    'Developed AI model analysis frontend and large-scale RBAC Admin Dashboard at Prestige Alliance',
+    'Developed real-time analytics client and large-scale 6-tier RBAC Admin Dashboard at Prestige Alliance',
     'Built, deployed, and maintain TheCoAuthor.com end-to-end with sub-100ms editing latency and auto-save',
-    'Built and open-sourced Alauna — privacy-first React Native AI companion running 100% locally on Android',
+    'Built and open-sourced Alauna — privacy-first on-device local LLM inference engine on Android',
     'Pursuing Bachelor of Computer Science at Royal University of Phnom Penh (4th Year, Jan 2022 - Dec 2026)',
   ],
   hobbies: [
@@ -430,28 +430,28 @@ export const projects: ProjectImpact[] = [
     },
   },
   {
-    title: 'Alauna - On-Device AI Companion & Voice App',
+    title: 'Alauna - On-Device Local LLM Engine',
     slug: 'alauna',
-    category: 'AI & Mobile Engineering',
+    category: 'Mobile Systems Engineering',
     timeline: '2026',
     summary:
-      'Built and open-sourced a privacy-first React Native AI companion running 100% locally on Android for real-time generative chat and voice with zero cloud costs.',
+      'Built and open-sourced a privacy-first React Native local inference runtime running 100% on-device (Qwen 2.5 2B) on Android with real-time audio and zero cloud dependencies.',
     detailedDescription:
-      'Alauna is a privacy-first, on-device AI companion and roleplay application built with React Native. It runs 100% locally on Android using optimized models (Qwen3.5 2B HauhauCS Aggressive), delivering real-time streaming dialogue and voice interactions with zero cloud dependency and zero operational costs. Features dynamic prompt discovery, persona switches, audio/mic support, and an iridescent holographic bubble UI.',
-    role: 'Creator & Mobile AI Engineer',
-    technologies: ['React Native', 'Android SDK', 'Qwen3.5 2B LLM', 'Local Inference', 'Voice AI', 'Zero Cloud Costs'],
+      'Alauna is a privacy-first, on-device local LLM execution runtime built with React Native. It runs 100% locally on Android using optimized quantization models (Qwen 2.5 2B), delivering low-latency streaming dialogue and voice synthesis with zero cloud dependency and zero operational costs. Features dynamic prompt orchestration, audio stream processing, and fluid 60fps mobile interaction.',
+    role: 'Creator & Mobile Systems Engineer',
+    technologies: ['React Native', 'Android SDK', 'Qwen 2.5 LLM', 'On-Device Inference', 'Local Audio Engine'],
     challenges: [
       'Engineering low-latency token streaming for 100% local on-device LLM inference',
-      'Designing an iridescent holographic bubble aesthetic with 60fps mobile micro-interactions',
-      'Architecting session context handling and prompt switching across dynamic roleplay personas',
+      'Memory management and thermal control during continuous model execution on Android',
+      'Architecting dynamic context handling and low-latency audio processing pipelines',
     ],
     outcomes: [
-      'Delivered privacy-first on-device AI companion with zero cloud costs',
-      'Engineered real-time generative chat and voice input streaming on Android',
+      'Delivered privacy-first on-device local runtime with zero cloud operational costs',
+      'Engineered real-time generative dialogue and voice input streaming on Android',
       'Published open-source codebase on GitHub with clean, modular architecture',
     ],
     metrics: [
-      { label: 'Model Engine', value: 'Qwen3.5 2B', description: '100% Local on-device LLM' },
+      { label: 'Model Engine', value: 'Qwen 2.5 2B', description: '100% Local on-device LLM' },
       { label: 'Cloud Cost', value: '$0 / Free', description: 'Zero cloud dependencies' },
       { label: 'Platform', value: 'Android', description: 'React Native & Mobile UI' },
       { label: 'Repository', value: 'Open Source', description: 'Public GitHub codebase' },
@@ -464,16 +464,16 @@ export const projects: ProjectImpact[] = [
     },
   },
   {
-    title: 'Neuralsh.com - AI Model Analysis Platform',
+    title: 'NeuralShield IVS - Real-Time Analytics Platform',
     slug: 'neuralshield-ivs',
-    category: 'Frontend & Security',
+    category: 'Enterprise Systems',
     timeline: '2025 - 2026',
     summary:
-      'Developed frontend for an AI model analysis platform with secure API integrations, strict security considerations, and a large-scale RBAC Admin Dashboard.',
+      'Developed production frontend for low-latency data streaming, strict payload sanitization, and a large-scale 6-tier RBAC Admin Dashboard.',
     detailedDescription:
-      'At Prestige Alliance, I developed the frontend for Neuralsh.com, an AI model analysis platform. I managed secure backend API integrations with strict security standards, and built a large-scale Admin Dashboard for data storage and evaluation featuring Role-Based Access Control (RBAC), dynamic user pages, and SVG map API optimizations.',
-    role: 'Full-Stack Developer (Frontend Owner)',
-    technologies: ['Next.js', 'React', 'TypeScript', 'RBAC', 'SVG Map API', 'Tailwind CSS'],
+      'At Prestige Alliance, I developed the frontend for NeuralShield IVS, a real-time analytics and evaluation platform. I managed secure backend API integrations with strict security standards, and built a large-scale Admin Dashboard for data storage and evaluation featuring Role-Based Access Control (RBAC), dynamic user pages, and SVG map API optimizations.',
+    role: 'Full-Stack Systems Developer',
+    technologies: ['Next.js 16', 'React', 'TypeScript', 'RBAC (6 Tiers)', 'SVG Map API', 'Tailwind CSS'],
     challenges: [
       'Integrating complex AI model analysis streams with minimal latency',
       'Building multi-role RBAC dashboard for large-scale data evaluation',
@@ -699,47 +699,47 @@ export const education: TimelineItem[] = [
 
 export const certifications: Certification[] = [
   {
-    title: 'AI Application Prompt Engineering',
-    issuer: 'Frontend Masters',
-    href: 'https://drive.google.com/file/d/1tJp0TghUQpxw7bzpjdLe9vSf0Nh-3QbO/view?usp=drive_link',
-    focus: 'Prompt design, AI workflows, and applied product thinking',
-    year: '2026',
-  },
-  {
     title: 'Patterns in Enterprise Architecture',
     issuer: 'Frontend Masters',
     href: 'https://drive.google.com/file/d/1OS5aKOfPpwfd2_m2Xb_nBJaeOOpq_URY/view?usp=drive_link',
-    focus: 'System structure, maintainability, and architecture patterns',
+    focus: 'System structure, maintainability, and enterprise architecture patterns',
     year: '2026',
   },
   {
     title: 'Architecting Backend Systems',
     issuer: 'Frontend Masters',
     href: 'https://drive.google.com/file/d/1NNEAEji-RWOgnclLIWPXYa7ipaP_2mXN/view?usp=drive_link',
-    focus: 'Backend service design and scalable application thinking',
-    year: '2026',
-  },
-  {
-    title: 'Database Fundamentals Comprehensive Introduction',
-    issuer: 'Frontend Masters',
-    href: 'https://drive.google.com/file/d/1Vf6ZbVHmi80zRXFFCEL0645J30Sv2xdT/view?usp=drive_link',
-    focus: 'Core data modeling, relational thinking, and database foundations',
+    focus: 'Backend service design, API boundaries, and scalable application thinking',
     year: '2026',
   },
   {
     title: 'Advanced Backend System Design',
     issuer: 'Frontend Masters',
     href: 'https://drive.google.com/file/d/14clQjggvmztpAja6LaepKPK_YZfwlcWq/view?usp=drive_link',
-    focus: 'Advanced system design and backend decision-making',
+    focus: 'Distributed systems design, partitioning, and backend decision-making',
+    year: '2026',
+  },
+  {
+    title: 'Database Fundamentals Comprehensive Introduction',
+    issuer: 'Frontend Masters',
+    href: 'https://drive.google.com/file/d/1Vf6ZbVHmi80zRXFFCEL0645J30Sv2xdT/view?usp=drive_link',
+    focus: 'Relational data modeling, indexing, and high-performance querying',
+    year: '2026',
+  },
+  {
+    title: 'AI Application Prompt Engineering',
+    issuer: 'Frontend Masters',
+    href: 'https://drive.google.com/file/d/1tJp0TghUQpxw7bzpjdLe9vSf0Nh-3QbO/view?usp=drive_link',
+    focus: 'Prompt design, context windows, and model orchestration',
     year: '2026',
   },
   {
     title: 'Workshop on Programming with AI',
     issuer: 'STEP IT Academy',
     href: 'https://drive.google.com/file/d/1m6RJDX1s_RPiXCDdqaSpNM1k9G3j5Nw3/view?usp=drive_link',
-    focus: 'Applied AI-assisted development workflows',
+    focus: 'Applied developer workflows and automated tooling',
     year: '2026',
-    skills: ['AI-Assisted Development', 'Prompt Engineering', 'Automated Workflows'],
+    skills: ['Applied Tooling', 'Automated Workflows'],
   },
 ];
 

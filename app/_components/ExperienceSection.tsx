@@ -25,22 +25,22 @@ interface ExperienceDossier {
 const experienceData: ExperienceDossier[] = [
   {
     period: 'Nov 2025 – May 2026',
-    role: 'Full-Stack Developer',
+    role: 'Full-Stack Systems Developer',
     organization: 'Prestige Alliance Co., Ltd.',
     location: 'Phnom Penh, Cambodia',
     type: 'Production Role',
     summary:
-      'Spearheaded frontend architecture for AI model analysis platforms and engineered enterprise-grade administrative portals with strict security constraints and granular authorization.',
+      'Spearheaded frontend architecture for high-throughput streaming analytics platforms and engineered enterprise-grade administrative portals with strict security constraints and granular authorization.',
     systems: [
       {
-        name: 'Neuralsh.com AI Model Analysis Platform',
+        name: 'NeuralShield IVS - Real-Time Analytics Platform',
         badge: 'Frontend Owner',
         description:
-          'Developed production frontend for AI model analysis, managing low-latency backend streaming integrations and implementing strict security considerations.',
+          'Developed production client for streaming analytics and evaluation, managing low-latency backend socket connections and implementing strict enterprise security considerations.',
         highlights: [
-          'Engineered responsive AI inference streaming interfaces with sub-200ms latency',
-          'Enforced secure token handling, payload sanitization, and API route guards',
-          'Collaborated with AI researchers to translate complex evaluation metrics into intuitive client dashboards',
+          'Engineered responsive event-stream data interfaces with sub-200ms rendering latency',
+          'Enforced secure token handling, payload sanitization, and strict API route guards',
+          'Translated complex evaluation telemetry into high-density, performant client dashboards',
         ],
         tags: ['Next.js 16', 'React', 'TypeScript', 'Streaming APIs', 'Tailwind CSS', 'API Security'],
       },
@@ -124,8 +124,8 @@ export function ExperienceSection() {
             className="font-display text-4xl leading-tight sm:text-5xl font-bold tracking-tight text-[color:var(--text-strong)]"
           />
           <p className="max-w-2xl text-base sm:text-lg text-[color:var(--text-soft)] leading-relaxed">
-            Production engineering roles delivering role-gated admin dashboards, AI analysis platforms, and express
-            logistics state machines.
+            Production engineering roles delivering role-gated admin dashboards, real-time analytics platforms, and
+            express logistics state machines.
           </p>
         </MotionReveal>
 
@@ -151,7 +151,7 @@ export function ExperienceSection() {
                 {isSelected && (
                   <motion.div
                     layoutId="activeCompanyTab"
-                    className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-emerald-500 via-sky-500 to-indigo-500"
+                    className="absolute top-0 inset-x-0 h-0.5 bg-[color:var(--text-strong)]"
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -260,16 +260,9 @@ export function ExperienceSection() {
                     ))}
                   </div>
 
-                  <div className="flex flex-wrap gap-1.5 pt-2">
-                    {system.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-0.5 rounded-md bg-black/[0.03] dark:bg-white/[0.04] border border-black/[0.05] dark:border-white/6 text-[11px] font-mono text-[color:var(--text-muted)]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <p className="pt-2.5 border-t border-black/[0.04] dark:border-white/6 text-xs font-mono text-[color:var(--text-muted)]">
+                    {system.tags.join(' \u00B7 ')}
+                  </p>
                 </motion.div>
               ))}
             </div>
