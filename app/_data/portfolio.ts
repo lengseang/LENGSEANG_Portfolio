@@ -118,9 +118,9 @@ export const personalInfo = {
   telegram: 'https://t.me/LegendOfLeng',
   resumeUrl: '/Khem_Seangleng_CV.pdf',
   shortBio:
-    'Greetings, I’m Leng — a Full-Stack Systems Developer with production experience building secure, role-gated admin platforms and publishing engines. I build with Next.js, Nuxt, React, and NestJS, with an emphasis on Clean Architecture, multi-role RBAC, and resilient API design. Took NeuralShield IVS from prototype to launch, and built and maintain TheCoAuthor.com end to end.',
+    'Full-stack systems developer specializing in multi-role RBAC architectures, low-latency publishing engines, and clean backend APIs with Next.js 16, NestJS, and PostgreSQL.',
   longBio:
-    'Greetings, I’m Leng — a Full-Stack Systems Developer with production experience building secure, role-gated admin systems and publishing platforms. I work with Next.js, Nuxt, React, and NestJS, with a focus on Clean Architecture, RBAC, and API design. Took NeuralShield IVS frontend from prototype to launch, and built and maintain TheCoAuthor.com end to end. Looking for a full-stack engineering role on system-focused products.',
+    'Full-stack systems developer specializing in multi-role RBAC architectures, low-latency publishing engines, and clean backend APIs with Next.js 16, NestJS, and PostgreSQL.',
   professionalSummary: [
     'Production experience with Next.js, Nuxt, React, NestJS, and Clean Architecture',
     'Architected multi-role operational workflows (B2B, B2C, C2B) & real-time push notification triggers at BS Express Cambodia',
@@ -150,10 +150,10 @@ export const personalInfo = {
 
 export const navItems: NavItem[] = [
   { href: '/#home', label: 'Home' },
-  { href: '/#journey', label: 'My Journey' },
-  { href: '/#skills', label: 'Skills' },
+  { href: '/#about', label: 'Systems' },
+  { href: '/#experience', label: 'Experience' },
   { href: '/#projects', label: 'Projects' },
-  { href: '/#services', label: 'Services' },
+  { href: '/#stack', label: 'Stack' },
   { href: '/#education', label: 'Education' },
   { href: '/#contact', label: 'Contact' },
 ];

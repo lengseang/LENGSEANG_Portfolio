@@ -9,13 +9,12 @@ import { ConnectModal } from '@/app/_components/connect-modal';
 import { ContactForm } from '@/app/_components/contact-form';
 import { ExperienceSection } from '@/app/_components/ExperienceSection';
 import { Icon } from '@/app/_components/icon';
-import { JourneyTimeline } from '@/app/_components/journey/JourneyTimeline';
 import { BlurTextReveal, Magnetic, MotionItem, MotionReveal, MotionStagger } from '@/app/_components/motion';
 import { ProjectsSection } from '@/app/_components/ProjectsSection';
 import { SkillsRadar } from '@/app/_components/SkillsRadar';
 import { SiteHeader } from '@/app/_components/site-header';
 
-import { certifications, education, navItems, personalInfo, services, socialLinks } from '@/app/_data/portfolio';
+import { certifications, education, navItems, personalInfo, socialLinks } from '@/app/_data/portfolio';
 
 export default function Home() {
   const [isConnectOpen, setIsConnectOpen] = useState(false);
@@ -212,7 +211,8 @@ export default function Home() {
                   className="font-display text-4xl leading-tight sm:text-5xl"
                 />
                 <p className="text-base sm:text-lg leading-relaxed text-[color:var(--text-soft)]">
-                  {personalInfo.longBio}
+                  Architectural principles focused on authorization hierarchies, low-latency client interaction, and
+                  deterministic logistics workflows.
                 </p>
               </div>
 
@@ -289,125 +289,15 @@ export default function Home() {
                   </p>
                 </motion.div>
               </div>
-
-              {/* Engineering Tenets Panel */}
-              <div className="panel p-6 sm:p-8 space-y-4">
-                <h3 className="text-sm font-mono uppercase tracking-widest text-[color:var(--accent)]">
-                  Core Engineering Tenets
-                </h3>
-                <div className="grid gap-3 sm:grid-cols-2 pt-1">
-                  {personalInfo.professionalSummary.map((item) => (
-                    <div key={item} className="flex items-start gap-2.5 text-sm text-[color:var(--text-soft)]">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[color:var(--accent)] flex-shrink-0" />
-                      <span className="leading-relaxed">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </MotionReveal>
           </div>
         </section>
-        {/* ===== JOURNEY TIMELINE ===== */}
-        <JourneyTimeline />
-        {/* ===== TECHNICAL SKILLS ===== */}
-        <SkillsRadar />
         {/* ===== EXPERIENCE ===== */}
         <ExperienceSection />
         {/* ===== PROJECTS ===== */}
         <ProjectsSection />
-        {/* ===== ENGINEERING SERVICES ===== */}
-        <section id="services" className="border-t border-black/[0.06] dark:border-white/8">
-          <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
-            <MotionReveal className="mb-12 space-y-3">
-              <p className="eyebrow">Engineering Capabilities</p>
-              <h2 className="font-display text-4xl leading-none sm:text-5xl">What I deliver</h2>
-              <p className="max-w-2xl text-lg text-[color:var(--text-soft)]">
-                From domain logic and schema modeling to high-speed, accessible client architectures.
-              </p>
-            </MotionReveal>
-
-            {/* Asymmetric Capability Matrix (Anti-Slop Layout Variance) */}
-            <MotionStagger className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {/* Flagship Tier 1: 2-column wide focal card */}
-              <MotionItem className="lg:col-span-2">
-                <motion.div
-                  whileHover={{ y: -3 }}
-                  transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                  className="panel p-7 sm:p-8 space-y-5 h-full group"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="text-xs font-mono font-bold text-[color:var(--accent)] tracking-widest uppercase">
-                      Core Discipline / 01
-                    </span>
-                    <span className="text-xs font-mono text-emerald-500 font-medium">Enterprise Tier</span>
-                  </div>
-
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-bold font-display text-[color:var(--text-strong)]">
-                      {services[0]?.title ?? 'Secure Admin Systems & RBAC'}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-[color:var(--text-soft)] max-w-2xl">
-                      {services[0]?.description} Engineered authorization architectures with granular permission
-                      hierarchies, JWT middleware, session invalidation, and audit logging proven at Prestige Alliance.
-                    </p>
-                  </div>
-
-                  <p className="pt-2.5 border-t border-black/[0.06] dark:border-white/8 text-xs font-mono text-[color:var(--text-muted)]">
-                    6-Tier RBAC &middot; Guard Middleware &middot; Token Revocation &middot; Audit Logging
-                  </p>
-                </motion.div>
-              </MotionItem>
-
-              {/* Service 2: Full-Stack Web Platforms */}
-              <MotionItem>
-                <motion.div
-                  whileHover={{ y: -3 }}
-                  transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                  className="panel p-7 sm:p-8 space-y-5 h-full group flex flex-col justify-between"
-                >
-                  <div className="space-y-3">
-                    <span className="text-xs font-mono font-bold text-[color:var(--accent)] tracking-widest uppercase">
-                      Core Discipline / 02
-                    </span>
-                    <h3 className="text-xl font-bold font-display text-[color:var(--text-strong)]">
-                      {services[1]?.title ?? 'Full-Stack Web Platforms'}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-[color:var(--text-soft)]">{services[1]?.description}</p>
-                  </div>
-                  <p className="pt-2.5 border-t border-black/[0.06] dark:border-white/8 text-xs font-mono text-[color:var(--text-muted)]">
-                    Next.js 16 &middot; NestJS &middot; PostgreSQL &middot; Turbopack
-                  </p>
-                </motion.div>
-              </MotionItem>
-
-              {/* Satellite Services: 03, 04, 05 */}
-              {services.slice(2).map((service, idx) => (
-                <MotionItem key={service.id}>
-                  <motion.div
-                    whileHover={{ y: -3 }}
-                    transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                    className="panel p-6 space-y-4 h-full group flex flex-col justify-between"
-                  >
-                    <div className="space-y-3">
-                      <span className="text-xs font-mono font-medium text-[color:var(--text-muted)] tracking-wider">
-                        0{idx + 3}
-                      </span>
-                      <h3 className="text-lg font-bold font-display text-[color:var(--text-strong)]">
-                        {service.title}
-                      </h3>
-                      <p className="text-sm leading-relaxed text-[color:var(--text-soft)]">{service.description}</p>
-                    </div>
-                    <div className="pt-2 border-t border-black/[0.06] dark:border-white/8">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-[color:var(--text-muted)]">
-                        {service.category}
-                      </span>
-                    </div>
-                  </motion.div>
-                </MotionItem>
-              ))}
-            </MotionStagger>
-          </div>
-        </section>
+        {/* ===== TECHNICAL SKILLS & STACK ===== */}
+        <SkillsRadar />
         {/* ===== EDUCATION & CERTIFICATIONS ===== */}
         <section id="education" className="border-y border-white/8">
           <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
@@ -540,7 +430,6 @@ export default function Home() {
             </MotionReveal>
           </div>
         </section>
-        ;
       </main>
       {/* ===== FOOTER ===== */}
       <footer className="border-t border-white/8">

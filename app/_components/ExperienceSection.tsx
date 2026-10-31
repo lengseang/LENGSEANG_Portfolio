@@ -30,31 +30,29 @@ const experienceData: ExperienceDossier[] = [
     location: 'Phnom Penh, Cambodia',
     type: 'Production Role',
     summary:
-      'Spearheaded frontend architecture for high-throughput streaming analytics platforms and engineered enterprise-grade administrative portals with strict security constraints and granular authorization.',
+      'Spearheaded frontend architecture for low-latency streaming analytics and engineered enterprise RBAC administration portals.',
     systems: [
       {
         name: 'NeuralShield IVS - Real-Time Analytics Platform',
         badge: 'Frontend Owner',
         description:
-          'Developed production client for streaming analytics and evaluation, managing low-latency backend socket connections and implementing strict enterprise security considerations.',
+          'Production analytics client managing low-latency backend socket feeds with sub-200ms rendering latency and strict enterprise route guards.',
         highlights: [
-          'Engineered responsive event-stream data interfaces with sub-200ms rendering latency',
-          'Enforced secure token handling, payload sanitization, and strict API route guards',
-          'Translated complex evaluation telemetry into high-density, performant client dashboards',
+          'Sub-200ms event-stream data pipelines with payload sanitization',
+          'Secure token handling, route shielding, and dynamic session revocation',
         ],
-        tags: ['Next.js 16', 'React', 'TypeScript', 'Streaming APIs', 'Tailwind CSS', 'API Security'],
+        tags: ['Next.js 16', 'React', 'TypeScript', 'Streaming APIs', 'Tailwind CSS'],
       },
       {
         name: 'Enterprise RBAC Admin Dashboard',
         badge: 'Security & Systems',
         description:
-          'Built a large-scale data storage and evaluation dashboard featuring granular Role-Based Access Control (RBAC), dynamic user pages, and custom SVG map API optimizations.',
+          'Granular 6-tier administrative dashboard for sensitive data evaluation and interactive geographic distribution.',
         highlights: [
-          'Architected 6-tier role permission hierarchy with dynamic route shielding and session revocation',
-          'Developed custom high-performance SVG map API visualization for geographic data distribution',
-          'Optimized DOM rendering performance and client bundle size for high-density evaluation tables',
+          '6-tier role permission hierarchy with dynamic route shielding',
+          'Custom high-performance SVG map API visualization for regional data',
         ],
-        tags: ['RBAC (6 Tiers)', 'SVG Map API', 'Dynamic Routing', 'PostgreSQL', 'UI Optimization'],
+        tags: ['RBAC (6 Tiers)', 'SVG Map API', 'Dynamic Routing', 'PostgreSQL'],
       },
     ],
     metrics: [
@@ -70,31 +68,29 @@ const experienceData: ExperienceDossier[] = [
     location: 'Phnom Penh, Cambodia',
     type: 'Operational Systems',
     summary:
-      'Architected multi-role delivery state machines and structured real-time mobile push notification pipelines for express logistics operations.',
+      'Architected operational delivery state machines and real-time push notification pipelines for express logistics.',
     systems: [
       {
         name: 'BS Express Driver Application',
         badge: 'Mobile Architecture',
         description:
-          'Handled React Native framework redesigning driver UI, parcel dispatch flows, and camera-based QR code verification.',
+          'React Native mobile application for parcel dispatching, driver assignments, and camera QR code verification.',
         highlights: [
-          'Engineered intuitive driver mobile UI for rapid parcel pickups and drop-offs in the field',
-          'Built instant camera QR scanning pipeline with offline cache for low-connectivity zones',
-          'Reduced driver parcel processing time by 30% with streamlined verification workflows',
+          'Instant camera QR scanning pipeline with offline cache for field hubs',
+          'Reduced driver parcel processing time by 30% through streamlined workflows',
         ],
-        tags: ['React Native', 'Android SDK', 'QR Scanning', 'Offline Cache', 'Mobile UI/UX'],
+        tags: ['React Native', 'Android SDK', 'QR Scanning', 'Offline Cache'],
       },
       {
-        name: 'Multi-Role 3-Way Logistics State Machine',
+        name: '3-Way Logistics State Machine',
         badge: 'Workflow Architecture',
         description:
-          'Architected operational workflows and synchronized push notification triggers across Branch-to-Branch, Branch-to-Customer, and Customer-to-Branch operations.',
+          'Deterministic operational workflows across Branch-to-Branch, Branch-to-Customer, and Customer-to-Branch distribution.',
         highlights: [
-          'Structured deterministic status handoffs eliminating race conditions across hubs',
-          'Orchestrated automated push notification triggers across Driver App, Dashboard, and Customer portals',
-          'Achieved 100% parcel status tracking sync across distribution routes',
+          '100% parcel status synchronization across Driver App, Dashboard, and Portals',
+          'Automated push event triggers eliminating race conditions between hubs',
         ],
-        tags: ['Push Triggers', 'State Machines', 'Status Handoffs', 'Webhooks', 'Real-Time Sync'],
+        tags: ['Push Triggers', 'State Machines', 'Webhooks', 'Real-Time Sync'],
       },
     ],
     metrics: [
