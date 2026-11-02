@@ -109,7 +109,7 @@ export function ExperienceSection() {
   return (
     <section id="experience" className="border-y border-black/[0.06] dark:border-white/8 relative overflow-hidden">
       <div className="mx-auto max-w-6xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <MotionReveal className="mb-12 space-y-3">
+        <MotionReveal className="glass mb-12 flex w-fit max-w-3xl flex-col items-start gap-3 p-6 sm:p-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/[0.08] dark:border-white/10 bg-black/[0.02] dark:bg-white/[0.04] text-xs font-mono text-[color:var(--accent)]">
             <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" />
             Verified Production History
@@ -137,10 +137,10 @@ export function ExperienceSection() {
                 whileHover={{ y: -3, scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                className={`p-5 rounded-2xl border text-left transition-colors duration-200 relative overflow-hidden group cursor-pointer ${
+                className={`glass p-5 rounded-2xl text-left relative overflow-hidden group cursor-pointer ${
                   isSelected
-                    ? 'border-black/[0.2] dark:border-white/25 bg-white/95 dark:bg-white/[0.08] shadow-lg ring-1 ring-black/[0.08] dark:ring-white/15'
-                    : 'border-black/[0.06] dark:border-white/8 bg-black/[0.015] dark:bg-white/[0.02] hover:border-black/[0.12] dark:hover:border-white/15 hover:bg-black/[0.03] dark:hover:bg-white/[0.04]'
+                    ? 'border-black/[0.2] dark:border-white/30 ring-1 ring-black/[0.08] dark:ring-white/20'
+                    : 'hover:border-black/[0.12] dark:hover:border-white/25'
                 }`}
               >
                 {/* Active Indicator Bar */}

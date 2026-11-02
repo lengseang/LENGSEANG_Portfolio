@@ -86,7 +86,7 @@ export const JourneyTimeline = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -12 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="panel p-6 sm:p-8 space-y-6 border-white/15 bg-white/[0.03]"
+              className="panel p-6 sm:p-8 space-y-6 border-white/15"
             >
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-3">

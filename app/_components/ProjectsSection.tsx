@@ -12,7 +12,7 @@ export const ProjectsSection = () => {
 
   return (
     <section id="projects" className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
-      <MotionReveal className="mb-10 space-y-3">
+      <MotionReveal className="glass mb-10 w-fit max-w-3xl space-y-3 p-6 sm:p-8">
         <p className="eyebrow">Production Portfolio</p>
         <h2 className="font-display text-4xl leading-none sm:text-5xl">Selected Work</h2>
         <p className="max-w-2xl text-lg text-[color:var(--text-soft)]">

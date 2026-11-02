@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function CertificationsPage() {
   return (
     <div className="min-h-screen bg-[color:var(--background)] text-[color:var(--text-strong)]">
-      <SiteHeader items={navItems} ctaHref="/#contact" />
+      <SiteHeader items={navItems} />
 
       <main className="relative overflow-hidden">
         <div className="soft-glow soft-glow-left" />

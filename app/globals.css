@@ -13,6 +13,7 @@
   --accent-2: #a4a4a4;
   --accent-soft: rgba(255, 255, 255, 0.06);
   --border-soft: rgba(255, 255, 255, 0.08);
+  --gold: #d8ad62; /* film accent: the bas-relief gold */
 
   --alpha-glow: 0.035;
   --alpha-glow-2: 0.03;
@@ -39,12 +40,13 @@
   --surface: #ffffff;
   --surface-soft: rgba(255, 255, 255, 0.9);
   --text-strong: #0f172a;
-  --text-soft: #475569;
-  --text-muted: #64748b;
+  --text-soft: #334155; /* one step darker than on plain white: text sits over the film */
+  --text-muted: #475569;
   --accent: #0f172a;
   --accent-2: #334155;
   --accent-soft: rgba(15, 23, 42, 0.04);
   --border-soft: rgba(15, 23, 42, 0.08);
+  --gold: #8f6418;
 
   --alpha-glow: 0.18;
   --alpha-glow-2: 0.12;
@@ -132,6 +134,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--text-strong);
+  --font-sans: var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "Cascadia Code", Consolas, monospace;
 }
 
 * {
@@ -149,7 +153,7 @@ body {
   min-height: 100vh;
   background: transparent;
   color: var(--text-strong);
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
   transition:
     color 300ms ease,
     background-color 300ms ease;
@@ -178,8 +182,9 @@ textarea {
 }
 
 .font-display {
-  font-family: "Georgia", "Times New Roman", serif;
-  letter-spacing: -0.02em;
+  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .eyebrow {
@@ -190,61 +195,74 @@ textarea {
   font-weight: 600;
 }
 
-.panel {
-  position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.055) 0%,
-    rgba(255, 255, 255, 0.02) 45%,
-    rgba(14, 16, 22, 0.6) 100%
-  );
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-radius: 1rem;
-  box-shadow:
-    0 10px 32px -4px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    inset 0 0 24px rgba(255, 255, 255, 0.015);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
+/* in the components layer so utilities on an element (position, rounded-*, bg-*) still win */
+@layer components {
+  /* Liquid glass: frosted, saturated, a bright rim and a soft top sheen. Tinted enough that text never sinks into the
+     background film. .glass = text blocks that sit on the film; .panel = cards. */
+  .glass,
+  .panel {
+    position: relative;
+    isolation: isolate;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 45%), rgba(14, 12, 10, 0.55);
+    backdrop-filter: blur(22px) saturate(170%);
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    border-radius: 1.5rem;
+    box-shadow:
+      0 18px 50px -12px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+      inset 1px 0 0 rgba(255, 255, 255, 0.06);
+    transition:
+      border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 
-.panel:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0.035) 50%,
-    rgba(14, 16, 22, 0.65) 100%
-  );
-  box-shadow:
-    0 16px 40px -8px rgba(0, 0, 0, 0.65),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
-}
+  .glass::before,
+  .panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(120% 60% at 20% 0%, rgba(255, 255, 255, 0.1), transparent 60%);
+  }
 
-.light .panel {
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(248, 250, 252, 0.82) 50%,
-    rgba(241, 245, 249, 0.65) 100%
-  );
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  box-shadow:
-    0 8px 24px -4px rgba(15, 23, 42, 0.04),
-    0 2px 6px -1px rgba(15, 23, 42, 0.02),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
+  .panel:hover {
+    border-color: rgba(255, 255, 255, 0.24);
+    box-shadow:
+      0 22px 56px -12px rgba(0, 0, 0, 0.65),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+  }
 
-.light .panel:hover {
-  border-color: rgba(15, 23, 42, 0.15);
-  background: linear-gradient(135deg, #ffffff 0%, rgba(248, 250, 252, 0.95) 50%, rgba(241, 245, 249, 0.8) 100%);
-  box-shadow:
-    0 16px 36px -6px rgba(15, 23, 42, 0.07),
-    inset 0 1px 0 #ffffff;
+  .light .glass,
+  .light .panel {
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.2) 50%), rgba(251, 249, 245, 0.62);
+    box-shadow:
+      0 18px 44px -14px rgba(60, 45, 20, 0.22),
+      0 0 0 1px rgba(15, 23, 42, 0.05),
+      inset 0 1px 0 #ffffff,
+      inset 0 -1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .light .glass::before,
+  .light .panel::before {
+    background: radial-gradient(120% 60% at 20% 0%, rgba(255, 255, 255, 0.7), transparent 60%);
+  }
+
+  .light .panel:hover {
+    border-color: #ffffff;
+    box-shadow:
+      0 22px 50px -14px rgba(60, 45, 20, 0.28),
+      0 0 0 1px rgba(15, 23, 42, 0.07),
+      inset 0 1px 0 #ffffff;
+  }
 }
 
 .button-primary,
@@ -273,14 +291,14 @@ textarea {
 }
 
 .button-secondary {
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.035);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)), rgba(14, 12, 10, 0.45);
+  backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
   color: var(--text-strong);
   box-shadow:
-    0 2px 10px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 6px 18px -6px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
 .button-secondary:hover {
@@ -389,26 +407,6 @@ textarea {
   box-shadow:
     0 8px 24px -4px rgba(15, 23, 42, 0.08),
     inset 0 1px 0 #ffffff;
-}
-
-/* Swiss Architectural Grid & Grain Texture */
-.architectural-grid {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(circle at 50% 20%, black 40%, transparent 85%);
-  -webkit-mask-image: radial-gradient(circle at 50% 20%, black 40%, transparent 85%);
-}
-
-.light .architectural-grid {
-  background-image:
-    linear-gradient(to right, rgba(15, 23, 42, 0.028) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.028) 1px, transparent 1px);
 }
 
 /* Lenis Smooth Inertia Scroll */

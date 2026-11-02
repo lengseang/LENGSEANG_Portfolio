@@ -65,7 +65,7 @@ export const SkillsRadar = () => {
   return (
     <section id="stack" className="border-y border-black/[0.06] dark:border-white/8">
       <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
-        <MotionReveal className="mb-12 space-y-3">
+        <MotionReveal className="glass mb-12 w-fit max-w-3xl space-y-3 p-6 sm:p-8">
           <p className="eyebrow">Technical Arsenal</p>
           <h2 className="font-display text-4xl leading-none sm:text-5xl">Production Tech Stack</h2>
           <p className="max-w-2xl text-base sm:text-lg text-[color:var(--text-soft)]">

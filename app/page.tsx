@@ -1,16 +1,17 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
+import { ChapterRail } from '@/app/_components/ChapterRail';
 import { ConnectModal } from '@/app/_components/connect-modal';
 import { ContactForm } from '@/app/_components/contact-form';
 import { ExperienceSection } from '@/app/_components/ExperienceSection';
 import { Icon } from '@/app/_components/icon';
 import { BlurTextReveal, Magnetic, MotionItem, MotionReveal, MotionStagger } from '@/app/_components/motion';
 import { ProjectsSection } from '@/app/_components/ProjectsSection';
+import { ScrollFilm } from '@/app/_components/ScrollFilm';
 import { SkillsRadar } from '@/app/_components/SkillsRadar';
 import { SiteHeader } from '@/app/_components/site-header';
 
@@ -20,109 +21,61 @@ export default function Home() {
   const [isConnectOpen, setIsConnectOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[color:var(--background)] text-[color:var(--text-strong)]">
-      <SiteHeader items={navItems} ctaHref="/#contact" />
+    <div className="min-h-screen bg-transparent text-[color:var(--text-strong)]">
+      <ScrollFilm />
+      <SiteHeader items={navItems} />
+      <ChapterRail items={navItems} />
       <main>
-        {/* ===== HERO SECTION (FULL-VIEWPORT ADAPTIVE WITH MOTION) ===== */}
+        {/* ===== HERO: the film shows his face; only the name sits at the bottom ===== */}
         <section
           id="home"
-          className="relative min-h-[calc(100vh-4rem)] lg:min-h-screen flex items-center justify-center overflow-hidden border-b border-black/[0.06] dark:border-white/8 pt-20 pb-16 lg:py-0"
+          className="relative flex min-h-[calc(100svh-4rem)] items-end overflow-hidden lg:min-h-[calc(100vh-72px)]"
         >
-          {/* Subtle Architectural Grid Texture */}
-          <div className="architectural-grid" />
-
-          <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 w-full py-8 lg:py-12">
-            <div className="grid gap-10 lg:grid-cols-[1.15fr_1fr] xl:grid-cols-[1.2fr_1fr] lg:items-center">
-              {/* LEFT: Cinematic High-Resolution Editorial Portrait Showcase */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.94, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="relative flex justify-center lg:justify-start"
+          {/* soft fade from the bottom so the name always reads, whatever frame is behind it */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(to top, color-mix(in srgb, var(--background) 80%, transparent) 0%, transparent 45%)',
+            }}
+          />
+          <div className="relative mx-auto flex w-full max-w-7xl items-end justify-between gap-6 px-5 pb-10 sm:px-6 lg:px-8 lg:pb-14">
+            <h1 className="font-display text-6xl leading-[0.9] tracking-tight sm:text-7xl lg:text-8xl xl:text-9xl">
+              <BlurTextReveal text="Khem" />
+              <br />
+              <BlurTextReveal text="Seangleng" delay={0.1} />
+            </h1>
+            <a
+              href="/#about"
+              className="mb-2 hidden shrink-0 flex-col items-center gap-2 text-[11px] font-mono uppercase tracking-[0.3em] text-[color:var(--text-soft)] hover:text-[color:var(--text-strong)] sm:flex"
+            >
+              Scroll
+              <motion.span
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
               >
-                <div className="relative w-full max-w-[420px] sm:max-w-[460px] lg:max-w-[490px]">
-                  {/* Atmospheric Backlight Studio Halo */}
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.04, 1],
-                      opacity: [0.3, 0.5, 0.3],
-                    }}
-                    transition={{
-                      duration: 6,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                    className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-tr from-emerald-500/15 to-transparent blur-[50px] pointer-events-none"
-                  />
-
-                  {/* The Portrait Frame: Pure High-End Editorial Card */}
-                  <motion.div
-                    whileHover={{ y: -4, scale: 1.01 }}
-                    transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-                    className="relative z-10 overflow-hidden rounded-[2rem] border border-black/[0.08] dark:border-white/[0.12] bg-white/60 dark:bg-zinc-950/70 backdrop-blur-2xl shadow-2xl shadow-black/10 dark:shadow-black/70 group"
-                  >
-                    <div className="relative aspect-[4/4.8] sm:aspect-[4/4.6] w-full overflow-hidden">
-                      <Image
-                        src="/portfolio/khem-profile.jpg"
-                        alt="Khem Seangleng - Full-Stack Systems Engineer"
-                        fill
-                        priority
-                        sizes="(max-width: 640px) 90vw, (max-width: 1024px) 460px, 490px"
-                        className="object-cover object-top filter brightness-[1.02] contrast-[1.02] transition-transform duration-700 ease-out group-hover:scale-[1.02] select-none"
-                      />
-
-                      {/* Pure Photographic Vignette with Zero Clutter */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-50 dark:opacity-75 pointer-events-none" />
-                      <div className="absolute inset-0 ring-1 ring-inset ring-white/10 pointer-events-none" />
-                    </div>
-
-                    {/* Minimalist Studio Caption Bar */}
-                    <div className="px-5 py-3 border-t border-black/[0.06] dark:border-white/10 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl flex items-center justify-between">
-                      <span className="text-xs font-mono font-medium text-[color:var(--text-strong)]">
-                        Khem Seangleng
-                      </span>
-                      <span className="text-[11px] font-mono text-[color:var(--text-muted)]">
-                        Phnom Penh &middot; KH
-                      </span>
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.div>
-
-              {/* RIGHT: Editorial Typography, Bio, Actions & Proof Metrics */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="space-y-6 lg:pl-2"
-              >
-                <div className="space-y-4">
-                  <p className="text-xs font-mono uppercase tracking-widest text-[color:var(--text-muted)]">
-                    Full-Stack Systems Engineer &middot; Production Systems
-                  </p>
-
-                  <h1 className="font-display text-5xl leading-[0.98] tracking-tight sm:text-6xl xl:text-7xl">
-                    <BlurTextReveal text={personalInfo.name} />
-                  </h1>
-
-                  <p className="text-xl sm:text-2xl font-medium text-[color:var(--accent)] tracking-tight">
-                    {personalInfo.role} &mdash; Clean Architecture &amp; Granular RBAC
-                  </p>
-
-                  <BlurTextReveal
-                    as="p"
-                    text={personalInfo.shortBio}
-                    delay={0.15}
-                    className="max-w-xl text-base leading-relaxed text-[color:var(--text-soft)]"
-                  />
-
-                  <p className="text-sm text-[color:var(--text-muted)] flex items-center gap-2 pt-1">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 inline-block" />
-                    Available for select roles &middot; RUPP Computer Science (4th Year)
-                  </p>
-                </div>
-
-                {/* Primary Action Buttons with Superconscious Magnetic Pull & Spring Micro-Interactions */}
+                <Icon icon="solar:alt-arrow-down-linear" width={20} />
+              </motion.span>
+            </a>
+          </div>
+        </section>
+        {/* ===== SYSTEMS & ARCHITECTURE TENETS (opens with the intro band) ===== */}
+        <section id="about" className="border-b border-black/[0.06] dark:border-white/8">
+          <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
+            {/* intro band: role, bio, actions and proof */}
+            <MotionReveal className="glass mb-16 grid gap-8 p-6 sm:p-8 lg:grid-cols-[1.25fr_1fr] lg:gap-12 lg:p-10">
+              <div className="space-y-4">
+                <p className="eyebrow">Full-Stack Systems Engineer &middot; Phnom Penh</p>
+                <p className="font-display text-3xl leading-tight text-[color:var(--text-strong)] sm:text-4xl">
+                  {personalInfo.role} &mdash; Clean Architecture &amp; Granular RBAC
+                </p>
+                <p className="text-base leading-relaxed text-[color:var(--text-soft)]">{personalInfo.shortBio}</p>
+                <p className="text-sm text-[color:var(--text-muted)]">
+                  Available for select roles &middot; RUPP Computer Science (4th Year)
+                </p>
+              </div>
+              <div className="space-y-6">
                 <div className="flex flex-wrap gap-3">
                   <Magnetic strength={0.35}>
                     <motion.div
@@ -173,37 +126,23 @@ export default function Home() {
                     </motion.div>
                   </Magnetic>
                 </div>
-
-                {/* Real Proof-of-Work Metrics with Motion Springs */}
-                <div className="pt-4 border-t border-black/[0.06] dark:border-white/8 grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-[color:var(--border-soft)] pt-6">
                   {[
                     { value: '05+', label: 'Production Systems' },
                     { value: '06', label: 'RBAC Roles Architected' },
                     { value: '100%', label: 'Status Tracking Sync' },
                     { value: '<100ms', label: 'Editor Draft Latency' },
-                  ].map((metric, i) => (
-                    <motion.div
-                      key={metric.label}
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.35 + i * 0.08, type: 'spring', stiffness: 350, damping: 24 }}
-                      whileHover={{ y: -3, scale: 1.02 }}
-                      className="p-2 rounded-xl transition-colors hover:bg-black/[0.02] dark:hover:bg-white/[0.03]"
-                    >
-                      <p className="text-3xl font-bold text-[color:var(--text-strong)] font-display">{metric.value}</p>
-                      <p className="text-xs text-[color:var(--text-muted)] mt-1">{metric.label}</p>
-                    </motion.div>
+                  ].map((metric) => (
+                    <div key={metric.label}>
+                      <p className="font-display text-3xl font-bold text-[color:var(--text-strong)]">{metric.value}</p>
+                      <p className="mt-1 text-xs text-[color:var(--text-muted)]">{metric.label}</p>
+                    </div>
                   ))}
                 </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-        {/* ===== SYSTEMS & ARCHITECTURE TENETS ===== */}
-        <section id="about" className="border-b border-black/[0.06] dark:border-white/8">
-          <div className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
+              </div>
+            </MotionReveal>
             <MotionReveal className="space-y-12">
-              <div className="max-w-3xl space-y-3">
+              <div className="glass max-w-3xl space-y-3 p-6 sm:p-8">
                 <p className="eyebrow">Architecture &amp; Core Systems</p>
                 <BlurTextReveal
                   as="h2"
@@ -304,7 +243,7 @@ export default function Home() {
             <div className="grid gap-12 lg:grid-cols-2">
               {/* Education */}
               <MotionReveal className="space-y-8">
-                <div className="space-y-3">
+                <div className="glass w-fit space-y-3 px-6 py-5">
                   <p className="eyebrow">Education</p>
                   <h2 className="font-display text-3xl leading-none sm:text-4xl">Academic background</h2>
                 </div>
@@ -330,7 +269,7 @@ export default function Home() {
 
               {/* Certifications */}
               <MotionReveal className="space-y-8">
-                <div className="space-y-3">
+                <div className="glass w-fit space-y-3 px-6 py-5">
                   <p className="eyebrow">Certifications</p>
                   <h2 className="font-display text-3xl leading-none sm:text-4xl">Continuous learning</h2>
                 </div>
@@ -372,7 +311,7 @@ export default function Home() {
         {/* ===== CONTACT ===== */}
         <section id="contact" className="mx-auto max-w-6xl px-5 py-18 sm:px-6 lg:px-8 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
-            <MotionReveal className="space-y-6">
+            <MotionReveal className="glass space-y-6 p-6 sm:p-8">
               <div className="space-y-3">
                 <p className="eyebrow">Contact & Collaboration</p>
                 <h2 className="font-display text-4xl leading-none sm:text-5xl">Let&apos;s build something solid.</h2>

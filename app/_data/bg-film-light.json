@@ -1,0 +1,13 @@
+{
+  "v": "9aea642373",
+  "stops": {
+    "home": 0.0,
+    "about": 7.917,
+    "experience": 15.833,
+    "projects": 23.75,
+    "stack": 31.667,
+    "education": 39.583,
+    "contact": 49.583
+  },
+  "end": 49.583
+}
