@@ -81,6 +81,7 @@ export function ScrollFilm() {
             'seeked',
             () => {
               hi.style.opacity = '1';
+              lo.pause();
               v = hi;
             },
             { once: true },
@@ -96,6 +97,7 @@ export function ScrollFilm() {
     // the film plays for everyone, also with the OS 'reduce motion' setting (owner's choice)
     let shown = -1; // the time currently shown, eased toward the scroll target (-1: not started)
     let raf = 0;
+    let last = performance.now();
 
     // iOS only decodes frames for seeking after the video has been played once
     const unlock = () => {
@@ -111,11 +113,14 @@ export function ScrollFilm() {
         const el = document.getElementById(id);
         return el ? el.getBoundingClientRect().top + y : Number.POSITIVE_INFINITY;
       });
-      // transition k (stop k -> k+1) plays while section k+1 rises from the bottom of the screen to near the top
+      // transition k (stop k -> k+1) plays over the last part of section k, ending when section k+1 is near the top.
+      // Length: 65% of section k, 0.8-1.6 screens: long sections get a slow transition, short ones keep a rest on
+      // their stop (a fixed 1.6 screens left desktop sections no rest at all)
       let t = STOPS[0];
       let prevEnd = 0;
       for (let k = 0; k + 1 < STOPS.length; k++) {
-        const start = Math.max(tops[k + 1] - vh, prevEnd);
+        const len = Math.min(vh * 1.6, Math.max(vh * 0.8, (tops[k + 1] - tops[k]) * 0.65));
+        const start = Math.max(tops[k + 1] - vh * 0.2 - len, prevEnd);
         const end = Math.max(tops[k + 1] - vh * 0.2, start + 1);
         prevEnd = end;
         const p = clamp01((y - start) / (end - start));
@@ -134,10 +139,27 @@ export function ScrollFilm() {
       if (fade === 1 && !h.paused) h.pause();
 
       const goal = Math.min(target(y, vh), film.end - 0.05);
-      shown = shown < 0 ? goal : shown + (goal - shown) * 0.12;
+      const now = performance.now();
+      const dt = Math.min((now - last) / 1000, 0.1);
+      last = now;
+      // ease toward the scroll target, same feel at 60 and 120 Hz
+      shown = shown < 0 ? goal : shown + (goal - shown) * (1 - Math.exp(-dt / 0.15));
       if (Math.abs(shown - goal) < 0.01) shown = goal;
-      // seek only when the last seek has finished, or seeks pile up and the picture freezes
-      if (v && !v.seeking && Math.abs(v.currentTime - shown) > 1 / 48) v.currentTime = shown;
+      if (v && !v.seeking) {
+        // forward: PLAY toward the target at a matching speed: the decoder shows every frame in order (seeking
+        // frame by frame managed ~17 fps with jumps of several frames). At most 4x: after a fast flick the film
+        // catches up smoothly a moment later instead of skipping. Backward or far (a nav click): seek, as before.
+        const ahead = goal - v.currentTime;
+        if (ahead > 1 / 24 && ahead < 10) {
+          // never below 1x: a slower tail made settling on a stop take ~2 s and feel floaty
+          v.playbackRate = Math.min(4, Math.max(1, ahead / 0.25));
+          if (v.paused) v.play().catch(() => {});
+        } else {
+          if (!v.paused) v.pause();
+          if (Math.abs(v.currentTime - shown) > 1 / 48) v.currentTime = shown;
+        }
+        if (!v.paused) shown = v.currentTime; // a later seek (scrolling back) starts from what is on screen
+      }
       if (!v) {
         // no video yet: show the nearest stop frame as a still
         let near = 0;
@@ -153,6 +175,8 @@ export function ScrollFilm() {
       const src = at > 0 ? url(`idle-${SECTIONS[at]}-${variant}.mp4`) : '';
       if (src !== idleSrc) {
         idleSrc = src;
+        // fade in slowly (500 ms), out fast (150 ms) so it doesn't ghost over the film once scrolling starts
+        l.style.transitionDuration = src ? '500ms' : '150ms';
         l.style.opacity = '0'; // fades out over the frozen frame it started from, then pauses
         if (src) {
           l.src = src;
