@@ -73,6 +73,7 @@ export function ScrollFilm() {
     const early = (window as Window & { __filmLo?: { t: string; v: string; blob: Promise<Blob> } }).__filmLo; // layout.tsx
     load(lo, early?.v === variant && early.t === theme ? early.blob.catch(() => get(loUrl)) : get(loUrl))
       .then(() => {
+        lo.currentTime = Math.max(shown, 0); // loaded mid-page (a reload): start on the spot, don't play there
         v = lo;
         if (saveData) return;
         return load(hi, get(url(`scrub-${variant}.mp4`))).then(() => {
@@ -143,16 +144,19 @@ export function ScrollFilm() {
       const dt = Math.min((now - last) / 1000, 0.1);
       last = now;
       // ease toward the scroll target, same feel at 60 and 120 Hz
-      shown = shown < 0 ? goal : shown + (goal - shown) * (1 - Math.exp(-dt / 0.15));
+      shown = shown < 0 ? goal : shown + (goal - shown) * (1 - Math.exp(-dt / 0.3));
       if (Math.abs(shown - goal) < 0.01) shown = goal;
       if (v && !v.seeking) {
         // forward: PLAY toward the target at a matching speed: the decoder shows every frame in order (seeking
-        // frame by frame managed ~17 fps with jumps of several frames). At most 4x: after a fast flick the film
-        // catches up smoothly a moment later instead of skipping. Backward or far (a nav click): seek, as before.
+        // frame by frame managed ~17 fps with jumps of several frames). Backward: seek, eased (below).
         const ahead = goal - v.currentTime;
-        if (ahead > 1 / 24 && ahead < 10) {
-          // never below 1x: a slower tail made settling on a stop take ~2 s and feel floaty
-          v.playbackRate = Math.min(4, Math.max(1, ahead / 0.25));
+        if (ahead >= 12) {
+          // a big jump (nav click across sections): cut to 3 s before the target and play only the arrival
+          v.currentTime = shown = goal - 3;
+        } else if (ahead > 1 / 24) {
+          // 1-2x (owner: "not too fast, just fluid"): a quick scroll lets the film trail and finish at film pace;
+          // slows to 1x over the last second, never below (a slower tail felt floaty)
+          v.playbackRate = Math.min(2, Math.max(1, ahead / 0.5));
           if (v.paused) v.play().catch(() => {});
         } else {
           if (!v.paused) v.pause();
